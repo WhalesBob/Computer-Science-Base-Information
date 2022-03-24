@@ -157,6 +157,14 @@
 
     - Continue & Break
     이것도 말그대로, 원래 쓰임새에 맞게 쓰면된다     
+    
+    -> 비교구문 : 
+      -gt : ~보다 높은(greater than)
+      -ge : ~보다 높거나 같은(greater than or equal)
+      -lt : ~보다 낮은(less than)
+      -le : ~보다 작거나 같은(lass than or equal)
+      -eg : ~와 같은(equal)
+      -ne : ~와 같지 않은(Not equal)
 
     [File Testing]
     -d file : 디렉토리에 있는 애 이름이냐?
