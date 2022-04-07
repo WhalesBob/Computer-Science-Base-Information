@@ -380,9 +380,9 @@
       System Requirement Specification -> Requirement Specification (여기서부터 우리가 아는 계획!)       ->> 계획, 디자인, V모델 왼쪽
       High-Level Design -> System Design(& Implementation)(디자인하는 단계)
 
-      Low-level Design, Coding, Unit testing -> 구현(Low-level Design도 그런것인지는 확인해야 함!)    
+      Low-level Design, Coding, Unit testing -> 구현(Low-level Design도 그런것인지는 확인해야 함!)->(모호하다. 누가 하냐에 따라 다르다)    
 
-      Component Testing 
+      Component Testing (프로젝트의 규모에 따라 패키지 단위로 Component를 나누기도 하고, 작은 프로젝트라면 클래스 단위로 나누기도 함)
       System Integration Testing (System Testing 과 Integration Testing을 나눠서 하는 경우도 있음. 하지만 거의 뭉쳐서 함) ->> Testing
       Acceptance Testing 
 
@@ -421,13 +421,32 @@
               (앞에서 했던 개발 방법론과 비슷하지만, Evolution에서는 Requirement Spec이라던지 그런 부분은 빠지게 된다)
               (물론 "New System"이 되는 경우, 그 단계 안에서는 다시 Requirement Spec이라던지 하는 부분이 들어가게 된다)
               
-            *** Evolution의 경우, 평가하는 부분(Assess Existing System)이 있는데, 단순히 Validation만 하는 것이 아니라,
+           *** Evolution의 경우, 평가하는 부분(Assess Existing System)이 있는데, 단순히 Validation만 하는 것이 아니라,
                 그 외 Performance 같은 것들, 그런 다른 것들도 모두 평가를 하게 된다. (평가라기보다는 파악에 가깝다)
                 
-              
+           >>> 저 사이클이 계속 반복하게 된다! 유지보수하는 내내!   
             
          
+  ** Coping with Change( Change가 발생했을 때, 어떻게 처리하느냐에 따라 처리속도, 개발 결과물이 완전히 달라진다!)
   
-      
+    >> 팀프로젝트를 하면 반드시 수정이 일어나게 된다! (여러가지 이유가 있음. 개발자가 잘하고 잘못하고, 과제가 바뀌고, 내가 이해를 못하고 등등)
+    >> 규모가 크면 클수록 반드시 Change가 일어날 수 밖에 없다! Business 내에서의 내용이 바뀌면 Requirement부터 시작해서 다 바뀜. 
+    >> 신기술이 나타나도, 그것을 사용자가 요구하기 때문에 개선할 수밖에 없음
+    >> 플랫폼(PC -> 스마트폰)이 바뀌어도 그에따른 변화가 나타날수밖에 없다. 
+    
+    -> 결국에는 Change가 rework를 발생시킴(다시 일해야 된다는 뜻, 비용도 그에 맞게 발생함)
+    -> Requirement를 다시 분석해야 하는 이유가 된다. (Re-design, Re-implementation 포함)
+    
+    
+    -> Rework하는 비용을 최대한 줄여야 한다!
+      >> 구현하는 비용과 Testing 비용으로 나뉘었을 때, Testing하는 비용이 생각보다 많이 든다. Testing에서 문제가 발생하면, 
+         다시 구현해야 하는 비용이 계속 발생하기 때문. Change로 인한 비용발생도 여기에 포함된다.
+      >> 중요한 Rework가 발생하고, 그에 맞게 다 시스템이 새롭게 바뀌어야 한다!
+      >> 그런 것들을 다 감안하고, 프로그래밍 할 때 마다, 수정사항이 생길 것을 염두에 두고 개발하는 것이 좋다!
+      (어느정도는 내부 세부사항이 바뀔 수 있다 라는 것을 염두에 두고 작업을 해야 한다.)
+         
+         
+    
+    
     
     
