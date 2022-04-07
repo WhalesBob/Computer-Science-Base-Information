@@ -375,8 +375,58 @@
       >> 마지막인 이 테스팅은, 범위, 범주가 넓기 때문에 사실 모호한 개념이긴 하다. 
       
       
-    *** V Model (그림 2.3  
+      *** V Model (그림 2.3)
+      Business Requirement Specification (계획 전 단계)(뭐 때문에 필요해!) -> 보통 Business Requirement와 System Requirement 합쳐부름.
+      System Requirement Specification -> Requirement Specification (여기서부터 우리가 아는 계획!)       ->> 계획, 디자인, V모델 왼쪽
+      High-Level Design -> System Design(& Implementation)(디자인하는 단계)
+
+      Low-level Design, Coding, Unit testing -> 구현(Low-level Design도 그런것인지는 확인해야 함!)    
+
+      Component Testing 
+      System Integration Testing (System Testing 과 Integration Testing을 나눠서 하는 경우도 있음. 하지만 거의 뭉쳐서 함) ->> Testing
+      Acceptance Testing 
+
+
+      >> 요런 단계와 순서가 있기 때문에, 보통 이런 순서로 개발이 된다 라는 것 정도 인지하면 된다!
       
+      
+    6. Software Evolution
+      >> 모든 개발이 끝나고 나서 사용하다보니, 조금 더 개선해야 할 부분이 있거나, 필요했던 기능들이 더이상 필요하지 않고 다른 기능이 필요하는 등
+         뭔가를 더 넣어주고 수정해줘야 할 때 진행하게 된다 (Change가 필요할 때, 기능상의 추가삭제, 시스템 자체의 변화
+         사용자의 변화, 사용환경의 변화 등등을 모두 Change가 필요할 때라고 부름.)
+          ex) 소프트웨어가 변한 것은 없는데, 사용자가 바뀐 경우. 
+          (20대가 쓰는 것과 노인분들이 쓰는 것은 달라야 할 부분이 있다. 노안이 오신 분들은 글자가 작거나 너무 화려하면 보기 힘듬)
+            -> 기능상의 변화는 없지만, 조금 더 글씨를 키운다던지, 조금 더 보기좋은 색감 등등이 있어야 한다. 이런것들도 일종의 Change!
+           
+      >> Requirement Change도 있고, 다른 Change도 있다. 이럴 때 Maintainance가 필요하다!
+            
+            
+       6.1 Evolution의 단계
+                  ---------------------------------------------------------------------------------------          
+                  |                                                                                      ^
+        Define System Requirements ---> Assess Existing Systems ---> Propose System Changes --> Modify Systems
+                                                ^           ^                                           |
+                                                |           |                                           |
+                                       Existing Systems     ---------------------------------------  New System  
+                                       
+           
+           *** 요구사항이 있으면 요구(Define System Requirement)
+               현재 해당 시스템이 있는지 확인(Assess Existing Systems)
+               시스템 변화 관찰&제안(Propose System Changes)
+               (변화 찾은 후) 어떤 부분을 고쳐야 하는지(Moddify Changes) 
+                  -> 찾은 뒤 Define System Requirement로 돌아갈 수도 있고, 완전히 새로운 시스템(New System)이 될 수도 있음.
+                  
+                 
+              New System이 된 뒤에도, 해당 시스템에 대해서 다시 평가를 하게 되고, 다시 Cycie을 돌면서 진행하게 된다. 
+              (앞에서 했던 개발 방법론과 비슷하지만, Evolution에서는 Requirement Spec이라던지 그런 부분은 빠지게 된다)
+              (물론 "New System"이 되는 경우, 그 단계 안에서는 다시 Requirement Spec이라던지 하는 부분이 들어가게 된다)
+              
+            *** Evolution의 경우, 평가하는 부분(Assess Existing System)이 있는데, 단순히 Validation만 하는 것이 아니라,
+                그 외 Performance 같은 것들, 그런 다른 것들도 모두 평가를 하게 된다. (평가라기보다는 파악에 가깝다)
+                
+              
+            
+         
   
       
     
