@@ -558,11 +558,56 @@
           >> 배포할 때도, 필요한 부분들을 같이 배포하는 것이다!
           
           
-       *** Incremental Delivery       
+       *** Incremental Delivery (그림 2.4)
               
               1. Define Outline Requirement : Requirement 큰 뼈대 식으로 정해두기 & 우선순위 정하기
-              2. Assign Requirements to Increments : 큰 뼈대 차원에서 정한 Requirement를 
+              2. Assign Requirements to Increments : 큰 뼈대 차원에서 정한 Requirement를 몇개로 나눌 것인지, 몇번 단계에 어떤 Requirement를
+                                                     배치할 것인지 정함. 
            
-    
-    
+              3. Design System Architecture : 1~2번에서 정한대로 System Architecture를 Design
+              4. Develop System Increment : (4~8번 반복. 1~3번까지는 "어떻게 점진적으로 개발하겠다!"가 나오는 단계임)
+                                            (Design / Implementation / Evaluation이 해당 4~8번으로 계속 반복되는 것임.)
+                                              정한 것들 중 일부를 구현하는 단계
+                                              
+              5. Validate Increment : 만든 것을 확인해보는 단계
+              6. Integrate Increments : 만든 것을 통합시키는 단계( Version 1, Version 2 등 단계를 만들어놓은 것을 합친다)
+              7. Validate System : 합친 뒤에 System Validate를 한번 더 함. (그 전 것은, 만든 것만 Evaluate하는 단계였다면, System을
+                                    Validate하는 것은, 합친 전체의 System을 통합해서 Evaluate해보는 것임.)
+                                    
+                                    
+              8. Deploy Increments : 배포하는 단계. 배포하고 나서, 모자란 것이 있으면 다시 4단계(Develop System Increment)단계로 가서 개발함. 
+              
+              
+       ***  Incremental Delivery의 장단점
+       
+         - 장점
+         
+          >> Customer가 직접 Delivery된 것을 받아볼 때, 각각의 단계가 바뀔때 마다 받아볼 수 있음. 실제 Functionality 가 잘 동작하는 지 빠르게 확인할 수 
+             있다. 시스템이 다 개발될때까지 받아보면, Incremental Delivery하는것보다 훨씬 느리다. 그리고 고객이 확인할때, 개발자는 또 다른 개발을 진행하고
+             있을 수 있다. 시간적으로 많이 Save된다.
+             
+          >> 초기 Increment들은 Prototype처럼 활용할 수 있다는 장점이 있다. Requirement를 확실하게 확인할 수 있으며, 다음 개발 때 반영할 수 있다. 
+          
+          >> Risk가 적다! 단계적으로 진행할 때 마다 잘못된 것이 있거나 달라진 것이 있으면 그때그때 이야기하면서 상호작용이 가능함. 프로젝트가 실패할 가능성이 
+              그만큼 낮아진다!
+              
+          >> 높은 우선순위를 먼저 진행함으로써, 그 다음 단계들로 나아갈 때 마다 메인 우선순위를 차지하는 기능은 그만큼 더 많은 Testing을 하게 된다. 
+             Highest Priority의 testing 횟수가 다른 Priority의 기능들보다 더 많아지면서, 가장 높은 우선순위의 기능들은 에러가 날 확률이 더 낮아진다. 
+             관리에 용이하다.(Highest Priority의)
+             
+         
+        - 단점 (점진적 개발의 문제점)
+        
+           >>  중요한 파트가 다른 시스템에 종속되어 있을때(우리 시스템이 아닌 다른 시스템에 있는 파트)(like 결제 시스템 in 쇼핑몰), 해당 파트를 검사하기가
+               대단히 까다롭다. 이런 경우 나중에 확인해야 한다. 이런 부분에 있어서만큼은, Priority가 대단히 높지만, 바로 진행하기가 까다롭다. 
+               자기가 만든 게 아닌, 기존에 있던것을 쓰는 경우 -> Incremental Delivery가 문제가 될 수 있다. (System 자체가 다르기 때문에 갖고오는 것이 불가능)
+           
+           >>  반복하는 프로세스가 반드시 들어가게 된다. 다른 소프트웨어와 결합하는, 가져와야 하는 Spec이 있는 경우 
+                ex) Java로 개발하고 있는데, C로 짜여진 다른 소프트웨어와 결합해야 하는 경우, API를 받아오거나 해당 소프트웨어를 뜯어서 해당 부분을 다른 언어로
+                    새로 개발하거나 하는 경우. (합치는 모델들을 사용해서 충돌된 요소들을 해결해줘야 함.) 
+                -> Incremental Delivery / Development 로 하는 경우, 여러 번 나누어 할 때, 그런 것들을 합쳐야 할 때의 이슈들을 다 파악해서 진행하는 것이 좋다. 
+                
+ ** Process Improvement
+    >> 
+                
     
