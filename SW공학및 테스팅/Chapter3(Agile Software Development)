@@ -60,4 +60,16 @@
     >> Custom-System(이미 어떤 조직에 맞게끔 커스텀하는! Customer가 직접 참여할 수 있는 형태의 개발)
         -> 아무리 중간, medium급이라도, Customer가 없으면 바로 수정받고, 새로 Deliver할 수 없다!
         
+ 
+ 
+ ** Agile Development Technique
+ 
+    *** Extreme Programming
+        >> 프로그래밍 자체에 굉장히 많은 시간을 소요한다!
+        >> 매일마다 새로운 버전이 몇번씩 나오는 방법(정말 극단적인 방법. 최소한 하루에 하나는 나오고, Customer가 직접 참여해 Feedback함.)
+        >> 최소한 2주에 한번은 Delivery해야 한다. (Version이 꼭 나와야 한다)(주기가 엄청나게 빠름)
+        >> 하지만 이렇게까지 하려고 무리해서 하는 것은 올바른 방법이 아니다. 
+        >> 새로운 버전 나올때마다 테스트를 반드시 진행해야 함. 
+        
+    *** The Extreme Programming Release Cycle (그림 3.1)
         
