@@ -1,1 +1,33 @@
 < 3장 : Agile Software Development >
+
+목차 : 
+    - Agile Method란?
+    - Agile Development Techniques
+    - Agile Project Management
+    - Scailing Agile Methods
+    
+ 
+ ** Agile Method 
+    
+    *** Rapid Software Development
+        >> 요즘은, 빨리 개발하는 것이 제일 중요하다!(Time-to-Market) 
+          ex)코로나19 터졌을 때, 관련된 서비스를 만들면 처음이라 사람들이 많이 쓰겠지만, 지금 완성해서 내면 이미 관련된 앱들이 많을 것이다!
+            -> 그만큼 빨리 만들어야 한다는 것! 제때, 빨리 만드는것보다 중요한것은 없다!
+            -> 공공,복지 부분에 있어서는 안그렇겠지만, 판매, 비즈니스를 위해서는 누구보다 빨리 만들어야 사람들이 쓴다. 
+        >> 실질적으로 안정적인 Requirement를 가지고 개발하는 것은 거의 불가능하다. 나중에 Change를 잡아넣고 개선하면 된다.
+        >> 고객 입장에서는 좋은 방법은 아니다. EarlyAdopter들은, 빠르게 쓰니까 이것저것 문제 생기는데, 나중에 패치해서 나오게 되는 것임. 
+        >> Plan-Driven의 경우, Time-to-Market에는 적합하지 못하다. 큰 시스템에, 긴 시스템을 가지고 검증해나가는 방법이기 때문
+        >> Agile 개발 방법이 그래서 아직도 많은 사랑을 받게 된다. Delivery 시간을 엄청 줄이고, 빨리 개발할 수 있기 때문
+        >> 어떤 앱들은 Update를 굉장히 자주 하는데, 이런 것들이 Agile 방법론으로 만든 것임.
+        
+    ***  Agile Development
+        >> Program Specification / Design / Implementation  3개를 같이 한다
+        >> 굉장히 다양한 버전이 나오게 됨.
+        >> 버전이 안되면, Incremental 이라도 나온다. 
+        >> 이해당사자의 경우, User, 개발자 등등이 다 포함된 것임. 다같이 참여해서 Spec과 Evaluation이 계속 일어남
+        >> 잦은 Delivery, 빨리빨리 배포판이 나온다.
+        >> 매일마다 하면 관리하기 힘드니, Tool(자동화 테스팅 같은) 것들을 사용한다. 그렇지 않다면, 테스트할때마다 시간 먹을 것임. 
+          (Tool들의 도움을 많이 받아야)
+        >> Documentation도 적게 해야 함. 대부분 코드를 짜는데 시간을 들이고 문서화는 최대한 적게 만들어야 함! (코드짜는데도 바쁘다)
+        
+        
