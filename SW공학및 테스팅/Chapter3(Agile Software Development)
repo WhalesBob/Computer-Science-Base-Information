@@ -385,6 +385,26 @@
        *** Distributed Scrum 
          -> 그냥한번 읽어보기. 앞에서 나왔던 이야기들이 쭉 나온다. 
          
+  ** Scaling Agile Methods
          
+         >> Scailing : 크기를 늘이고 줄이는 등을 말함
+         >> Agile에서는, 프로젝트의 크기가 점점 더 커지거나 길어지게 되면, 프로젝트 자체를 늘려가는 것이 아니라 여러 개의 팀으로 
+            나누어서, 또 다른 Agile 팀으로 만들어서 진행하게 된다.
+         >> Scailing Up : Large Software System, 작은 팀 하나로 개발할 수 없는 경우.
+         >> Scailing Out : 오랜 기간 동안 해야 한다면, or 큰 팀 단위로 움직여야 된다고 할 때는 "Scailing Out" 을 해서 진행한다. 
+         >> WaterFall 같은 Plan-Driven 모델 같은 경우, 정한 시간대로 쭉 가야하는데 반해 Agile 방법으로는 중간중간에 계획이 얼마든지
+            바꿀 수 있기 때문에 Flexable-Planning(유연한 Planning)이 필요하다. 항상 계획대로 되기가 힘들다.
+         
+         >> Flexible Planning / Frequent Release / CI(Continuous Integration) / TDD(Test-Driven Development) 할때는 
+            Agile에서의 Scailing Up/Scailing Out 을 반드시 고려해서 움직어야 함. (Team-Communication을 잘 하면서! )
+            
+       *** Practical Problems with Agile Methods        
+         >> 팀을 나눠서 진행한다! 시스템이 커지면, 그만큼 인력이 더 필요함. 그런데, 인력을 투입해서 하는 것이 아니라 팀을 분리시키는 것임!
+         >> 이렇게 팀이 계속 나눠지다보면, 팀 간의 커뮤니케이션도 생각해야 된다! (팀 내부 커뮤니케이션도 신경써야되는데, 이것까지 신경쓰면
+            커뮤니케이션 비용이 더 많이 발생한다)(커뮤니케이션 비용을 줄이는 것이, 더 좋은 Software를 만들고 프로젝트를 성공하는 데 기여함)
+         >>   
+        
+        
+        
              
       
