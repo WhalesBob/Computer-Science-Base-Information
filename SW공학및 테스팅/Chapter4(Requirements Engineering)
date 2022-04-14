@@ -259,7 +259,53 @@
                  -> Non-Functional 같은 것들을 검증하는게 굉장히 어렵다. 그리고 딱 집어내는 것들이 어려운 경우도 많다. 
                  
        >> Non-Functional Requirement에서 중요한 것 중 하나는, "사용자의 의도" 이다. 
-             ex) 
+             ex) 5초 이내로 동작해 달라고 했는데, 10초 이내로 해도 되는 경우, 실제 5초라는 Requirement를 만족시키지 못해도, 실제
+                 "사용자의 의도" 는 그게 아니기 때문에, 어느 저도 감내할 수 있는 문제가 되어 버린다. 
+       
+       >> 사용자가 직접 사용해 보아, 뭔가 편하고, 의도대로 만들어졌어! 라는 것을 보증하는 것이 결국 Non-Functional Requirement이다.
+       >> 시스템 사용자의 의도에 맞게끔 만들게 하기 위해, 개발자를 도와주는 요소가 "목표"(Goal)이다. 그 Goal을 만족시키기 위해서는
+          Non-Functional Requirement이다. 
+       >> 기능적으로는 당연히 명시가 되어 있는 것이니, 그렇게 만들어주면 되는 것이다!
+       >> 나머지 부분들은 사용자의 체감에 연관된 것임. 사용자가 사용했을때 나쁘다/불편하다/편하다 와 같은 애들도 Non-Functional
+          Requirement에 해당되는 내용이다. 
+          
+     *** Usability Requirements
+
+       >> 사용성에는, Interface 적인 측면이 많다. 
+       >> 실제 사용했을 때 색감이 좋다/나쁘다/예쁘다/색감이 좋다/ 이런애들이 다 사용성이라고 할 수 있음
+           ex) 너무 알록달록하면, 눈이 아프기 때문에 사용성이 안 좋은 것이다. 
+       >> 사용자가 사용할때, 에러를 안 일으키고 의도했던 대로 사용자가 잘 시스템 프로그램을 사용하느냐? 가 사용성이다!
+           ex) 아무것도 안 알려줬는데, 10명 중 9명은 그냥 잘 하면 사용성이 좋음. / 시켰는데 10명 중 5명이 잘 못 사용하면 사용성이 좋지 않은 것임. 
+               
+     *** Metrics for Specifying Nonfunctional Requirements
+     
+       >> Non-Functionality 를 보고 보통 Property(특성) 이라고도 많이 이야기함. 
+          (조금은 다르다. 보통 Property를 다 모아놓은 것을 가지고 Non-Functionality라고 이야기함)
+          (Non-Functionality 같은 경우, 그 안에 Property가 들어가 있다고 생각하면 된다)
+       
+       >> Property : Speed / Size / Easy of Use(사용성) / Reliability / Robustness / Portability
+       >> 각각의 Property를 측정하는 방법이 Measure.
+              
+              -> Reliability : 에러가 발생하는 평균 시간. (하루에 한번정도 발생하는지 하루에 10번 정도 발생하는지)
+                             : 실제 가용 시간 (얘는, 24시간 중에 6시간 못쓴다치면, 밤 시간 6시간을 못쓰는지, 아니면
+                              1시간마다 15분씩을 못쓰는지가 다른데, 그런 부분을 반영하는 것을 못한다)
+                              
+                              ->> 물론 Reliability가 높으면 높을수록 당연히 좋은 것임.
+                             
+                             : 정해진 기간에 얼마나 Failure가 발생하는가? ((3개가 다 Reliability 에 대한 Metric))
+                             
+                             
+              -> Robustness : 얼마나 잘 버티는가? (에러가 났을 때도, 시스템이 안 죽고 잘 버티는가?)
+              -> Portability : 이 컴퓨터 저 컴퓨터에서 다 잘 돌아가는가? 
+              
+              ((나머지는 그냥 읽어보기 (26/88) ))
+              
+              
+                         
+                                
+       
+       
+       
        
                      
                      
