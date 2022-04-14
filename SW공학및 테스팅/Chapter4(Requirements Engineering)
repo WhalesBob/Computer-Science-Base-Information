@@ -1,1 +1,68 @@
 < 4장 : Requirements Engineering >
+
+  ** 목차
+      - Functional and Non-Functional Requirements (두개를 어떻게 구별할 것인가?)
+      - Requirements Engineering Process (Requirements를 작성해 나가는 방법)
+      - Requirements Elicitation (Requirements 끌어내기)
+      - Requirements Specification (스펙을 만들어 나가는 방법)
+      - Requirements Validation ( Requirements 검증)
+      - Requirements Change
+      
+      
+    *** What is a Requirements(그래서, Requirements란 무엇인가?)
+      >> 두루뭉실하게 되어 있는 것은 Spec이라, Requirements라 이야기하지는 않는다.
+      >> 정확하게, 자세하게 기술되어야 한다. 문장으로 표현되는 경우가 많다. 
+      >> 주고받는 형식 또한 있음. 
+
+    *** Requirements Abstraction(Requirement 개요)
+      >> Customer의 Need, Customer가 필요로 하는것이 어떤 것이다 라는 것을 굉장히 큰 틀에서 정의하고 시작하게 됨.
+
+    *** Types of Requirements  (User vs System)
+      >> User Requirements 
+        -> 고객이 필요한 것. 사용자 입장에서든, 운영자 입장에서든, "User" 입장에서 보았을 때 필요한 Requirements
+        -> 자연어나, 다이어그램 등의 형태로 많이 기술된다. 
+        -> 사용자가 특정한 범위의 사용자일 수 있음. (ex:20대 남성, 이런 식으로 한정해서 생각할 수 있음.)
+        
+      >> System Requirements
+        -> 주로 Diagram, 자연어보다는 Document로 해결을 한다. (부정확하게 기술되면 시스템이 정확이 어떻게 동작해야 하는지 잘 모르는 경우
+            가 많다). 
+        -> Detail Description이 필요함! 
+            ex) 단순히 로그인에 대해서도 상세히 기술해야 함.
+                - 지문 인식, 안면 인식, ID 사용, SNS 로그인 등 할 수 있다. 
+                - ID의 경우에는 몇 자 이상 몇 자 이내로 해야 하는지 등 --->> 구체적으로 기술이 되어야 한다!!
+                
+    *** User and System Requirements(예시, 그냥 보고 넘겨도 ㄱㅊ)
+      >> User Requirements : 한줄임. 그냥 사람이 하는 말처럼 구현해 놓음. ~~~한거 해주세요!
+      >> System Requirements : 엄청 상세하게, 어떨 땐 어떤 기능을 해야 한다는 것을 적어 놓음.
+      
+      >> 개발자는 User Requirements에서 System Requirements를 뽑아 내야 한다!
+      >> 고객이 이렇게 System Requirements처럼 주면 제일 좋지만, 대부분 그렇지 않다. 그래서 User가 저렇게 한 마디 해 주면 개발자는
+         이런 내용들을 말로, 혹은 문서로 기술해서 다시 보여줘야 함. 
+         -> 만약 그냥 위의 작업 없이 WaterFall로 하면, 제품 만들고 나서 나중에 보니, "이렇게 보니 아닌것같다. 바꿔줘!" 할 수 있음
+         -> 만약 이렇게 정해진 것이 없다면, 이런 Requirements를 뽑아내기 위해서라도 Prototyping이 필요한 것이다 .
+            (프로토타입을 만들어서 눈에 보여주는 것임)
+            
+    *** Readers of Different Types of Requirements Specification (누가 보느냐?)
+      
+      >> User Requirements 
+          -> 클라이언트 매니저(고객관리, 고객담당)
+          -> System End-Users(실제 사용자. 사용하는 사람이, 자기가 이야기한 Requirements가 맞는지 확인)
+          -> System Architectures
+      
+      >> System Requirements
+          -> System End-Users(사용하는 사람이 한번더 보게 됨)
+          -> Client Engineers
+          (개발자(Developer)가 이런 User Requirements를 볼일은 별로 없음. 프로젝트 매니저나, 고객과 소통하는 사람들이 User Requirment
+           확인하고, 일반적인 말단 개발자는 User Requirements가 크게 고려대상은 아니다)
+          ( System Requirements가 다 정해져 있는 상태에서, 설계하고 개발해 나가는 것이다)
+          ( User Requirements : 기획하는 쪽 / System Requirements : 개발자가 시작해 나갈때 필요한 것)
+          
+    *** System Stakeholders(이해당사자)
+      >> 
+          
+           
+            
+            
+         
+    
+    
