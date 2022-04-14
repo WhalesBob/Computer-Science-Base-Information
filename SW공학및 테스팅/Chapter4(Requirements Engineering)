@@ -303,9 +303,27 @@
 
   ** Requirements Engineering Process ( Requirement가 어떤 과정을 거쳐서 만들어지고, 검증되고, 관리되는가? )
   
-  
-  
-  
+     *** A Spiral View of the Requirements Engineering Process (그림 4.1)
+     
+       >> 보통 이런 것을 Spiral Model(나선형 모델) 이라고 함. 
+       >> 나선을 따라 돌면서, 했던것들을 하고 또 하며 점점 확장되어 나가는 개념
+       >> Agile에서도, BackLog 가지고와서, 정리해서 개발하고 테스팅, 계속 돌아가는 구조와 마찬가지임. 
+       >> Agile과 다른 것은, 그때는 단순히 반복적으로 수행했다면, Spiral Model에서는 확장되면서 돌아간다는 차이가 있음. 
+       >> Agile이 단순반복이었다면, 지금은 그 영역 자체가 늘어나면서 가는 것이다. 
+     
+     
+       >> 단계 :
+              -> Business Requirements Specification : 어떠한 사업모델을 지향해야 하는가?
+              -> Feasibility Study : 사업이 실제로 우리에게 유효한가? 사업으로써의 가치가 있는가? 진행가능한가? 등을 수행분석
+                            (예산, 기술, 조직적인 부분포함. Feasibility 분석도 해야 함!)
+              -> User Requirement Elicitation ( Elicitation : 끌어내기 ) 
+              -> User Requirement Specification : 스펙을 정의하는 단계
+              -> Prototyping : 껍데기를 개략적으로 만들어보는 단계
+              -> System Requirement Elicitation 
+              -> etc)
+       
+       >> 이렇게 진행되는 것이 하나의 순서로써 Spiral Model 안에 들어가게 된다. 
+       >> 
                          
                                 
        
