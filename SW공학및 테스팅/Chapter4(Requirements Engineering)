@@ -58,10 +58,76 @@
           ( User Requirements : 기획하는 쪽 / System Requirements : 개발자가 시작해 나갈때 필요한 것)
           
     *** System Stakeholders(이해당사자)
-      >> 
+      >> End User
+      >> System Manager
+      >> System 소유주 ( 주로 의뢰를 맡기는 쪽. 물론 본인이 쓸거면, End User와 System 소유주가 동일인물이 된다)
+      >> 외부 관계자
           
+      >> System이 커지는 것보다, StakeHolder가 많아지는 경우가, 더 상황이 복잡한 경우가 많다.
+         -> 사용자는 깔끔한 UI를 원하는데, 관리자들은 한번에 펼쳐놓고 복잡한 정보들을 한 눈에 다 볼수 있는 경우를 원하는 경우.
+           (이런것때문에 관리자 페이지와 사용자 페이지를 따로 만듬)
+           (현실적으로 불가느하면, 둘중하나로 타협을 해야 함)(Stakeholder 들이 있으면, 이런 것들을 고려하는 것이 제일 힘듬)
            
-            
+    *** Agile Method and Requirements 
+      >> System Requirement 같은 경우, Detail하게 기술해야 한다. 
+         -> 구체적이지 않으면, 해당 부분에 대해서 개발자가 상상해서 구현해야 함.만약 Customer가 그것을 원한게 아니면 그 다음부터는 힘들어짐.
+      >> Agile 방법에 있어서는, 구체적인 Requirements보다는, 완전 상세한 Requirement보다는 어느 정도까지만 Detail하게 뽑고, 
+         Requirement 만드는데 그렇게 많이 시간을 쏟아서는 안된다.(정도껏 해야함) 당장 코딩하기도 바쁜 방법임!
+           (절충선을 개발자가 잘 찾아서 진행해야 함)
+           
+      >> Requirement 문서도, System Requirement같은 경우 대부분 문서로 만들어지는데, Agile에 있어서는 이것도 최소화해야 함. 
+      >> Agile 같은 경우, User Story(Senario)를 가지고 User Requirement를 표현해내야 하고, Requirement안에 User Story를 포함시켜야 함.
+      >> 물론, User들이 User Requirement를 바로 제공하는 경우는 별로 없다. 그냥 "~했으면 좋겠어요!" 하고만 이야기하고, 개발자가 그 부분에서
+         User Requirement를 뽑아 내야 함. 
+         
+      >> User에게 계속 확인시키면서 수정해 나가야 함. 그렇게 정하고 나서 Confirm이 나오고, System이 어떻게 돌아가는지 설명해 드린 뒤
+         최종적으로 괜찮다 고 하면 System Requirement를 확정짓는 과정임. 
+      >> 실제 Business System의 경우, 다같이 문제를 분석해 해결하는것보다도, 여러개의 팀에 의해 나눠져 개발되는 경우가 만하. 
+         여러 팀에 의해서 개발되다 보니 Requirement가 계속해서 바뀌게 된다.(Agile이다 보니, 안맞으면 바꾼다고 가정을 해야 함!)
+         (Change가 계속 발생하는 것이다) 
+         
+      >> 그렇기에, Agile에서는 그냥 User Story에 집중해 최대한 빨리 만드는 데 목표를 둔다. Customer와 합의한 내용을 쭉 개발자들에게 
+         알려주고, "이 사람은 이런걸 원하는데 여기에 맞게끔 우리가 알아서 개발을 해야 돼!" 하는 것임.
+      >> Spec를 디테일하게 만드는게 중요한 게 아니다. 만들어서 가져가 보고 오케이 나면 그 다음 진행하는 식임.
+      >> Business System에 있어서는 이런 방법이 현실적이기는 하다. 문제를 해결하는 System 같은 경우에는 Delivery-Analysis같은 것들이 필요
+         한데, Business System의 경우에는, 미리 한번 만들어 보여줘서 분석을 하는 방식이다. 
+         
+   < Spec이 이런 식으로 작성되고, 구성되고, 진행된다, 만들어진다. 라는 것을 개략적으로 파악하면 된다고 한다. 생각만큼 딱딱 정해져서 개발하는
+     것이 아니다! 라는 것임 >
+     (Spec을 어느 정도 Detail하게 구성을 하되, 너무 거기에 시간을 쏟지는 말자. 실제로 개발해서 보여줬을 때 고객이 느끼는 체감은 어차피
+     다를 것이다. )(그냥 어느 방법(Agile vs Waterfall)에서 어디에 치중을 두어 개발할지 선택해 진행하면 된다)
+     
+    
+    
+  ** Functional and Non-Functional Requirements
+    
+      >> Spec 안에는, Functional / Non-Functional / Domain Requirements 3가지가 꼭 포함이 되어야 함. 
+        (경우에 따라서는 Non-Functional 이나 Domain Requirement들은 빠져 있을 수도 있음)
+      
+      >> 대부분 학생들에게 Requirement 작성하라고 하면, Functional Requirement만 작성하고 끝난다. 
+      >> 로그인이 1초 이내로 완료되어야 한다 와 같은 내용의 Requirement는 생각을 안 한다. 로그인하는데 5~10초 걸리면 누가쓰겠는가?)
+          -> 이런 내용들이 Non-Functional에 해당된다!    
+      >> 특성,성능, 퍼포먼스 같은 특성들은 모두 Non-Functional Requirement에 해당되고, 프로그램의 제약사항에 포함됨.
+         ex) System이 하루종일 24시간 동작해야한다 같은 것들도, Non-Functional Requirement에 해당되는 것이다
+         ex2) 프로그램 잘 돌다가, 1시간 만에 발열 이슈로 다운되면 안되는 것도 Non-Functional Requirement!
+         
+      >> Functioanl Requirement는 이미 다 잘 아는 내용. (어떤 동작을 해야 하는지, 어떤 행위를 해야 하는지 등)
+      >> Functional 제외하고는 거의다 Non-Functional이라고 생각하면 된다. 
+      
+      >> Domain-Requirement
+          -> 사용자나 사용되는 환경에 특화된 Requirement가 Domain-Requirement이다.
+           ex: 학교에서 사용되는 프로그램과, 군대에서 사용되는 프로그램은 그 형태나 모습이 많이 다를 것이다.
+           (똑같은 프로그램이라도, 군대로 들어가는 순간 외부 인터넷과 연결이 되어서는 안된다)-> Domain Requirement
+           
+           ex2: 의료분야에서, Software에서 환자들의 개인정보는 인가받은 사람만 열람해야 한다 -> Domain Requirement
+           
+           
+      
+    
+     *** Functional Requirements 
+       >> 
+         
+         
             
          
     
