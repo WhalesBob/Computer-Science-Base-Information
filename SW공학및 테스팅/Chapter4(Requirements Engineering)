@@ -390,26 +390,102 @@
                              있기 때문이다. 아니면 설득시키는 과정이 필요하다)
                              
      *** Problems with Interviews 
-       >>     
-                                  
-                                  
+       >>  원래 Requirement를 결국 설명서로 쭉 적는 것인데, 인터뷰같은 경우 앉아서 이리저리 이야기하는 식이라서 좀 다르다.
+           그렇기 때문에, 녹음을 하던지, 아니면 집에가서 다 받아적어서 다시 Description으로 새로 정리를 해야 하기 때문에 조금 더 
+           정리하는 Requirement Engineer가 수고롭게 된다. 
+                             
+       >>  Domain Requirement에 대해서 이해하기 어렵다 
+            -> 그쪽 분야의 사람만 아는 것을, 개발자가 아무리 인터뷰해 봐야 알기가 어렵다. 물론 인터뷰를 안하는 것 보다야 낫겠지만, 
+               인터뷰로써 Domain Requirement에 대한 일정 부분은 알아내기가 쉽지 않다.
+               
+            -> 이런 부분에 있어서는 Domain Requirement 관련 부분을 Interview하는 사람보다, 엔지니어나 매지나거 정리해서 개발자에게 
+               알려 주고 가르쳐주는 것이 더 빠를 수 있다. 
+            
+            -> 타과 사람들이 Domain Requirement ...? (다양한 경험, 생각측면,,,생각...?)
+           
               
-                                
+     *** Ethnography : 그냥 바로 코딩에 돌입해서 계속 코딩만 하고있지말고, 생각하는 데 시간을 많이 보내자! 그래서 진짜 필요한 것들을
+                       만들자. 생각하는데 시간을 많이 써야 한다. 
+                       
+                       
+     *** Stories and Senarios :
+       >> Story 안에 여러 개의 Senario가 생길 수 있다. 
+             ex) 유명 기업의 개발자의 사연(Story). 그 안에 그사람들이 쭉 걸어온 에피소드(Senario). 에피소드 하나하나가 시나리오이다. 
+             ex2) 하나의 드라마(Story). 그 드라마에서의 매 회차마다 나오는 하나하나는 Senario.
+             
+       >> SW에서는 Story = Senario임. 결국 같은 것인데, Senario는 좀 더 구체적이고, 어떤 상황적 부분에 있어서는 Story가 지향하는
+          방향은 더 두드러져 보일 것임. 
+       >> 하지만, ex2 관점에서 SW에 스토리, 시나리오를 적용해 보면, 시스템에 대한 Story는 "System을 만들게 된 이유, 의도, 필요성"
+          이고, 안에서 "어떤 것이 구현되어야 하는가" 가 Senario이다. 
+            (ex: 토스 의 스토리 : 계좌에 있는 돈을 관리하기 위해서 만들었다!
+                         시나리오 : 계좌 간의 이체 가능하게 하기. / 카드 등록 시 카드 결제 쉽게하기 / 등등 )
+                         
+       >> 이런 것들도 결국 Stakeholder 간의 관계가 존재한다. 똑같은 것을 바라봐도, Stakeholder 가 바라보는 Story와 Senario는 다 다를
+          것이다. 
        
+       >> User story를 보조하는 형태로 만든 것이 Senario이다!
+       >> User Senario는 조금 더 구조화된 형태이기 때문에, 각각의 설명들이 다 있어야 함. 
+       >> Starting Situation / 전체 flow / 잘못되었을 경우 / 동시에 해야 되는 것들 / (Senario가) 끝났을 때
+            -> 전부다 하나의 "예시" 이다. 다 포함되어도 좋고, 일부만 포함되어도 된다. 
+            -> 중요한 것은, "필요한 내용들이 다 들어가 있어야 한다!" 라는 것. 
+            -> Senario에 시작과 끝이 있어야 하는것은 맞지만, 그것이 반드시 일정한 형태의 입력과 출력으로 끝날 필요는 없다. 
+               (System의 정의에 있어서는, 입력과 출력이 다 정확하게 있어야 하겠지만, Senario에서는 그렇지 않아도된다)
+               (입력이 없으면서 출력이 있을 수도 있고, 단순히 저장을 하는 시나리오라면 출력이 없는 경우도 있을 것임)
+                     
+                     
+  ** Requirements Specification 
        
+       >> 나온 Requirement(User Requirement & System Requirement)를 정해서, 정리해, 프로그램을 만들어 나갈 수 있는 문서.
+            (번외, 하지만 강조사항 : Verification 은 System Requirement와 실제 제품을 가지고 비교하는 것이다)
+            (Validation : User Requirement 가지고 비교하는 것.)
        
+       >> User Requirement 는, 배경지식 없는 사람이 보아도 이해가능한 수준이어야 한다. (Domain Requirement (?) )
+          개발 지식이 없어도 이해할 수 있게끔 설명해 줘야 하고, Reqiuirement는 그런 수준으로 작성이 되어야 한다는 것이다.
+          (지나가는 사람이 보아도, 시스템에 대한 이해를 할 수 있어야 한다)
+          
+       >> System Requirement는 개발자가 볼 것이기 때문에, 조금 Deep하고 어려운 내용이 있어도 괜찮다. 구체적이면 구체적일수록 더 좋다.
+          쉽게 풀어쓰다보면, 당연히 misunderstanding이 발생할 수 밖에 없다. 
        
+       >> User Requirement와 System Requirement가 연관되게 작성되면 제일 좋다. 
+           (ex: User Requirement를 1번에, System Requirement를 2,3,4번에 연동하는 식으로 해도 좋을 것이다)
+           (User Requirement 보고 이해가 안되는 부분은 바로 System Requirement로 확인할 수 있을 것이다)
+       
+     *** Ways of Writing a System Requirements Specification
+     
+       >> 자연어 : 일상에서 흔히 쓰는 말(언어)로 작성하는 방법
+       >> 구조화된 언어 : 구조화된 문법대로 작성하는 방법
+       >> Design Description Language : UML(Unified Modeling Language) 처럼 작성하는 방식.
+       >> Graphical Notation : 그림으로 나타내는 UML같은 것들.
+       >> 수학적인 표현 : 수식들로 표현하는 방법
+       
+       >> 일반적으로는 Natural Language(자연어)를 가장 많이 쓴다. 특히나 User Requirement같은 경우, 자연어 아니면 방법이 없다. 
+          최대한 모두가 알기 쉽게 적어야 하기때문. 
+     
+     *** Requirements and Design
+       >> Requirement와 Design은 분리될 수 없다!
+             ex) 무슨 요리를 할지 정해지지 않았는데, 무슨 냄비를 쓸지, 어떤 재료가 필요한지 알수는 없는 노릇.
                      
+       >> 특정한 Non-Functional Requirement를 만족시키기 위해 어떤 특정한 Architecture를 사용해야 한다면, 그것이 Domain-Requriement가
+          될 수 있다는 것이다. 
+             ex) 안드로이드 프로그래밍을 하려면, 안드로이드 스튜디오가 깔려 있어야 한다. -> Domain Requirement
                      
-                     
-                     
-                     
-                     
-                     
-                     
-                     
-                    
-                     
+     *** Natural Language Specification 
+       >> 일반적인 유저들이 이해하기 쉽게, 표랑 그림을 활용해서 설명할 수 있다. 
+       >> 직관적이고, 일반적이게 써야 한다. 
+       
+     *** Guidelines for Writing Requirements : 그냥 알기 쉽게 쓰자~
+       >> 표준 양식을 지키자. 정해져 있으니 오해의 여지가 없음.
+       >> 중요하다고 생각되는 내용들을 강조해서, 사람들이 한번더 그 부분을 볼 수 있게 해 주자. 오해 없이, 보기좋게 해주자!
+        
+     *** Problems with Natural Language(자연어로 쓰는 것의 단점)
+       >> 자연어로 쓰면 모호해진다(Ambiguity 가 올라간다). 말로 설명하다 보면 애매하게 설명할 수도 있음. 정확성이 부족해짐. 
+       >> Functional과 Non-Functional 내용이 섞여 있기 때문에, 혼동되게 설명될 수도 있다. 
+             -> Requirement에서는, Functional / Non-Functional / Domain Requirement가 다 따로 분리되어 작성되어야 하는데,
+                만약에 설명문장 안에 Functional/Non-Functional이 섞여 있게 된다면, 분리해서 따로 두개로 만들어야 함. 
+                
+       >> 다른 Requirement가 같이 표현되어 있는 경우. 한 문장안에 여러개의 작은 Requirement가 포함되어 있을 수 있음. 다 분리해야 한다. 
+
+     *** Structured Specification 
                      
                  
              
