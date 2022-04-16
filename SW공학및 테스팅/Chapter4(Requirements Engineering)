@@ -612,6 +612,20 @@
        
         >> Traceability(이력관리) Process : 수정이 들어갔으면 어떻게 이력을 남길것인지 / Requirement에서는 어떻게 이력관리 할것인지?
         >> Tool Support : 어떤 Tool을 사용할 것인지!
-                                  
+     
+     *** Requirements Change Management                                  
+        >> Change를 어디까지 허용할 것인지 결정해야 한다.
+        >> Probelm Analysis and Change Specification : 문제 분석, 바뀐 것에 대한 Spec을 가지고 있어야 함.
+          -> 변화해야 될 것들에 대해서 먼저 제안받음. 하지만 해달라고 해서 다 해줘야 되는것은 아니다!
+               (일정도 있고, 할 수 있는 일의 범위라는 것이 있는데, 무한정 다 할수는 없다)
+          -> 항상, 할지말지 등에 대한 결정은 제안한 사람에게 피드백 줘야한다! 
+               (Change가 발생하면, 그 부분을 문제분석해서 받아들일지 말지, 어떤 식으로 해당부분을 바꿨으면 하는지 이야기 해 줘야함)
+               (Change를 어떻게 해볼것인가 등에 대한 전반적인 부분을 결정해야 한다.)
+               (당연히, 기준을 가지고 결정해야 함! Requirement Dicision!)
+          
+        >> Change Analysis and Coding 
+        >> Change Implementation 
       
-      
+  <키포인트는 읽어보라고 하고 그냥 넘어감>
+  
+  
