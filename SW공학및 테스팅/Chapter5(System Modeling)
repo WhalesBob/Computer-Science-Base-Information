@@ -1,0 +1,98 @@
+< 5장 : System Modeling >
+
+ ** 목차
+     - Context Models
+     - Interaction Models
+     - Structural Models
+     - Behavioral Models
+     - Model-Driven engineering
+     
+     
+ ** System Modeling이란?
+    
+      >> System Modeling = 추상화!
+          -> 함수는 가장 작은 형태의 "모델링" 이다. 
+      
+      >> 그럼 "추상화"(System Modeling)를 어떻게 할것인가?
+          -> 우리가 만든 시스템이 "어떤 동작을 하는 시스템이다!" 라는 것을 정의해 가고,정하는 것이 Modeling이다.
+          -> System Modeling은 "System을 어떻게 동작시킬 것인가" 를 만들어 나가는 "과정" 이다. 
+              ("이렇게 쓰는거에요" X, "개발하는 과정" O)
+              
+      >> UML(Unified Modeling Language)를 통해서 표현한다. UML은 대부분 어떤 "기호" 들로 이루어져 있음. 
+      >> Modeling은 이미 있는걸 써도 된다. 굳이 새로 만들필요는 없음. 그냥 있는 것을 쓰거나, 조금 더 개선시키는or진화시키는 방향으로 해도
+         괜찮다.
+         
+    *** Existing and Planned System Models   
+      >> 이미 존재하는 System에 대해서 모델링하는 것은 쉽다(이미 존재하니까). 이미 어떤 시스템이 존재하고, 그것에 대해 어느정도 다 알고
+         있으며, 어떤 동작하는지, 어떤 구성이 되어있는지 다 알기 때문임.
+      >> System Modeling은 주로, Requirement Engineering할 때(Requirement 분석할 때) 개발자들이 하고 있는 행위가 어떻게 보면
+         System Modeling이라고 할 수 있을 것이다. 
+      
+      >> 우리가 알고 있는 사실로부터, 사용 시스템에 대한 Requirement를 뽑아내는 것이 가능하다(System Modeling에서)
+      >> 새로운 System같은 경우에도, Requirement Engineering 할 것이지만, 기존에 있는 것들과는 다르게 Prototyping해서 보여주는 과정이
+         필요하다. 그래서 Prototyping 하는 것도 일종의, 아주 Rough하게 만든 System Modeling이다. (Requirement를 아무리 글로 적어줘도
+         모르니, 다른 Stakeholder에게 보여주려고 만든 것이다. "Model"을 만들어가지고 보여주면 "이런것이군!" 하고 이해할 수 있다.)
+          -> ex: 모델하우스 : 집이 아니지만, 집이 어떻게 구성되어 있는지 알게해준다.            
+      
+    *** System Perspectives
+      >> 바라보는 관점도 대단히 많다. External / Interaction / Structural / Bahavioral 
+      >> External Perspective : 시스템을 외부에서 바라보았을 때, 시스템이 어떻게 동작해야 하는가? (Context Model이라고도 이야기함)
+                                (context : 맥락, 전후사정. context를 environment로 바꿔써도 여기서는 말이 된다)
+                                
+          -> ex : 차량 시스템. 군납하는 차량 중에 산을 올라가야 하는 차량을 일반 상용차랑 똑같이 만들면 안될것이다. 
+                  왜냐하면, 차를 둘러싸고있는 환경, 맥락이 다를 것이기 때문이다. 상용차는 포장된 도로 위를 달릴 수 있게 만들면 되는
+                  반면에, 군용차는 산위를 오를 수 있게 만들어야 하기 때문이다. 그에 맞게 더 보강하거나, 구조를 바꾸어 만들어야 한다. 
+                  
+          -> 요런 요소들을 고려해야 하는 것이 External Perspective. 해당 차가 돌아가는 System을, 외부에서 바라본 것이다. 
+          
+      >> Interaction Perspective :  System과 environment, context와 System 간에 interaction하는 측면. 여기서 "환경"은 "사람"도 포함.
+                                    왜냐 하면, 시스템 입장에서 보았을 때는, 외부적인 요소이다. 사람이 어떤 Action, Event를 주게 되면
+                                    System이 이를 받아들이고, 또 다른 Action을 취할 것이다. 
+          
+          -> ex : 에어컨의 입력정보는 온도, 습도 등이다. 환경이 에어컨 시스템에 정보를 주고 있음. 
+                  그럼 온도와 습도를 받아들인 시스템은, 다시 동작해서(냉풍, 온풍 방출 등) 외부에 Action으로 다시 output을 내는 것.
+                  그럼 그 output action은 환경에 영향을 미친다. (Embedded System에서, Closed Loop System이라고 불리는 것)
+                  
+          -> 요런 상호작용의 관점에서 보는 것이 Interaction Perspective. 
+      
+       ( External 관점에서도 System을 설명할 수 있을 것이고, Interaction 관점에서도 System을 설명할 수 있을 것임. 하지만 그 설명은
+        당연히 다 다를 것이다. ) 
+         
+      >> Structural Perspective : "어떠한 형태로, 어떠한 조직으로, 어떤 것을 하는 것으로 만들어야 한다" 라는 관점.
+          -> ex : 바퀴는 어디든 갈 수 있는 바퀴로 만들어져야 하고, 사람도 많이 탈 수 있는 형태로 만들어 져야 한다
+          
+       ( 결국 다 같은 이야기. 설명하는 시야에 따라서, 관점에 따라서 설명하는 방법이 달라질 뿐이다. 같은 것을 설명하더라도, 이런 모든
+         관점을 다 알아야 한다. 다양한 측면에서 보고, 다양한 측면에서 설명되는 모든 것들을 다 포함해서 보아야 함! )
+      
+      >> Behavioral Perspective : 어떻게 행동하는가를 보고 이야기하는 것. 
+          -> ex : 군용차는 울퉁불퉁한 길에도 흔들림 없이 달려야 한다. (와 같이 기술됨)
+          
+          
+      >> 초원 길에도 흔들림없이 달려야 한다고 얘기하면, 바퀴가 아니라 무한궤도인 형태로도 만들어질 수 있을 것이다.
+         하지만, 단순히 Behavioral Perspective 측면에서 보았을 때 그렇다는 것이지, External이라던지, Structure 관점에서 보았을 때는
+         반드시 우리가 아는 둥근 형태의 바퀴가 달려야 한다는 것을 알 수 있음. Behavioral 관점과는 또 다르게 시스템이 구현되어야 함.
+      
+      >> 이런 관점들이 서로 맞물려서 설명될 수 있다. 이런 관점들을 다 이해해고 활용할 줄 알아야 System에 대한 Modeling이 가능하다.
+      
+         
+    *** UML Diagram Types ( 이 타입들은 다 알아두기! )        
+      
+      >> Activity Diagram : 위에서의 Context를 설명함. 시스템 외부에서 보았을 때, 어떻게 처리하는 것처럼 보여지는가?!
+      >> Use case Diagram : 기능적인 부분. 어떻게 Interaction하는지는 모르지만, 어떤 Interaction 하고있는지는 알 수 있게.
+          -> Actor가 System에서의 어떤 기능을 사용할 수 있다! (와 같이) / 반대로 System의 경우에는, "환경"에 어떠한 기능을 제공한다와 
+             같은 형태에 대해서만 기술되기도 한다.
+          
+      >> Sequence Diagram : Interaction을 상세하게 표현해주는 Diagram. 
+          -> ex : Sequence에서는 함수 A 내부에서 어떤 것을 호출하는지 다 보여줘서 그 관계들을 다 파악할 수 있음. 반면, Use case의 경우
+                  사용자가 A라는 함수를 호출해 어떤 결과가 나오게 되는지만 알 수 있음.
+          
+          -> Use case를 조금 더 상세하게 풀어내면, Sequence Diagram으로 풀어낼 수 있다.         
+      
+      >> Class Diagram : 클래스, 객체 단위로 시스템을 뽑아내어 객체 간의 연결, 구성들을 보여주는 것.
+      >> State Diagram : Behavior 측면에서 설명하는 것처럼, 시스템이 내부/외부와 어떻게 행동하는가를 보여주는 다이어그램.
+                         어떤 입력이 들어갔을 대 어떤 출력이 나와야 하는지만 알려줌.
+                         
+          -> ex : 냉난방기의 경우, 냉방 모드에서 25도를 맞춰 놓으면 냉기를 내뿜겠지만, 난방 모드에서는 온기를 뿜을 수 있을 것이다.
+                  같은 입력값, 같은 이벤트가 발생해도 다른 Action을 취하는 것이다. 
+          ->         
+          
