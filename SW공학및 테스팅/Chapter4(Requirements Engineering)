@@ -540,4 +540,5 @@
      *** Requirements Document Variability : Requirement에 대한 Document도 되게 다양하다! 
        >> 여러 가지 형식을 취하고 있고, 종류도 Requirement에 따라 다 다르다.       
     
-    
+     *** Requirements Validity 
+       >> Requirement는 잘 정리되어야 하는데, "최종적으로" 잘 정리하려면 확인하는 과정(Validation)이 필요하다. 
