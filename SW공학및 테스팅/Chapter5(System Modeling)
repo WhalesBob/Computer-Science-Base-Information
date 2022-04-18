@@ -275,8 +275,10 @@
            -> State Diagram만 보고도, 해당 System을 문제없이 잘 설명할 수 있어야 좋은 State Diagram이라고 할 수 있다.
            
  
- 
- 
+        >> State Chart 같은 경우, "상태" 안에 "상태"를 넣을 수 있다(그림 5.5 아래, 43/58)
+            -> Operation 상태 안에, 여러 가지 상태들이 들어 있다(Checking/Cook/Alarm/Done).
+            -> 반대로, 이런 세부상태들의 상위로 계속 올라가면 하나의 System이 되는 것이다. 
+            -> State Chart의 경우, 시작점과 끝점이 있어야 한다. 
  
  
  
