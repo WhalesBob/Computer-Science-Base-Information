@@ -1,2 +1,31 @@
 < 6장 : Architectural Design >
 
+ ** 목차
+     - Architectural Design Decisions
+     - Architectural Views
+     - Architectural Patterns
+     - Application Architectures
+     
+  *** Before to Start
+    
+    >> Architecture Design의 경우, 여태까지 배웠던 것과 다르게, "특성"에 좀 많이 치우쳐 있다. 
+        (기능적인 부분도 많지만, "특성"에 치우쳐져 있다)(같은 Method라도, 상황과 어떤 Architecture를 쓰느냐에 따라 바뀌는 것들이 많다.)
+         ex ) 같은 아파트라도, 동서에서 만드는 아파트와 화성에서 만드는 아파트는 기본 Architecture가 다르다. 
+              똑같은 방 4개, 욕실 2개, 침실 1개라도, 집을 짓는 방식이 다르다. 자신들만의 강점을 내세워서 건축하는 경향이 있음.
+            
+    >> Architecture라는 개념 자체부터가 이미 "추상화"이다. 기본적으로, 만들고자 하는 시스템에 대한 많은 이해와 추상화가 이미 되어 있는
+       상태에서 Architecture를 잘 만들수가 있는 것이다.
+    >> 새로운 무엇인가를 만들려고 하는데, 잘 만들려다 보니 Architecture를 새로 만드는 것이다. 개발자들이 추상화할 때는, 멀리서 보았을 때
+       "대충 이렇게 했구나~ 이것 하면 되겠네!" 하고 추상화를 완료하지만, 실상 개발을 하기 위해 들여다보면 , 
+       멀리서는 보이지 못했던, 실제 알수 없었던 것들이 굉장히 많이 산재해 있다는 것을 깨닫게 된다. (물론 경험으로도 해결 가능하다)
+    >> 그렇기에 Architecture가 굉장히 중요하다!
+    
+    >> 이 Architecture를 잘 짤것은 아니고, 이미 잘 만들어져 있는 Architecture를 가져와 쓰면 된다. 
+    >> 물론 Architecture마다 장단점이 있다! 
+    >> 요즘은 Google, Amazon 같은 곳에서 다 오픈한다! 근데 이것들을 잘 쓰려면, 해당 회사에서 달아놓은 설명들을 잘 보고 쓰는것이 좋다.
+        (어떤 이유 때문에 만들어진 Architecture이다!) 
+           
+           -> 그렇기에, 그 Architecture의 철학을 잘 따라가야 한다! Architecture에는 어떠어떠한 것들을 고려해서 만들어졌고, 이런저런 일을
+              할 수 있다는 설명이 다 있다. 무조건 있다! 프로그램의 뼈대가 되는 애이기 때문에, 설명서를 반드시 볼것!
+              
+    
