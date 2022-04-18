@@ -6,28 +6,75 @@
      - Architectural Patterns
      - Application Architectures
      
-  *** Before to Start
+  ** Architectural Design ( 3~6 / 59 )
     
-    >> Architecture Design의 경우, 여태까지 배웠던 것과 다르게, "특성"에 좀 많이 치우쳐 있다. 
-        (기능적인 부분도 많지만, "특성"에 치우쳐져 있다)(같은 Method라도, 상황과 어떤 Architecture를 쓰느냐에 따라 바뀌는 것들이 많다.)
-         ex ) 같은 아파트라도, 동서에서 만드는 아파트와 화성에서 만드는 아파트는 기본 Architecture가 다르다. 
-              똑같은 방 4개, 욕실 2개, 침실 1개라도, 집을 짓는 방식이 다르다. 자신들만의 강점을 내세워서 건축하는 경향이 있음.
-            
-    >> Architecture라는 개념 자체부터가 이미 "추상화"이다. 기본적으로, 만들고자 하는 시스템에 대한 많은 이해와 추상화가 이미 되어 있는
-       상태에서 Architecture를 잘 만들수가 있는 것이다.
-    >> 새로운 무엇인가를 만들려고 하는데, 잘 만들려다 보니 Architecture를 새로 만드는 것이다. 개발자들이 추상화할 때는, 멀리서 보았을 때
-       "대충 이렇게 했구나~ 이것 하면 되겠네!" 하고 추상화를 완료하지만, 실상 개발을 하기 위해 들여다보면 , 
-       멀리서는 보이지 못했던, 실제 알수 없었던 것들이 굉장히 많이 산재해 있다는 것을 깨닫게 된다. (물론 경험으로도 해결 가능하다)
-    >> 그렇기에 Architecture가 굉장히 중요하다!
-    
-    >> 이 Architecture를 잘 짤것은 아니고, 이미 잘 만들어져 있는 Architecture를 가져와 쓰면 된다. 
-    >> 물론 Architecture마다 장단점이 있다! 
-    >> 요즘은 Google, Amazon 같은 곳에서 다 오픈한다! 근데 이것들을 잘 쓰려면, 해당 회사에서 달아놓은 설명들을 잘 보고 쓰는것이 좋다.
-        (어떤 이유 때문에 만들어진 Architecture이다!) 
+         >> Architecture Design의 경우, 여태까지 배웠던 것과 다르게, "특성"에 좀 많이 치우쳐 있다. 
+             (기능적인 부분도 많지만, "특성"에 치우쳐져 있다)(같은 Method라도, 상황과 어떤 Architecture를 쓰느냐에 따라 바뀌는 것들이 많다.)
+              ex ) 같은 아파트라도, 동서에서 만드는 아파트와 화성에서 만드는 아파트는 기본 Architecture가 다르다. 
+                   똑같은 방 4개, 욕실 2개, 침실 1개라도, 집을 짓는 방식이 다르다. 자신들만의 강점을 내세워서 건축하는 경향이 있음.
+
+         >> Architecture라는 개념 자체부터가 이미 "추상화"이다. 기본적으로, 만들고자 하는 시스템에 대한 많은 이해와 추상화가 이미 되어 있는
+            상태에서 Architecture를 잘 만들수가 있는 것이다.
+         >> 새로운 무엇인가를 만들려고 하는데, 잘 만들려다 보니 Architecture를 새로 만드는 것이다. 개발자들이 추상화할 때는, 멀리서 보았을 때
+            "대충 이렇게 했구나~ 이것 하면 되겠네!" 하고 추상화를 완료하지만, 실상 개발을 하기 위해 들여다보면 , 
+            멀리서는 보이지 못했던, 실제 알수 없었던 것들이 굉장히 많이 산재해 있다는 것을 깨닫게 된다. (물론 경험으로도 해결 가능하다)
+         >> 그렇기에 Architecture가 굉장히 중요하다!
+
+         >> 이 Architecture를 잘 짤것은 아니고, 이미 잘 만들어져 있는 Architecture를 가져와 쓰면 된다. 
+         >> 물론 Architecture마다 장단점이 있다! 
+         >> 요즘은 Google, Amazon 같은 곳에서 다 오픈한다! 근데 이것들을 잘 쓰려면, 해당 회사에서 달아놓은 설명들을 잘 보고 쓰는것이 좋다.
+             (어떤 이유 때문에 만들어진 Architecture이다!) 
            
-           -> 그렇기에, 그 Architecture의 철학을 잘 따라가야 한다! Architecture에는 어떠어떠한 것들을 고려해서 만들어졌고, 이런저런 일을
-              할 수 있다는 설명이 다 있다. 무조건 있다! 프로그램의 뼈대가 되는 애이기 때문에, 설명서를 반드시 볼것!
+                -> 그렇기에, 그 Architecture의 철학을 잘 따라가야 한다! Architecture에는 어떠어떠한 것들을 고려해서 만들어졌고, 이런저런 일을
+                   할 수 있다는 설명이 다 있다. 무조건 있다! 프로그램의 뼈대가 되는 애이기 때문에, 설명서를 반드시 볼것!
  
+     *** Architectural Design (3/59 ~ 10/59 사이의 녹음이 일부 누락됨)
  
- 
- ** Architectural Design    
+ ** Architectural Design Decision   (11/59 부터 시작함)
+         >> Generation Architecture가 있는가? (일반적으로 정해진 Architecture 있으면 갖다쓰면 될 것이다)
+         >> 서비스가 한 개의 환경에서 돌아가는가, 아니면 여러 환경에서 동작해야 하는가?
+                -> 여러 군데에서 동작해야 하는것은, 한 군데에서 동작하는 것과 비교해서, 만들어야 되는 Architecture가 다르다!
+                -> 미리 고려하여, 여러 군데에서 동작하는 여러 개의 코어가 있어야 하고, 이 코어 간 통신하는 Architecture가 반드시 필요하다.
+                    (ex: (카카오톡) Android, IOS, 컴퓨터는 다 당연히 Architecture가 다를 것이고, 이 코어들 간에 통신하는 Architecture가
+                         필요할 것이다.)
+
+         >> 어떤 스타일의 Architecture인가?
+         >> 어떤 "접근들"을 쓸 수 있는게 있는가? etc..
+         >> 시스템 자체를 분리해서 만든다거나, 반대로 분리된 시스템을 합쳐서 만들수도 있음. Component도 , Sub-Component 같은 식으로 분리가
+            가능. 다 상대적인 것이다.
+
+         >> Delivery 할때 어떤 Architecture 조직이 좋은가?
+         >> Architecture의 Documentation은 어떻게 하는 것이 좋은가? (많이 쓰이는 Diagram들이 있다!)
+
+         >> 요런 것들을 정해야 한다!
+
+     
+     *** Architecture Reuse
+     
+         >> Architecture Reuse는 할 필요가 있고, 할수 있게끔 하는것이 좋다. 
+         >> 어떤 공통된 시스템이 있으면( ex : 쇼핑몰 ), 다들 비슷한 구조를 가진다.
+                -> ex : A 쇼핑몰과 B 쇼핑몰은, 물건을 구매하는 루틴 자체가 크게 차이가 나지 않는다!
+                -> 개중에서도, 가장 선도하게 되는 Architecture들을 다들 따라간다.
+                -> 물론 큰 틀에서는 대부분 비슷하겠지만, 소분류로 보았을 때는 그 분야마다 조금씩 느낌이 다를 것이다.
+                    (그럴때는 약간씩 Architecture가 차이난다)
+                    
+         >> Product Line도 핵심 Architecture에 따라서 조금씩 달라진다.      
+         >> 보통 이러한 Architecture들을, Style, 혹은 Pattern 이라는 말로 많이 표현을 한다! 
+               (혹시 Java Design Pattern도...?!! 생각해보니까 그런 자바 디자인패턴도 결국 Architecture임)
+              
+
+     *** Architecture and System Characteristics
+         >> Architecture에서 고려해야 할 사항 : Performance, Security, Safety, Availability, Maintainability
+         >> 앞 단원에서 나왔던 System Non-Functionality Requirement랑도 연관이 된다.
+         >> Architecture에서 보아야 할 내용들은, 주로 System Requirement에서 Non-Functional Requirement에 해당하는 것들이 많다.
+         
+         >> 그래서 개발 초기에 Architecture에 대한 이야기가 나올수밖에 없다. 만약에 Architecture 이야기가 뒤에 나오면,
+            Non-Functional을 다 정해버렸으니, Architecture는 그 Non-Functioanl에 맞춰서 갈수밖에 없다. 심지어 Non-Functioanl에 
+            안맞는 Architecture를 쓰면 안되는 것이다. 
+         >> 그래서 Architecture를 정해 놓고 이야기하는 것이 조금 더 좋다!!
+         
+         
+         
+         
+     
+    
