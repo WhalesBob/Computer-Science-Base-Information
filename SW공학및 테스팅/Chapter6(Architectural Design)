@@ -73,8 +73,46 @@
             안맞는 Architecture를 쓰면 안되는 것이다. 
          >> 그래서 Architecture를 정해 놓고 이야기하는 것이 조금 더 좋다!!
          
+         >> Non-Functional Requirement 가 안맞으면, 싹 새로 엎어야 하는 예시! - Socket 통신 vs TCP-IP 통신
+                -> 이미 서버구조를 Sub-Client 구조로 다 만들어 놓았는데(서버는 1개), 만약 서버가 여러 개가 되어야 할 수도 있으면
+                   서비스 자체를 다르게 해야 함. 이럴 때는 Security도, Performance도 다 연관이 된다. 
+                
+                -> 이러한 Non-Functional한 내용들이 Architecture에 다 연관이 되어 있기 때문에, 미리 큰 틀에 대해서 정해놓지 않으면
+                   뒤로 갈수록 점점 힘들어지는 것이다. 
+                -> Architecture가 안 잡혀 있으면, if문 안쓰고 오로지 switch 문 만으로 조건 다 해결하세요! 하는 것과 비슷한 상황이
+                   된다. Architecture를 잘못 선택해도 이와 같은 말도안되는 상황이 벌어질 수 있다.
+                   
+                   
+ ** Architectural Views                   
          
+         >> Architecture에서는 크게 4가지 관점으로 많이 이야기한다. (Logical View / Physical View / Development View / Process View)         
          
+         >> 한 건축물만 하더라도, 보는 시야(View Point)에 따라서 다 다르게 보인다.
+                -> 사람은 자기 시야안에서, 도는 서 있는 위치에 따라 똑같은 대상을 바라보더라도 다르게 보인다. 
+                -> 심지어 같은 View Point를 가지고 있더라도, 그 사람의 사고방식에 따라 그 물체를 바라보게 된다.
+                -> 심지어 해석하는 방식, 받아들이는 방식에 따라 해석도 다 달라질 것이다.
+                
+                -> Architecture를 볼 때도 이러한 관점들을 가지고, 여러 가지 관점(View Poin)로 봐야 한다!
+                
+         >> 관점 1. Physical View   
+                -> 물리적인 관점. 어떻게 System이 생겨먹었는지, 시스템이 이렇고 저렇고 등등을 많이 고민해야 함.
+                
+         >> 관점 2. Logical View
+                -> 어떠한 방식으로 동작할 것인가? 어떠한 형태로 데이터를 주고받는지, 어떻게 움직이는지 보는 것.
          
-     
+         >> 관점 3. Development View
+                -> 개발하기 위해서는, 어떠한 Architecture를 가져갈 것인가? 개발을 쉽게하던지, 검증을 쉽게하던지, 개발을 빠르게하던지
+                   등의 이유가 있을 것임. 
+                   
+         >> 관점 4. Process View
+                -> 어떠한 절차로 처리되는 시스템을 만들 것인지?
+                
+         >> 기본적으로 Architecture에 대한 관점을 이러한 4가지 포인트로 많이들 이야기하지만, 사실 이 4가지 말고도 더 많은
+            관점들이 있다. View Point는 말 그대로 "관점" 이기 때문에, 어떤 대상을 바라보느냐에 따라 다 달라지는 것이다.
+         >> 꼭 이게 아니더라도, 다른 관점이 존재할 수 있다. 하지만, 대체로 이런 관점에서 Architecture를 바라본다는 것이다.
+         
+     *** 4+1 View Model of Software Architecture
+         >> 크게 여러 가지 형태로 볼수 있다는 의미로, 4+1 View Model이라고 이야기함. 
+               (위의 4개 + "User Senario" or "Use Case" )
+         >> 
     
