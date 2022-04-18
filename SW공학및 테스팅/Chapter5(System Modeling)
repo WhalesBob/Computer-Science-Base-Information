@@ -209,14 +209,59 @@
        >> 이름만 있을 수도 있고, 타입까지 같이 있을수도 있음.
           
           
-    *** Generalization : Java에서의 상속관계. extends!
+    *** Generalization : Java에서의 상속관계. extends! ( Is - a 관계 )
     
-    *** Object Class Aggregation(집합, 집단) Models
+    *** Object Class Aggregation(집합, 집단) Models ( Has - a / Is part of ~ )
        >> Aggregation : 구성, 파트. ~의 일부분. A is part of B(A가 B에 속한다!)
        >> ex : (The Aggregation Model) (34p / 58)
           -> Patient Record 안에는 꼭 1명이 Patient가 포함되어야 한다. 
           -> Patient Record 안에는 1개 이상의 Consultation 기록이 포함되어야 한다.
-       
+
+
+ ** Behavioral Models
+        
+        >> 실제로 시스템이 어떻게 동작하느냐에 따라 정의하는 것.
+        >> 이전에 Structural Model의 경우에는 Class Diagram / Functional(Interaction) Model의 경우에는 Use Case로 나타내었다면, 
+           Behavioral Model의 경우에는 State Diagram으로 주로 표시한다. 
+           
+        >> State Diagram :
+           -> 입력에 따라 결과가 당연히 다르게 나오게 된다. 이 "입력"에 따라, "Event"가 발생했을 때 당연히 다른 결과를 낸다.
+                ex : 만약 점심을 거르는 event가 있을 때, 배가 고픈 상태에서 점심을 거른 것과 배가 부른 상황에서 점심을 거를 때의
+                     결과는 당연히 다르게 나온다. 
+ 
+           -> Behavioral Model의 경우, 항상 "상태"를 먼저 이야기하고, 이런 상태일 때 어떤 "Event"가 발생하면 어떤 결과가 나온다! 
+              식으로 흘러감. 그 결과가 또 다른 "Event" 모습을 하고 있을 수도 있다. 
+              
+        >> 두개의 Type으로 생각해볼 수 있다.
+           -> Data : Process가 진행됨에 따라 Data의 움직임.(System 안의 Sub-System들이 서로 데이터를 주고받는다)(실질적으로 주고받는 Data)
+           -> Event : Data도 Event라고 볼수 있기는 함. (이때의 Data는 Trigger.) (위에서의 "점심을 거른다" 와 같은 event 같은 느낌인듯?)
+                    
+    *** Data-Driven Modeling
+        >> 시스템 에어컨이 동작할 대, 현재 온도가 몇도냐에 따라 냉/난방 모드에 따라 냉기를 방출할수도, 온기를 방출할 수도 있다.
+           모든 것들은 Data화 되어 처리되는 것이다. 모든 것들을 데이터, 수치화해서, 그 데이터가 어떤 값이냐에 따라 동작하는 것이 
+           달라진다.
+           
+        >> 온도가 실수일 때, 오름으로 처리할지 내림으로 처리할지, 반올림으로 처리할지는 알고리즘에 따라 달라지는 것이다.
+        >> 그냥 오로지 들어가고 나오는 데이터에 따라서 생각하면 간편하다. 일단 복잡한 시스템의 경우, (본인이 짠게 아니라 API라면)
+           그냥 "입력에 따라서 출력이 나온다" 고 생각하면 되는 것이다. "제공하는 데이터와, 그로 인해 가질 수 있는 데이터" 만 생각하는
+           식으로 접근하면 쉽다. 
+           
+        >> 이런 식으로 시스템을 단순하게 볼 수 있다!
+        >> ex : (An Activity Model of the Insulin Pump's Operation) ( 그림 5.4 )
+           
+                    
+                    
+           
+           
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
     
  
  
