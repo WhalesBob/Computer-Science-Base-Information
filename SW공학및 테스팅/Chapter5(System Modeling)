@@ -263,8 +263,17 @@
              ex) 외부에서 내부의 시스템이 돌아가는 것을 간섭하면 안된다고 이야기하지만, 동작하다가 외부에서 꺼짐 버튼을 누르면
                  꺼질 수도 있는 것임. 이러면 외부의 Event가 더 중요함.(내부에서 이런 외부의 Event를 대비해야 함)
         
+    *** State Machine Models(Diagrams)
+        >> 각각의 diagram에서의 요소들이 "상태"가 되는 것이다.
+             ex) 에어컨에서의 "운전 모드"(냉방/난방/송풍/제습) 도 하나하나가 상태이다. 그때 그때 따라서 동작하는게 달라진다.
+                 이 "상태"에 따라서 어떻게 동작하는지가 중요하다.
+                 
+        >> 보통 State Machine Diagram 이라고도 하고, State Chart라고도 많이 이야기함.(그림 5.5)       
+           -> 하나하나의 상태도는 Rounded Box로 표현함.
+               (Class Diagram은 Rectangle, State Diagram은 Rounded Box(Rectangle), Used Case는 타원형!)
+           -> 나름 Activity Diagram과 비슷하게 생겼다!
+           -> State Diagram만 보고도, 해당 System을 문제없이 잘 설명할 수 있어야 좋은 State Diagram이라고 할 수 있다.
            
- 
  
  
  
