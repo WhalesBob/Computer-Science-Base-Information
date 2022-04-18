@@ -211,8 +211,12 @@
           
     *** Generalization : Java에서의 상속관계. extends!
     
-    *** Object Class Aggregation Models
-       >>    
+    *** Object Class Aggregation(집합, 집단) Models
+       >> Aggregation : 구성, 파트. ~의 일부분. A is part of B(A가 B에 속한다!)
+       >> ex : (The Aggregation Model) (34p / 58)
+          -> Patient Record 안에는 꼭 1명이 Patient가 포함되어야 한다. 
+          -> Patient Record 안에는 1개 이상의 Consultation 기록이 포함되어야 한다.
+       
     
  
  
