@@ -137,6 +137,42 @@
              신경쓰면 될 것이다. (이런 것만 보면 Activity Model과 겹친다)
  
  
+    *** Process Model of Involuntary Detension ( Activity Model 예시 )
+    
+      >> 예시별로 다이어그램 따라가야 함. 
+      >> 흐름을 보면 된다. 
+      >> "이 시스템이 어떤 역할을 한다!" 라는 것을 보여주려고 만드는 느낌.
+      
+      
+      
+ ** Interaction Models     
+       >> Use case / Sequence Diagram 두개가 Interaction Modeling에 사용된다.
+       >> User Interaction Modeling ( User Interaction을 확장하는데 도움을 준다 / 사용자에게 필요한 내용들을 알려준다)
+       
+    
+    ***  Use Case Modeling
+       >> Use case : "사용 예시" ( 이런식으로 사용이 된다! )
+       >> Requirement Elicitation(추출) 할 때 필요하다. 
+       >> Actor는 사람 혹은 다른 시스템으로 표현된다. 
+          -> Actor가 꼭 사람일 필요는 없다. 시스템일 수도 있고 컴퓨터일 수도 있다. (원래는 User라는 말로 많이씀)
+          -> User의 경우 사람의 의미를 더 담고 있는데, Actor의 경우 User의 개념을 포함하는 더 큰개념.
+          ex) 일반 계정으로 로그인하는 것과 유료 계정으로 로그인할 때 제공되는 시스템, 서비스가 다를 것이다.
+              하지만, User라고 하게 되면, 똑같은 "User(사람)" 이기 때문에, 위의 예시의 계정차이를 담지 못할 것이다.
+              그래서 Actor라고 함.
+              
+          -> 똑같은 사용자가 여러 Actor 일수도 있음(다른 역할을 하는 계정 여러개) 
+          
+       >> Ex : (Mentcare System, Transfer-Data Use Case)
+          -> Use Case 그림에서 선은, "A"와 "B" 가 관련있다 정도의 의미를 가진다.
+          -> 단순한 그림(17p/58)을 상세한 Description(18p/58) 로도 나타낼 수 있다. 
+          -> 사람(Actor)가 있고, 역할이랑 연결되어 있으면, 맥락상 할수 있는 것들을 할 수 있을 것이다(19p/58)
+ 
+    ***  Sequence Diagram
+       >> Use Case에서 보았던 그림, 그리고 해당 Actor가 할 수 있는 것들을 함수 단계까지 디테일하게  보는 것임.    
+       >> (그림 5.3, Sequence Diagram for View Patient Information) : 
+ 
+ 
+ 
  
  
  
