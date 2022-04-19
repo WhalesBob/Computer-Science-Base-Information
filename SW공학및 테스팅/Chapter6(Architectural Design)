@@ -114,5 +114,78 @@
      *** 4+1 View Model of Software Architecture
          >> 크게 여러 가지 형태로 볼수 있다는 의미로, 4+1 View Model이라고 이야기함. 
                (위의 4개 + "User Senario" or "Use Case" )
-         >> 
-    
+         >> Requirement 짤때의 그런 관점 + User Stroy를 같이 보자!
+         >> Logical View : Object를 추상화하는 것. 
+               ex) 쇼핑몰에서의 회원, 관리자
+                -> 회원관리, 판매물품관리, 결제내역관리, 결제기, 판매데스크 등 쇼핑몰 안에는 논리적으로 이런 것들이 있을 수 있다. 
+                -> 이런 것 하나하나를 추상화하는 과정이 있어야 한다. (대체적으로 각 Object에서 어떤 일이 벌어지는지)
+
+         >> Process View : 사용자가 해당 시스템을 사용하기 위해서 어떤 프로세스를 거쳐야 하는지?! ( Interaction 으로 이야기함 )
+                -> 어떠한 절차에 따라서, 시스템이 어떻게 동작하는지
+                -> 서비스가 제공되는 것들에 대한 내용에 관한 프로세스
+            
+         >> Development View : 클래스 단위나, 컴포넌트 단위의 Sub-System으로 쪼개는 것이다. 그런 관점에서 굵직굵직하게 Architecture
+                               를 설계하는 것.
+                               
+         >> Physical View : 하드웨어, 소프트웨어 등이(System)이 어떻게 갖춰질 것인가?
+         
+                -> 대형 서버를 살것이라면, 하나만 살 것인지? 아니면 분산 서버로 해서 여기저기 두고, 사용자에게는 Cloud처럼 보이게 할
+                   것인지? 웹 클라우드에 서버를 올릴 것인지? 등등
+                        
+         >> + 1 : 관련된 Use Case나 Senario
+         
+     *** Representing Architectural Views
+         >> 이런 Architectural View는 UML(Unified Modeling Language)로 이해할 수 있다. 개발 쪽에서는 Diagram처럼 많이 쓰인다. 
+         
+         
+ ** Architectural Patterns
+         
+         >> Architecture도 패턴들이 많이 있다. 
+               ex) 웹 서비스에서의 MVC Pattern(Model, View, Controller)
+                -> M (Model) : 원천 데이터를 이야기함 
+                -> V (View) : 어떻게 사용자에게 정보를 줄 것인가? 
+                -> C (Controller) : 알고리즘과 같이, 정보를 처리하는 Controller
+                
+                
+     *** 웹 브라우저 상에서의 MVC : 
+                -> 사용자는 웹 브라우저 상에서 "클릭"을 한다. 그럼 서버로 Request 보내는 것임. 
+                -> 사용자가 원하는 것은, 서버로부터 어떠한 데이터를 받는 것이다. 그러면 서버는 그 Request에 대한 View를 준다.
+                (사용자가 보는 화면은 다 View이다!)
+                -> 만약 사용자가 로그인을 하면, 입력을 받아서 Controller가 처리해야 함. 입력에 따라 여러가지 처리를 통해
+                   결과를 도출해 내는 애가 Controller이다. 
+                -> Controller가 값을 return 하면, View 단에서 그 정보를 가공해서 사용자에게 다시 보여주는 것이다.
+                -> Model은, 정보를 저장하고 내보내는 애들이다. 
+                
+         >> 각각의 애들이(M,V,C 같이), 서로 섞여서 뒤죽박죽 되지 않고 따로따로 할 일을 제대로 하는 관점이 Architecture이라고 
+            생각하면 된다. 유지보수할 때도, 출력이 문제가 되면 View 단에 가서 처리하듯이!
+         >> 이런 패턴이 있으면, 프로그램이 정말 쉽게 구조가 잘 잡혀간다!    
+         
+         
+     *** The Organization of the MVC
+     
+         >> Model
+                -> Encapsulation : 데이터를 있는 그대로가 아니라 한번 가공할 수 있다. 
+                 ex) 은행 담보에서, 1000단위나 10000원 단위 아래는 안 보여주는 등. 한번 가공할 수 있음.
+         
+         >> Controller
+         >> View
+         
+     *** Layered Architecture
+         >> 인접 Layer 간에 데이터를 주고받는다. OS에서 바로 UI에게 데이터를 주고받거나 하지 못한다. (무조건 위아래로밖에 못 움직임)
+         >> 크게 4개의 Layer가, 계층적으로 존재함. (보안 레이어는 가장 위나, 가장 아래, 아니면 전 계층에 분포)
+         
+         
+     *** Repository Architecture 
+         >> 어떤 Repository를 가지고 정보를 공유하는 것. 
+         >> 큰 분량의 정보를 어디에 넣어두고, 처리하고, 보관하며, 공유하는 것.
+         
+     *** Client-Server Architecture
+         >> Client와 Server의 역할이 정확히 구분되어 있다!
+         >> Client : 고객
+         >> Server : 서버(서비스를 제공하는 사람)
+               -> 클라이언트가 무엇인가를 요청하기 전까지, 서버는 아무것도 하면 안된다.
+         
+         >> 웹 서비스는 대부분 다 Client-Server Architecture를 따른다. // 중간고사 범위
+         
+         
+         
