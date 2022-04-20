@@ -138,6 +138,7 @@ $ git merge f2_testing // master에다 f2_testing merge
 <img src="images/OSP_Ch2_5.png"/>
 
   - 차이점
+  
         1. Merge는, Commit할 때의 History가 그대로 넘어와서 통째로 합쳐지는 것이다.(History 일련번호가 변하지 않는다).
            그래서, root가 따로 branch가 만들어지기 전의 history로 되어 있다.
         2. 반면, Rebase는, 따로 떨어져나간 branch 내용을 말 그대로 "rebase"하는 것이다. 그래서 root가 main(master)의 가장
