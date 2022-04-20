@@ -12,7 +12,7 @@
   - 누가 카피해 가는것
   - 전체 디렉토리 무단도용
   
-**그래서, 자동으로 프로세스를 관리해 보자!**
++ **그래서, 자동으로 프로세스를 관리해 보자!**
   - Version Control System 으로 관리가 가능하다. 
   - Code Base(문서, Build Tool, Config File, Code  등등)을 관리 가능하다.
   
