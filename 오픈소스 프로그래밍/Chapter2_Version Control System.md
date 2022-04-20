@@ -42,6 +42,9 @@
   - CVS, SVN(Subversion), **Git**
   - 다른 SW들
   
+### 2.2.1 VCS - CVS
+
+<img src="images/OSP_Ch2_1.png"/>
   
 
 ** Version Control System 장점 5가지
