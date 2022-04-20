@@ -153,3 +153,26 @@ $ git merge f2_testing // master에다 f2_testing merge
   $ git merge f2_testing
   $ git push
   </code></pre>
+  
+  
+### 2.3.3 Remote Repository 
+
+이부분도 내가 몰랐던 부분만 정리함.(쉬운내용은 안씁니다)
+
+<pre><code>
+$ git remote 
+origin  // 이렇게 remote repository 내역이 나온다.
+
+$ git remote add "test" https://~~~~~~~
+
+$ git remote 
+origin
+test // 두개가 되어서 나온다.
+
+$ git remote -v 
+// fetch, push 가 각각 두쌍 나온다.
+
+$ git remote show test // Remote Repository를 보여줌
+
+$ git fetch test 
+</code></pre>
