@@ -132,11 +132,39 @@ else:
   - if 문
 
 <pre><code>
-  if(statement) **:**
+  if(statement) : // 중괄호가 아닌 colon(:)
       command
-  **elif(statement) : 
+  elif(statement) :  // else if 가 아닌 elif
       command
-    else :
+  else :
 
 </code></pre>
-     
+
+  - for문 
+  
+<pre><code>
+  for <variable> in range(a,b,c) : 
+  // for(int i = 0; i < n ; i++) 로 하지 않고, range 객체를 이용해 처리하고 있다.
+  // enhanced for 같은 느낌이다.
+</code></pre>
+
+  - string
+    - 큰 따옴표면 큰따옴표, 작은 따옴표면 작은 따옴표 둘중하나로 씌우면 된다. 내부에 같은 따옴표면 안되지만, 다른 따옴표 그냥 넣는것 가능.
+    
+  - print 함수
+    - 콤마(,)로 구분하면 자동으로 띄워쓰기된 것으로 나온다
+    - sep=~~ 로 변환할 수 있다. 저 자리에 "," 넣으면 띄워쓰기 대신 콤마가 들어가는 식
+    - 자동으로 print에 개행문자 "\n" 이 들어간다.
+    - 역시 end=~~ 로 해당 기능을 다르게 해줄수 있다.
+
+  - String Formatting
+    - formatting 연산자 '%'
+<pre><code> print("my name is %s and weight is %d kg" % ('Tom",60) </code></pre>
+    - 물론 위에서, formatting 해줘야 할 애가 하나면 굳이 괄호 안씌워도 된다.
+    
+    - ".format() : formatting 함수!
+<pre><code> print("the sum of {0}+{1} is {2}".format(1,2,3)) </code></pre>
+
+  - ASCII 관련 함수
+    - ord(text) : text를 ASCII 숫자로 바꾸어 주는 것.
+    - chr(number) : 숫자를 ASCII 테이블에 연동하여 해당하는 character 로 만드는 것.
