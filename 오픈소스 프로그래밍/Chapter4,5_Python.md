@@ -117,7 +117,14 @@ else:
     del L[3:5] // 3,4번째 지움.
     L -> [1,2.5,3.6,4.5,5]
     </code></pre>
-    
+      - len(s) : s의 길이
+      - min(s) : s에서 가장 작은 애
+      - max(s) : s에서 가장 큰애
+      - sum(s) : s 항목을 모두 더한 total
+      - s.append(x) : 맨끝에 x 더하기
+      - s.clear() : 항목 다 지우기
+      - s.copy() : 얕은복사(그냥 주소값만 찍는것)
+      - s.extends(t) or s+=t
   - tuple
     - 불변하는(immutable), 순서가 있는 객체의 집합인 "자료형"(Data Type).
     - list형과 비슷하지만, 한 번 생성되면 값을 변경할 수 없다고 한다. 
@@ -216,5 +223,3 @@ else:
     - ord(text) : text를 ASCII 숫자로 바꾸어 주는 것.
     - chr(number) : 숫자를 ASCII 테이블에 연동하여 해당하는 character 로 만드는 것.
     
- + List
-  - 
