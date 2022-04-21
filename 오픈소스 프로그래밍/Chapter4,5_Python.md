@@ -79,18 +79,20 @@ else:
     - 소괄호 "()"로 정의하고 나타낼 수 있다.
     - 순서가 있기 때문에, 인덱스로 접근가능하며, len 내장함수로 길이를 구할 수 있다. for loop도 돌수 있음.
     - '+' 연산으로 tuple(튜플)을 추가할 수 있고, * 연산을 이용하여 tuple(튜플)을 반복시킬 수 있음.
-    - <pre><code>
-      t = (1,'korea',3.5,1 )
-      t = t + (3,5)
-      t
-      ( 1,'korea',3.5,1,3,5)
-      t * 2
-      (1,'korea,3.5,1,3,5,1,'korea'3.5,1,3,5) // 두번 반복했다.
-    </code></pre>
+<pre><code>
+ t = (1,'korea',3.5,1 )
+ t = t + (3,5)
+ t
+ ( 1,'korea',3.5,1,3,5)
+ t * 2
+ (1,'korea,3.5,1,3,5,1,'korea'3.5,1,3,5) // 두번 반복했다.
+</code></pre>
+    
     - 튜플 속에 튜플이 포함될 수도 있다. 
     - 튜플에 하나의 원소만 존재하는 경우에는, tuple(튜플)이 되지 않지만, 회피하는 방법이 존재한다. 한개의 원소뒤에 콤마 찍어주면 튜플이 된다.
     - tuple에 괄호가 필수조건은 아니라고 한다
     - 튜플을 이용하여 함수에서 여러 값을 한번에 리턴시킬 수도 있다. 변수도 한꺼번에 할당가능하다.
+    - 
     <pre><code>
      >>> p = 1,3,2,5,7
      >>> type(p) 
@@ -160,9 +162,9 @@ else:
   - String Formatting
     - formatting 연산자 '%'
 <pre><code> print("my name is %s and weight is %d kg" % ('Tom",60) </code></pre>
-    - 물론 위에서, formatting 해줘야 할 애가 하나면 굳이 괄호 안씌워도 된다.
+- 물론 위에서, formatting 해줘야 할 애가 하나면 굳이 괄호 안씌워도 된다.
     
-    - ".format() : formatting 함수!
+- ".format() : formatting 함수!
 <pre><code> print("the sum of {0}+{1} is {2}".format(1,2,3)) </code></pre>
 
   - ASCII 관련 함수
