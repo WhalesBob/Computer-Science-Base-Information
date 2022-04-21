@@ -47,8 +47,10 @@ else:
 
 #### Python에서의 데이터 타입
 
-+ Numeric(숫자) 타입 :
-  - int : 무한정 늘릴 수 있다는 것 같다.(기능구현이 되어 있음)
++ Numeric(숫자) 타입 : (계산은 여타 다른 언어와 같다)
+  - 정수 : 무한정 늘릴 수 있다는 것 같다.(기능구현이 되어 있음)
+    - Integer
+    - Long
   - float 
   - complex(복소수)
 
@@ -116,5 +118,25 @@ else:
 + Mapping Type
   - dictionary : key : value pair로 이루어진 자료형
   
++ 비교연산
+  - is : Object의 주소값을 비교함.(같은 '객체'면 true) 
+    - id(a) -> 주소값
+    - a is b -> boolean 반환, 동일 객체인가?
   
+  - x < y <= z 와 같은 연산 가능. (한방에 비교가능하다)
+  
++ boolean 연산
+  - and/or/not : 직접 키워드로 만들었나보다. 원래 ||, &&, ! 들어갈 자리에 저렇게 키워드로 만들어놓았다.
+  
++ 주요 함수들(차이점만 서술함) 
+  - if 문
+
+<pre><code>
+  if(statement) **:**
+      command
+  **elif(statement) : 
+      command
+    else :
+
+</code></pre>
      
