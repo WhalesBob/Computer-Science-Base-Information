@@ -4,8 +4,8 @@
 
 ## 3.1 Shell이란 ?  
 
-컴퓨터 운영체제와 사용자가 명령어로 소통하는 유저 인터페이스.  사용자가 Shell을 통해서 컴퓨터에 실제 명령을 입력할 수 있다!<br>
-Shell같은 경우엔, 컴파일 해야 되는 언어와 다르게 컴파일하는 과정 없이, 명령어로 한줄씩 실행하는 특징이 있음. (Interactive)<br>
+컴퓨터 운영체제와 사용자가 명령어로 소통하는 유저 인터페이스.  사용자가 Shell을 통해서 컴퓨터에 실제 명령을 입력할 수 있다!
+Shell같은 경우엔, 컴파일 해야 되는 언어와 다르게 컴파일하는 과정 없이, 명령어로 한줄씩 실행하는 특징이 있음. (Interactive)
 Command Interpreter라고 할 수 있다. UNIX나 LINUX에서 동작하는, 명령어를 해석해 주는 인터페이스를 Shell이라고 한다. 
 
 
@@ -65,106 +65,119 @@ Command Interpreter라고 할 수 있다. UNIX나 LINUX에서 동작하는, 명�
     Shell은 무엇인가?
 
 
-  **Shell Script 문법 : 
-    -> #(으로 시작하면) : 주석
-      (예외 : #!/bin/bash >> #!가 /bin/bash에서 실행시켜야 한다고 명시해 주는 역할을 한다)
+## 3.3 Shell Script 문법 : 
 
-    -> echo "" : 출력문(따옴표 안에 내용넣으면 된다.)
-    -> pwd : 현재 위치한 디렉토리 
++ #(으로 시작하면) : 주석
+   - (예외 : #!/bin/bash >> #!가 /bin/bash에서 실행시켜야 한다고 명시해 주는 역할을 한다)
 
-    ->ls : 파일 조회
++ echo "" : 출력문(따옴표 안에 내용넣으면 된다.)
++ pwd : 현재 위치한 디렉토리 
+
++ ls : 파일 조회
     
-      >>ls -a : 모든 파일 조회(숨김 파일까지 조회)
+   - ls -a : 모든 파일 조회(숨김 파일까지 조회)
       (Linux에서는 .으로 시작하는 파일들을 숨김 파일로 간주함)
 
-      >>ls -l : 파일 목록을 자세히 조회
-      >>ls -al : 모든 파일에 대한 목록을 자세히 조회
+   - ls -l : 파일 목록을 자세히 조회
+   - ls -al : 모든 파일에 대한 목록을 자세히 조회
     
-    ->vi myprog.sh >> vi 편집기 실행
-    ->vi 위에서 ':'(colon) 누르기 : 명령어 실행으로 감
-      (vi에서) esc : 실행 모드에서 빠져나오기,
-      (vi에) a 또는 i : 삽입이 가능한 모드.
-      (vi에서) : 누른 후 wq : 저장하고 빠져나오기
++ vi myprog.sh >> vi 편집기 실행
+   - vi 위에서 ':'(colon) 누르기 : 명령어 실행으로 감
+   - (vi에서) esc : 실행 모드에서 빠져나오기,
+   - (vi에) a 또는 i : 삽입이 가능한 모드.
+   - (vi에서) : 누른 후 wq : 저장하고 빠져나오기
 
-   **Shell Script 만든 이후 실행하는 방법 3가지!
-      1. chmod(파일 실행 권한 관련) : 
-      chmod +x ./myprog.sh >> 실행시킬 수 있게 해준다! (Excutable하게) (이후 ./myprog.sh 실행하면 그것 그대로 일련의 명령어들이 
++ **Shell Script 만든 이후 실행하는 방법 3가지!**
+   1. chmod(파일 실행 권한 관련) : 
+      
+      - chmod +x ./myprog.sh >> 실행시킬 수 있게 해준다! (Excutable하게) (이후 ./myprog.sh 실행하면 그것 그대로 일련의 명령어들이 
       순차적으로 실행되는 것을 볼수있다)
-        (번외) 맨 앞의 l : 링크, 소프트링크(클릭하면 어느경로로 가라고 알려주는 것)
+      - (번외) 맨 앞의 l : 링크, 소프트링크(클릭하면 어느경로로 가라고 알려주는 것)
 
-      (Shell Script는 필요한 명령어들을 한방에 실행시킬 수 있다는 장점이 있다!)
+      - (Shell Script는 필요한 명령어들을 한방에 실행시킬 수 있다는 장점이 있다!)
 
-   ** 특정 무엇인가를 쳤을 때, shell script에서 뭔가를 가져와서 실행시키려 하면 어떻게 해야 하나?(입력)
+   2. 특정 무엇인가를 쳤을 때, shell script에서 뭔가를 가져와서 실행시키려 하면 어떻게 해야 하나?(입력)
       - set A B C D 하면 $1 $2 $3 $4에 각각 저장된다. 
       - 출력 시에는 "echo $*" 하면, argument에 들어간 A B C D가 쭉 출력이 된다. 
 
       - $0에는 파일의 이름이 argument로 들어간다. $1 $2 $3~ $9까지, C언어의 argv가 들어간다고 생각하면 된다 .
 
-  [제어문]
+  **[제어문]**
 
-    - if statement 
+#### if statement 
 
-        if command
-        then 
-          statement
-        fi
+<pre><code>
+ if command
+ then 
+     statement
+ fi
+</code></pre>
 
-    - if-else statement
+#### if-else statement
+<pre><code>
+if [ condition ]; then
+    statement
+elif [ condition ]; then
+    statement
+else
+    statement
+fi
+</code></pre>
 
-        if [ condition ]; then
-             statement
-        elif [ condition ]; then
-             statement
-        else
-             statement
-        fi
-
-        -> and, or, not은 같으나, 소괄호 말고 전부 대괄호로 처리한다는 차이가 있다. and나 or은 괄호 두개로 묶어서 확실하게 처리하기.
+   - and, or, not은 같으나, 소괄호 말고 전부 대괄호로 처리한다는 차이가 있다. and나 or은 괄호 두개로 묶어서 확실하게 처리하기.
            (대괄호 두개로 묶어야한 한다고 한다)
-        -> 키워드 사이에 싹 다 띄워쓰기 해야 할 것 같다. 지키자!
+   - 키워드 사이에 싹 다 띄워쓰기 해야 할 것 같다. 지키자!
         
-    - Case Statement
+#### Case Statement
 
-        case word in
-             pattern1) command-list
-             ;;
-             pattern2) command-list2
-             ;;
-             pattern3) command-list3
-             ;;
-        esac >> 이렇게 뒤집어 주기.
+<pre><code>
+case word in
+   pattern1) command-list
+   ;;
+   pattern2) command-list2
+   ;;
+   pattern3) command-list3
+   ;;
+esac >> 이렇게 뒤집어 주기.
+</code></pre>
         
-    - While Loop
-        while [ expression ]
-        do
-              command-list
-        done
+#### While Loop
+<pre><code>
+while [ expression ]
+do
+   command-list
+done
+</code></pre>
 
-    - For Loop
-        for i in 1 2 3 4 5 6 7 <- list
-        do 
-               command-list
-        done
+#### For Loop
 
-    - Continue & Break
-    이것도 말그대로, 원래 쓰임새에 맞게 쓰면된다     
+<pre><code>
+for i in 1 2 3 4 5 6 7 <- list
+do 
+    command-list
+done
+</code></pre>
+
+#### Continue and Break
+
+이것도 말그대로, 원래 쓰임새에 맞게 쓰면된다     
     
-    -> 비교구문 : 
-      -gt : ~보다 높은(greater than)
-      -ge : ~보다 높거나 같은(greater than or equal)
-      -lt : ~보다 낮은(less than)
-      -le : ~보다 작거나 같은(lass than or equal)
-      -eg : ~와 같은(equal)
-      -ne : ~와 같지 않은(Not equal)
++ 비교구문 : 
+   - gt : ~보다 높은(greater than)
+   - ge : ~보다 높거나 같은(greater than or equal)
+   - lt : ~보다 낮은(less than)
+   - le : ~보다 작거나 같은(lass than or equal)
+   - eg : ~와 같은(equal)
+   - ne : ~와 같지 않은(Not equal)
 
-    [File Testing]
-    -d file : 디렉토리에 있는 애 이름이냐?
-    -r file : 읽을수 있는가?
-    -w file : 쓸 수 있는가? 쓰기에 접근할 수 있는가?
-    -x file : 실행가능한 상태의 파일인가?
-    -s file : file의 길이가 0이 아닌가?
++ File Testing
+   -d file : 디렉토리에 있는 애 이름이냐?
+   -r file : 읽을수 있는가?
+   -w file : 쓸 수 있는가? 쓰기에 접근할 수 있는가?
+   -x file : 실행가능한 상태의 파일인가?
+   -s file : file의 길이가 0이 아닌가?
     
-    [함수]
+#### 함수
      -> 사용하는 이유 : 코드를 재사용하기 위함. 
      
      while loop example2 해보기
