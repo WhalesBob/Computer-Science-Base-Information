@@ -162,9 +162,9 @@ else:
   - String Formatting
     - formatting 연산자 '%'
 <pre><code> print("my name is %s and weight is %d kg" % ('Tom",60) </code></pre>
-- 물론 위에서, formatting 해줘야 할 애가 하나면 굳이 괄호 안씌워도 된다.
+  - 물론 위에서, formatting 해줘야 할 애가 하나면 굳이 괄호 안씌워도 된다.
     
-- ".format() : formatting 함수!
+  - ".format() : formatting 함수!
 <pre><code> print("the sum of {0}+{1} is {2}".format(1,2,3)) </code></pre>
 
   - ASCII 관련 함수
