@@ -240,5 +240,11 @@ done
       
 + (번외2) ls -al | grep ~~~ : ~~~로 되어 있는 것만 필터링 해서 보여주는 기능!
 
-
-     
+#### Array
++ declare -a 명령어로 배열을 선언한다.
++ 혹은 바로 배열을 만들수도 있다.
+<pre><code>
+declare -a sports // 선언식
+sports = (ball frisbee puck) // 항목을 안에 넣어서 만들어주는 Array
+moresports = ( ${sports[*]} tennis ) // 위의 sports 안에 tennis를 추가해서 배열을 만들어줌.
+</code></pre>     
