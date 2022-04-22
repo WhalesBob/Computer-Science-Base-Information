@@ -86,6 +86,7 @@ Command Interpreter라고 할 수 있다. UNIX나 LINUX에서 동작하는, 명�
    - (vi에서) esc : 실행 모드에서 빠져나오기,
    - (vi에) a 또는 i : 삽입이 가능한 모드.
    - (vi에서) : 누른 후 wq : 저장하고 빠져나오기
+   - 두개 파일 비교 : vimdiff file1 file2
 
 + **Shell Script 만든 이후 실행하는 방법 3가지!**
    1. chmod(파일 실행 권한 관련) : 
