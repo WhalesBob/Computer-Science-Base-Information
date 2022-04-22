@@ -235,14 +235,14 @@ else:
   - 띄어쓰기, 엔터를 구분하여 문자열을 나누게 된다.(Default)
   - 나눌 수 있을때까지 나누게 된다
 
-+ 문자열.split('<문자>') = 문자열.split(sep='<문자>')
++ 문자열.split('문자') = 문자열.split(sep='문자')
   - 해당 <문자>를 기준으로 하여 나누게 된다. 
   
-+ 문자열.split('<문자>', <숫자>) = 문자열.split(sep='<문자>', maxsplit=<숫자>)
++ 문자열.split('문자', 숫자) = 문자열.split(sep='문자', maxsplit=숫자)
   - <문자>를 기준으로, maxsplit 숫자만큼만 띄우고, 나머지는 split하지 않는다.
   
   
-#### dict.get(<keyword>,<number>) 
-+ 해당 <keyword> 에 대응하는 value를 반환하고, 없으면 <keyword> : <number> 로 새로 저장함.
+#### dict.get(keyword,number) 
++ 해당 keyword 에 대응하는 value를 반환하고, 없으면 keyword : number 로 새로 저장함.
 
 #### dict.item() : key : value 쌍을 반환
