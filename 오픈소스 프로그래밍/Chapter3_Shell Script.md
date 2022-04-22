@@ -102,6 +102,17 @@ Command Interpreter라고 할 수 있다. UNIX나 LINUX에서 동작하는, 명�
 
       - $0에는 파일의 이름이 argument로 들어간다. $1 $2 $3~ $9까지, C언어의 argv가 들어간다고 생각하면 된다 .
 
++ **Shell 상에서 연산하기**
+   - 값 할당 :
+   <pre><code>#!/bin/bash
+   
+   a = 10
+   b = 20
+   sum = $(($a + $b)) // 값을 연산에 이용하려면, 이렇게 앞에 달러 글자를 붙여주면서 진행한다.
+   echo $sum // 부를 때도 요런 식으로 해준다.
+   </code></pre>
+   
+
   **[제어문]**
 
 #### if statement 
@@ -191,6 +202,8 @@ done
       >> 1번은 "리눅스를 시작시키는" 프로세스에 대한 ID
 
       ppid - 해당 process의 부모 프로세스의 id
+      
+   - **함수 호출시** : 선언할 때는 앞에다가 괄호 붙이지만, 뒤에 이용할 때는 괄호 없이 바로 입력하면 된다.
 
 #### 강제종료(리눅스)
 + Signal : IPC(Inter-Process Communication ) 
