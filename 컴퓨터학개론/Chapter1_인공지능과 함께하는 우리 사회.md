@@ -1,4 +1,4 @@
-# Chpater 1. 인공지능과 함께하는 우리 사화
+# Chpater 1. 인공지능과 함께하는 우리 사회
 
 ### Metverse (메타버스)
 + Metaverse (메타버스) 
