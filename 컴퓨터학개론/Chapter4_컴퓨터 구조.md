@@ -154,7 +154,7 @@
   <img src="images/CompStart_Ch4_5.png"/>
   
   - E-SATA : 
-  <img src="images/CompStart_Ch4_6.png" width="70px"/>
+  <img src="images/CompStart_Ch4_6.png" width="400px"/>
        
 
    
