@@ -128,6 +128,7 @@
     - RAM의 일부를 Buffer로 사용해서 CPU에서 I/O data를 처리할 때 임시적으로 해당 데이터를 저장함. 
 
 + 가격과 메모리 :
+  <br>
   <img src="images/CompStart_Ch4_4.png"/>
   - 그림의 왼쪽으로 가면 갈수록 가격이 비싸지고, 속도도 빨라진다.
   - 그림의 오른쪽으로 가면 갈수록 가격이 저렴해지고, 속도가 떨어지며, 대용량이 된다. 
@@ -149,6 +150,12 @@
   - 수십TB의 대용량 저장이 가능함.
   - 외장하드와 컴퓨터를 연결할 때, USB 인터페이스로 연결하거나, IEEE 1394, E-SATA로 연결할 수 있다.
   
+  - IEEE 1394 :
+  <img src="images/CompStart_Ch4_5.png"/>
+  
+  - E-SATA : 
+  <img src="images/CompStart_Ch4_6.png"/>
+       
 
    
 
