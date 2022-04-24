@@ -65,6 +65,7 @@
     - 부동소수 : 컴퓨터에서 실수를 표현할 때, 정규화된 표현(지수,가수 조합)으로 표현함. 
     - 소수점을 이동시킨다는 개념에서 Floating Point Number 라는 단어가 나오게 됨.
     - IEEE(시계 전지전자 기술자 협회. I triple E라고 도 부름.) 754 표준!
+    <br>
     <img src="images/CompStart_Ch3_4.png"/>
     
     - 64비트 쪽이, 32비트 쪽 보다 수위 범위를 더 넓게 표현할 수 있다.
@@ -98,3 +99,10 @@
     - 문자를 컴퓨터 안에서 조금 더 간편하게 처리되도록 하기 위해서 만든 것이 UTF-8이다!
 
 #### 논리 연산
+
++ 연산자들
+<img src="images/CompStart_Ch3_5.png"/>
+<img src="images/CompStart_Ch3_6.png"/>
+
++ 부울 대수 법칙 
+<img src="images/CompStart_Ch3_7.png"/>
