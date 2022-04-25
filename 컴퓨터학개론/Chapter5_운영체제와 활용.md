@@ -52,3 +52,45 @@
     - 고정 분할할당에 비해, 동적할당이 할당 관리가 복잡하다.(단점)
     <img src="images/CompStart_Ch5_2.png"/>
 
++ 프로세스 스케쥴러 : 프로세스 상태를 한 상태에서 다른 상태로 이동시키는 모듈, 실행 상태라도 OS에 의해 다시 Ready Queue, Waiting Queue로 이동할 수 있다.
+
++ CPU 스케쥴링 : CPU 할당받을 프로세스 결정
+  - FIFO(FCFS) 
+  - Priority : 프로세스 중요도에 따라 우선순위 결정해 CPU 할당. Starvation 상태 유의.
+  - RR(Round Robin) 
+
++ 입출력 장치관리 : 입출력 장치의 효과적인 할당과 회수 등
+  - FIFO (ex:프린터 출력)
+
++ 인터럽트(Interrupt) :  당장 처리해야 할 작업이 생겼을 경우,OS가 실행 중인 프로그램을 그 자리에서 인터럽트 신호를 보내 중단하고, 해당 작업이 종료되면 다시 예전 프로그램으로 돌아가는 것. 
+  - ex : 정전
+    - 정전이 되면 모든 프로그램에 인터럽트 걸고, 다 저장한 뒤 컴퓨터를 안전하게 종류할 수 있도록 함.
++ 장치제어기 : 장치 관리자와 H/W인 I/O device 사이의 인터페이스를 담당하는 프로그램.
+
++ 파일 관리 : 보조 기억장치에 저장되는 파일을 관리.
+  - 사용자와 보조기억장치 사이의 인터페이스 제공
+  -  기억장치에 대한 사용자의 Logical Address 와 Physical Address를 연결해 준다.
+      - 파일의 접근제어, 파일의 생성/삭제/수정 기능
+      - 파일을 디스크의 어디에 저장할지, 폴더 구조 제공하고 관리
+      - 파일을 여러 사용자가 공유하는 기법 제공
+
+  - FAT(File Allocation Table) 32 : USB, 휴대폰, 캠코더, 디지털 카메라에 사용
+  - NTFS(New Technology File System) : 윈도우 NT 계열의 OS 파일시스템
+  <img src="images/CompStart_Ch5_3.png"/>
+  
+#### 운영체제의 형태
++ Batch Processing(일괄처리 방식) : 일정량의 프로그램을 모두 모아놓았다가, 한 시점에 순서대로 일괄처리하는 방식.
+  - ex : 천공카드 입력
+  - 장점 : 시스템의 효율적 사용
+  - 단점 : 
+    - CPU의 idle time(유휴 시간) 발생. (I/O 처리시간에 CPU가 쉰다)
+    - 작업이 시작된 후 중간에 문제발생시 처리 어려움
+    - Turnaround Time(작업 제출~ 작업 완료시간)이 길어 확인이 느리다
+    <img src="images/CompStart_Ch5_4.png"/>
+    
++ Time Sharing(시분할) System : CPU의 여유시간을 잘게 분할해, 작업을 순환하면서 수행하는 방식. Time-Slice로 구현
+  - 장점 
+    - CPU idle time(유휴 시간) 감소
+    - 짧은 작업일 경우 수행을 빨리 환료가능
+  - 단점 : 메인메모리 관리 기법과 CPU 스케쥴링 기법 필요. OS가 복잡해짐.  
+  <img src="images/CompStart_Ch5_5.png"/>  
