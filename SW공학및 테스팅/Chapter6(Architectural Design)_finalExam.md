@@ -4,6 +4,7 @@
 ### Pipe and filter Architecture 
 
 <img src = "https://mingrammer.com/images/2017-09-10-pipe-filter-pattern.png">
+
 + 파이프를 따라 데이터가 이동하고 처리되며, 중간에 필터가 걸려 있는 형태라고 생각하면 편하다. 
 + 데이터 처리 시스템에서 광범위하게 사용되는 Batch Sequential Model이다. 
 + 데이터 처리 프로그램에서 많이 사용되며, 입력을 따로 받는 경향이 있다. 
