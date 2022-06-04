@@ -51,7 +51,7 @@
 
   - 도식표 및 예시
   
-  <img src = "" > 
+  <img src="Ch6_1.png"/>
 
 + Event Processing Systems
   - 프로그램의 Action이, 시스템 환경에서의 이벤트 해석에 따라 달라지는 Application이다. 
@@ -65,3 +65,33 @@
   
 + 주로 Transaction Processing System과 Language Processing System이 많이 쓰이는 것으로 알려져 있다.
 
+#### Information Systems Architecture
+
+<img src = "Ch6_2.png" />
+
++ Information System은 계층 구조로 조직될 수 있는 구조를 가지고 있다. 
++ 시스템과 상호작용하는 프로그램은 일반적으로 DB 처리를 필요로 하므로, Transaction Processing Application 기반 시스템이기도 하다. 
++ Layer(계층) : 
+  - UI(User Interface)
+  - User Communication
+  - Information 회수, 검색 등
+  - System DB
+
+#### Web-based Information Systems
+
++ 정보 및 자원관리 시스템은 일반적으로, UI가 구현되는 웹 기반 시스템으로 구현한다. 
+  - ex) E-commerce System은 재화 또는 서비스에 대한 전자주문을 받아서, 고객에게 재화 또는 서비스를 제공하는 인터넷 기반 자원관리 시스템이라고 할 수 있다. 
+  - "E-Commerce System에서, Application Layer는, 사용자가 여러 항목을 별도의 Transaction에 배치한 후, 단일 Transaction으로 모두 결제할 수 있는 "쇼핑카트"를 지원하는 기능이 될 수 있다. 
+
+#### 서버 구현
+
++ 이런 시스템들은 다계층 서버/클라이언트 구조로 구현된다
+  - 웹 서버는 유저 커뮤니케이션을 위한 서버이며, UI가 웹 브라우저에 구현됨
+  - Application 서버는 해당 application 특화 로직을 구현해 놓은 것이다.(정보 저장과 Request 정보 회수 등)
+  - DB 서버는 정보를 주고받으면서 처리과정을 handling함. 
+
+#### Language Processing System
+
++ 자연어 또는 프로그래밍 언어를 입력을 받아들이고, 해당 언어로 결과물을 배출한다.
++ 처리중인 언어에 따라, Interpreter를 포함해야 할 수도 있다. 
++ 알고리즘을 설명하거나, 시스템 데이터를 설명해야 하는 방법이 문제해결을 위한 가장 쉬운 방법이 되기도 한다.
