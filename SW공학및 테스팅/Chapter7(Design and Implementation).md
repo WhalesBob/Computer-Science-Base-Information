@@ -119,4 +119,52 @@
     - Input 값을 해당 센서로부터 받아오면, Output은, 센싱된 값을 다시 출력해서 보여주는 등
 
 
++ MVC 패턴대로 객체를 나눌 수도 있다. 
+  - Controller나, View 처럼 객체를 굳이 나누지 않아도 되는것 처럼 보이는 것도, 실상은 나누는 것이 좋다.
+  - 나누어서 이득보는 부분이 분명히 있음!
 
++ Ex) Weather Station의 Object Class
+  
+  <img src="Ch7_3.png" />
+
+
+#### Design Models
+
++ 디자인 모델은 객체 및 객체 클래스, 그리고 그 사이의 관계를 보여준다.
++ 디자인 모델 종류 :
+  - SubSystem Model : 비슷한 애들끼리 모여 있어서, Sub-System 화를 하면 좋다! 하지만, 객체 간 Coupling은 낮아야 한다.
+    - ex) MVC 모델에서 View를 담당하는 Sub-System.
+    - 대부분 출력이 View에 들어가있는 경우가 많은데, View라는 SubSystem으로 하나 주면 좋다.
+    - 그럼 그 안에 보고 싶은 형태에 따라 다른 객체들을 안엔 생성해서 모아둘 수 있다.
+    - 관련성이 짙은 것들은 모아주면 좋다! 하지만, 그 모인 것들끼리 의존적이게 되면 안된다! 최대한 독립성을 갖게 만들어야 한다.
+    - 의존적이라는 말은, 하나를 바꿀때 다른것도 다같이 굳이 바꿔줘야 하는, 그런것들이 많으면 서로 의존적(Coupling)이라고 함. 
+  - Sequence Model
+    - Object간의 행위, 상호작용의 순서를 나타내는 Model
+  - State Machine Model
+  - 기타등등
+
+#### State Diagram 
++ State Diagram은 객체가 각기 다른 Service Request에 응답하는 방법과, 이런 Request를 받아들여 어떻게 상태변환이 일어나는지 보여 주는 데 사용된다.
++ State Diagram은, 시스템이나 객체의 Run-Time에서 어떻게 행동하는지 보여주는 High-Level Model이다.
++ 일반적으로 시스템의 모든 객체에 대한 State Diagram이 필요하지는 않다. 시스템의 많은 객체는 비교적 단순하며, State Model은 디자인에 당장 필요하지 않은 디테일한 부분까지 다 추가하기도 한다. 
+
+#### Interface Specification 
+
++ Interface도, 클래스 형태로, 객체 형태로 만들고 표현한다. 
++ 하지만, 단순히 중간에서 주고받는 것을 관장하는 그런 역할을 하기 때문에, 다른 객체들만큼 중요하지는 않다. 
+
+
+## Design Pattern
+
++ 이미 많이 알려진 것들이 꽤 있음. 
++ 어떤 문제가 있고, 그 문제를 해결하기 위한 Solution에 대한 모델.
+  - 이미 우리가 마주할 수 있는 문제들에 대한 Solution이 제공되어 있음.
+  - "이럴 때 이렇게 쓰면 됩니다!" 라는 것이 Design Pattern이다. 
++ Architecture Model이랑은 좀 다르다. 
+  - a라는 문제들을 해결 할 때, A라는 디자인 패턴을 사용하면 된다 라는 그런 Solution들이 개발되어 있음.
+  - 하지만, Architecture는 Solution이라고 할수는 없다. 
+  - 물론 Solution으로 사용할 수는 있지만, 반드시 그렇다고 할수는 없다. (개념적인 이야기임)
+
++ Design Pattern에는, 이름이랑 어떤 문제에 사용되는지, 그 문제를 해결하는 Solution, 그리고 절충안, 결과 등이 나타나 있다.
++ 해당 Pattern을 썼을 때 장단점 또한 존재한다. 무조건 해당 Solution이 베스트인것은 아니다!
++ 어떤 Pattern이 더 좋은지는, 사용자가 선택해서 써야한다. 항상 특정 패턴이 무조건 좋다라는 것은 아니다. 
