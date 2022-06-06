@@ -449,3 +449,55 @@
   - 아무리 잘 만들어놔도 결국에는 User가 만족해야 한다! 
 + 어쨋든 만들어져야 할 수 있기 때문에, System Testing 단계에서 많이 수행된다.
 + 건너뛰고 Acceptance Testing으로 가도 되지만, System Testing 단계에서 안하고 현장에 갔다가 안된다고 빠꾸먹는것보다는 훨씬 낫다. 
++ User Testing에서의 성능 세분화 4가지 : 
+  - Reliability : 신뢰성(안정성이랑은 또 다르다), 신뢰 가능한가?
+    - 24시간 켜놨는데, 24시간 잘 동작하는가? 아니면 24시간 중 12시간 켜놓고 12시간 쉬고, 이렇게 맞춰서 잘 돌아가는가?
+    - 원하는 시간에 잘 켜지고, 잘 꺼지는가?
+    - 시스템을 공급시키고 싶을 때, 잘 돌아가얀 함. 돌리고 싶지 않은데 돌아가면 문제가 될 수 있다.
+  - Performance : 속도가 빠른가? 빨리 실행되는가? 내가 처리할 수있는 속도가 빠른가?
+  - Usability : 사용성, 쉽게 쓸수 있는가? 
+  - Rubustness : 강건성, 시스템 자체가 잘 무너지지 않는 것. 웬만한 이상한 입력들에 대해서, 예외상황이 발생해도 끄떡없는 것.
+    - 예외상황에 대해서 얼마나 잘 버티는가?
+
+### Types of User Testing
++ Alpha Testing : 유저 중 개발팀 아닌 회사 직원(또는 관련자)이 테스팅 해보는 것
+  - 고객이 없으니, 먼저 알파테스팅 해보는 것. 그래도 개발자가 아니라 다른 사람이 와서 보면 다르다. 
++ Beta Testing : 
+  - 말그대로 게임에서의 "베타테스팅" 과 같음. 실제로 서비스를 오픈 해서, 아예 관련없는 사람들을 모집해 테스팅을 진행하는 것.
++ Acceptance Testing : 
+  - Customer가 존재하기 때문에, 실제로 시스템이 적용되어 사용될 것에서 테스팅을 진행하는 것. 
+  - 실제로 잘 되는지 테스트하고 마지막에 유저가 Accept 하면 최종적으로 Testing이 끝나는 것이다. 
+  - 결국에는 사용자의 합의를 이끌어내는 것이다. 
+
++ Alpha&Beta Testing vs Acceptance Testing
+   - Alpha & Beta Testing은, 특정 고객이 없는 경우에 진행함. 여러 사람들의 의견을 듣고 고치는 것임. 정답이 없다. 
+   - Acceptance Testing : 사용할 특정 고객이 존재함. 스펙도 스펙이지만, 최종적으로 Acceptance Testing을 진행하며 "Criteria"를 만족하면 오케이인 것이다! 결국에는 고객이 오케이하면 된다! (Criteria : 고객 기준에서 통과할 기준. 딱 그정도면 되면 된다!)
+
+### Stages in the Acceptance Testing Process
+
++ Define Acceptance Criteria : 고객 "기준" 설정.(이야기해서). 테스트할 항목과 통과지표들이 나온다. 
++ Plan Acceptance Testing : 어떤 순서대로 테스트할 것인지 정하기
++ Derive Acceptance Tests : 실제로 테스팅할 것들을 뽑아내는 단계(Test Case 뽑아내는 단계)
++ Run Acceptance Tests : 실행
++ Negotiate Tests Results : 무조건 수치화할 수 없는 것들이 있을 수 있는데, 그런 부분에 대해서 괜찮은지 확인받고 타협하는 단계.
+  - Non Functionality 같은 경우 이런 경우가 많다. 합의를 이끌어 내는것임.
+  - 테스트한 것들을 기록으로 남겨서 Customer에게 전달해 준다.
++ Reject/Accept System : 최종적으로 수락/거절. Reject하면, 다시 돌아가서 일을 진행하는 것임.
+
+### Agile Methods and Acceptance Testing
+
++ Acceptance Testing 같은 경우 Agile에서 많이 쓰인다. 
+  - Agile 같은 경우, 특정 Customer가 팀에 들어가있으니 더더욱 그렇다. (어차피 Customer와 합의를 거쳐서 Requirement를 뽑는 일이 제일 중요하다.)
+
++ Agile에서 Acceptance Testing은 떼어놓을 수 없는 존재다.
++ 정해진 어떤 것이 없어서, 이해관계자들의 "이해관계"를 잘 맞춰줘야 한다. 
+  - 이게 제일 큰 문제일 수 있다.
+
+## Key Point 
++ 테스팅은 에러가 "없다"는 것을 보여줄 수는 없다. 프로그램이 "무결하다" 고 이야기할 수는 없는 것임.
++ Development Testing은, 개발팀에게 책임이 있음
++ 다른 테스팅은, 다른 사람들이 진행하는 것이다(개발팀이 아닌)
++ 테스팅을 진행할 때, "견고성"을 깨려고 시도하듯이 접근해 보는 것도 좋다.
++ TDD
++ Feature by Senario
++ Acceptance Testing
