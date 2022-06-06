@@ -443,3 +443,9 @@
 
 ## User Testing
 
++ User Testing은 Customer Testing이라고도 많이 이야기한다. 
++ General System 같은 경우, 고객이, 사용자가 누군지 모르므로, 불특정 다수를 위해 만든 시스템이지만, Customized System의 경우, 누가 User(Customer)인지 아는 상황이다. 
+  - 사용할 사람이 존재하니, 그 사람들을 기준으로 Testing을 수행하는 것이다. User들이 Input을 제공함. 혹은 User가 직접 테스팅을 수행함.
+  - 아무리 잘 만들어놔도 결국에는 User가 만족해야 한다! 
++ 어쨋든 만들어져야 할 수 있기 때문에, System Testing 단계에서 많이 수행된다.
++ 건너뛰고 Acceptance Testing으로 가도 되지만, System Testing 단계에서 안하고 현장에 갔다가 안된다고 빠꾸먹는것보다는 훨씬 낫다. 
