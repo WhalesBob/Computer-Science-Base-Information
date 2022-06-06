@@ -105,3 +105,34 @@
   - 유저가 사용하는 환경에서 사용해 보아야 한다. 
 
 
+## Development Testing
+
++ 개발하는 중간에 일어나는 Testing. 개발자가 일반적으로 이야기하는 Testing은 Development Testing이다. 
++ 개발팀이 아닌 사람은, 이 과정을 개발 과정의 일부로 생각한다. 그래서 많은 사람이 아는 Testing은, Development Testing 이후이다.
+  - Development Testing 과정에서, 오류가 발견되었다면 Debugging 함. 이것은 개발이라고 볼 수 있음. 계속 코드 고치기 반복하니까!
+  - 큰 틀에서 보았을 때는, 개발이다 라고 볼수 있는 것이다. 
+  - 심지어 Requirement 만들 때도, Conflict가 일어나니까 계속 고쳐나가는 측면에서는 Debugging이라고 볼 수도 있는 것이다.
+  - 개발 과정중에서 하는 검증인데, 마땅한 용어가 없으니까 Testing이라고 한다고 한다. 
+  - 말 그대로, Testing이라는 것 자체가 "테스트하는 행위"를 이야기하는 것임. 그냥 이런 행위적인 것들이 들어가면 Testing이라고 이야기하는 것.
+
++ Unit Testing / Component Testing / System Testing 이런 것들이 있을 수 있다.
++ Unit Testing 
+  - 단위 테스팅. 우리가 Software Engineering 할때 가장 기본이 되는 개념은 "객체지향" 이고, 그 안에서 가장 작은 단위는 "객체" 이다.
+  - Unit(객체) 를 Testing 하는것을 보고 단위 테스팅, Unit Testing이라고 할 수 있다. 
+  - Unit Testing의 가장 큰 목적 : Functionality
+    - 객체 안에 여러 개의 Method가 있다. 
+    - 객체 안에 어떤 값들도 확인하고, Method도 다 잘 동작하는지 확인해야 한다. 
+  
+  - 객체 만으로 테스팅을 다 하는 것! 객체 단위에서 쪼갤수없는 곳까지 가서, 그 Scale에서 Testing 진행하는 것이다. 
+
++ Component Testing
+  - Component 단위를 Testing하는 것. Integration Testing이라고도 불린다. 
+  - Object보다 더 큰 단계. 여러 개의 Object가 모여있는 것을 보고 Component라고 부른다. 
+  - Component는, 또 다른 이름으로 SubSystem이라고도 부를 수 있다. System과 Object 중간의 어딘가에서 테스팅 한다고 생각하면 된다.
+  - Component는, 또 다른 Component로도 만들 수 있다. 
+  - 객체가 여러 개 있을 것인데, 객체 간 서로 취급하는 데이터가 다 다르고 약속된 것이 다 다르다. 이런 부분을 통합해서 맞추어 주며, 테스팅을 진행하는 것을 Component Testing(Intergration Testing) 이라고 한다. 
+  - 하나의 Component로써 무엇인가를 했을 때 그것이 잘 동작하는지 아닌지를 확인하는 것이다. 
+
++ Interface Testing
+  - 어떤 데이터를 주면, 어떤 데이터를 다시 돌려주는지의 관점에 따라 행해지는 Testing.
+  - 
