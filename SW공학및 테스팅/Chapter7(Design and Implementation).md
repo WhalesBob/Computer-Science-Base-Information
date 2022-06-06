@@ -6,13 +6,13 @@
 + 구현이슈
 + 오픈소스 개발
 
-#### Design and Implementation
+### Design and Implementation
 
 + 소프트웨어 설계 및 구현은 SW공학 프로세스에서 실행 가능한 소프트웨어 시스템을 개발하는 단계이다.
 + 소프트웨어 디자인과 설계는 항상 같이 함께하는 요소이다.
   - 문서로 설계된 내용들을 실제 동작하게끔 만드는 것이 구현이다.
 
-#### Build or Buy
+### Build or Buy
 
 + 넓은 범위에서, 이미 만들어져 있는 시스템 중 유저의 Requirement에 맞게 선택해 가공하여, 최적화해서 판매하는 것이 가능해졌다.
   - 이미 만들어져있는 것 중 사용자의 요구에 따라 조금씩만 가공해서 판매하면, 프로그램 코드의 재사용성이 크게 늘어날 것임.
@@ -24,7 +24,7 @@
   
 ## Object-Oriented design using the UML(UML을 사용한 객체지향 디자인)
 
-#### An object-oriented design process
+### An object-oriented design process
 
 + 구조화된 객체지향 설계 프로세스는 다양한 시스템 모델을 개발하는 것을 포함해야 하는(수반하는) 활동이다.
 + Small System 같은 경우, 이렇게 객체지향을 엄청 고려해서 만드는 것이 상당히 비효율적이다.
@@ -35,7 +35,7 @@
 + 객체지향으로 프로그래밍할 때는 비교적 큰 시스템에서 하는것이 더 좋다.
   - 비교적 큰 시스템에서 프로그래밍할 때는, 개발 그룹 간에 커뮤니케이션을 어떤 식으로 가져갈 지 정하는 것도 중요하다.
 
-#### Process Stage
+### Process Stage
 
 + Context(맥락), 시스템의 행위 모델에 대한 내용을 정하기
 + System Architecture 디자인하기
@@ -45,7 +45,7 @@
   - 객체 간에 데이터들을 어떻게 주고받을지
   - 객체 처리들을 어떻게 해주면서 처리할지, 정해놓은 객체를 합쳐서 개발할지, 쪼개서 개발할지 등
 
-#### System context and Interactions
+### System context and Interactions
 
 + 사용자와 시스템, 시스템 객체와 객체 간에 정보를 주고받는 관점에서 이해해서 프로그램을 짜야 한다.
   - 어떤 기능을 만들때 객체는 몇개 만들 것인지, 객체 간에 communication은 어떻게 처리할 것인지를 먼저 고려해서 구조를 잡아야 한다.
@@ -94,7 +94,7 @@
   <img src = "Ch7_2.png" />
   
 
-#### Object Class Identification
+### Object Class Identification
 
 + 기능적인 Architecture를 다 정했으면, 그에 맞는 Class, 즉 Object를 정해야 한다.
   - 어떤 객체들이 필요한지 다 정하면 된다. 
@@ -128,7 +128,7 @@
   <img src="Ch7_3.png" />
 
 
-#### Design Models
+### Design Models
 
 + 디자인 모델은 객체 및 객체 클래스, 그리고 그 사이의 관계를 보여준다.
 + 디자인 모델 종류 :
@@ -143,7 +143,7 @@
   - State Machine Model
   - 기타등등
 
-#### State Diagram 
+### State Diagram 
 + State Diagram은 객체가 각기 다른 Service Request에 응답하는 방법과, 이런 Request를 받아들여 어떻게 상태변환이 일어나는지 보여 주는 데 사용된다.
 + State Diagram은, 시스템이나 객체의 Run-Time에서 어떻게 행동하는지 보여주는 High-Level Model이다.
 + 일반적으로 시스템의 모든 객체에 대한 State Diagram이 필요하지는 않다. 시스템의 많은 객체는 비교적 단순하며, State Model은 디자인에 당장 필요하지 않은 디테일한 부분까지 다 추가하기도 한다. 
@@ -168,3 +168,23 @@
 + Design Pattern에는, 이름이랑 어떤 문제에 사용되는지, 그 문제를 해결하는 Solution, 그리고 절충안, 결과 등이 나타나 있다.
 + 해당 Pattern을 썼을 때 장단점 또한 존재한다. 무조건 해당 Solution이 베스트인것은 아니다!
 + 어떤 Pattern이 더 좋은지는, 사용자가 선택해서 써야한다. 항상 특정 패턴이 무조건 좋다라는 것은 아니다. 
+
+### Observer Pattern 
+
++ 스타크래프트의 그 옵저버 맞다. 
+
+<img src = "Ch7_4.png" />
+
++ attach / detach : attach 되어 있는 observer에게만 해당 컨텐츠를 전송하겠다!
++ notify : observer에게 정보를 제공하는 함수. 이걸 받아야 observer가 update 함수를 통해 해당 정보를 받아올 수 있다. 
+
++ Observer가 실제로 보고 싶은 Subject는 제각기 다를 것이다. 이런 부분은 상속으로 처리할 수 있다.
++ 내가 보고 싶은 Subject를 등록하는 것이 아니라, 그 대상이 Observer에게 display를 제공하는 것임! (중요) Subject가 보여주는 것만 Observer에게 display된다! 그래서 어떤 객체에 대해 전부를 볼 수 있는 것이 아니다. 보여지도록 정해져 있는 것들만 볼 수 있고, 그런것들이 Subject에 의해 notify() 된다.
+
++ Observing 하는 객체에 대한 state는 속성값으로 표현할 수 있고, 그 속성의 변수값이 어떻게 바뀌는가에 따라 클래스의 상태가 변화한다. 
+
+### 
+
+
+
+
