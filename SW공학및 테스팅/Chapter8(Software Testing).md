@@ -130,7 +130,7 @@
 
   - 객체가 Method가 없는 객체일 수 있다! 추상화 클래스라서 속성값만 있다면, 어떻게든 해당 속성값이 변하는 것만 확인하면 된다. 
 
-<strong> 원래는 어떤 객체가 있다 치면은, 다른 Component에서 어떤 Interaction 이 일어나든, 해당 객체에 대한 속성값까지 다 바뀌는 것을 확인해야 한다. Unit Testing 단계에서 확인할 수는 없는 부분이라 할지라도, 원래는 그런것까지 다 체크를 해야 한다는 사실은 알고, 메소드를 테스팅할 때도 그런 부분을 감안해서 개발하고 테스팅해야 한다. </strong>
+<strong> 원래는 어떤 객체가 있다 치면은, 다른 외부 Component에서 어떤 Interaction 이 일어나든, 해당 객체에 대한 속성값까지 다 바뀌는 것을 확인해야 한다. Unit Testing 단계에서 확인할 수는 없는 부분이라 할지라도, 원래는 그런것까지 다 체크를 해야 한다는 사실은 알고, 메소드를 테스팅할 때도 그런 부분을 감안해서 개발하고 테스팅해야 한다. </strong>
 
 + Component Testing
   - Component 단위를 Testing하는 것. Integration Testing이라고도 불린다. 
@@ -144,6 +144,7 @@
 + Interface Testing
   - 어떤 데이터를 주면, 어떤 데이터를 다시 돌려주는지의 관점에 따라 행해지는 Testing.
   - 어떤 Input을 줬을 때, 해당 되는 Output을 하나하나 보는 것이 Interface Testing이다. 
+  - 
 
 #### 개발할 때는 Top-Down으로 가면 좋지만, 테스팅할 때는 Bottom-Up으로 가는것이 좋다. 
 + 설계할 때는 복잡하게 생각할 것 없이 짜면 되지만, 설계할 때는 아래에서부터 위로 하나씩 테스팅해가면서 진행해야 한다. 
@@ -154,3 +155,32 @@
   - System Testing에서는, Component 간의 Interaction을 주로 테스팅한다. 
 
 ### Test Coverage
+
++ 테스트를 어디까지 할 것인가에 대한 이야기이다.
++ Coverage 종류는 여러가지 있음
+  - Statement Coverage : 한줄한줄 문장을 하나하나 실행하는 것임. 모든 문장을 실행해야 Test Coverage 가 100% 만족하는 것이다. 
+  - Decision Coverage : 모든 문장을 다 실행해볼 필요가 없다. 단순히 분기(If문) 만 다 통과하면 된다는 주의
+  - Class의 Test Coverage :  모든 Operation을 다 거쳐야 한다.(Class 내 모든 Method를 다 Testing해야 한다.)
+    - 똑같은 Method라도 해당 객체의 Attribute(속성값)이 다르면 동작하는 내용이 달라질 수 있다. 
+    - ex) Active / Inactive 에 따라, 같은 Method라도 동작하는 내용이 다를 것이다. 
+    - 이런 State도 바꿔 가면서 동작시켜 봐야 한다. 
+
++ 상속이 개발하거나 설계할때는 되게 좋지만, Test할 때는 대단히 어려워진다. 
+  - 추상 클래스 테스트할려면, 아래 자식 클래스 Testing도 다 해야 한다. 부모는 자식에 다 들어갈 수 있으니
+  - 객체에 대한 Unit Testing이라고 하고 있는데, 실제로는 "Unit" Testing이 안 되는 것이다. 
+
++ 테스팅할 때 정답은 없지만, 테스트는 최대한 많이 해보는것이 제일 좋다. 해보는 케이스가 많으면, 해당 프로그램에서의 "정확도" 가 올라가게 된다.
++ 하지만 테스트에서는 무조건 중요한, Critical 한 부분부터 내려가서 점차적으로 중요도가 떨어지는 애들 방향으로 하는것이 좋다. 
+
+### Automated Testing
++ Setup Part : 딱 함수를 테스트하기 전 Pre-Condition으로 만들어 주는 Part. 
+  - Setup Part는 고정적이다. 해당 함수를 실행하기 위해서는 그 함수가 실행되는 조건이 있을 것이다. 그 조건으로 만들어 놓고 실행하는 것임.
+  - 조건이 없으면 무작위로 실행되기도 한다. Setup Part를 안 쓸수도 있고, Random하게 임의의 값으로 줄 수도 있을 것이다. 
++ Call Part : 실제로 테스트하고자 하는 Part. Test Case를 넣어서 실행시키는 Part.
++ Assertion Part : Call Part에서 나온 내용을 가지고 참/거짓 같은 내용을 바탕으로 후처리하는 Part. 
+  - Call Part에 Test Case를 넣어보고, 기대값과 실제 Output을 비교해서 같으면 True, 아니면 False
+
++ Setup Part는 없을 수 있지만, Call/Assertion Part는 대부분 있다. 
+
+### Choosing Unit Test Cases
+
