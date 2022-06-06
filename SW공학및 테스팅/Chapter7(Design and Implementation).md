@@ -180,10 +180,39 @@
 
 + Observer가 실제로 보고 싶은 Subject는 제각기 다를 것이다. 이런 부분은 상속으로 처리할 수 있다.
 + 내가 보고 싶은 Subject를 등록하는 것이 아니라, 그 대상이 Observer에게 display를 제공하는 것임! (중요) Subject가 보여주는 것만 Observer에게 display된다! 그래서 어떤 객체에 대해 전부를 볼 수 있는 것이 아니다. 보여지도록 정해져 있는 것들만 볼 수 있고, 그런것들이 Subject에 의해 notify() 된다.
++ ConcreteSubject의 state는, 위의 abstract class에 정보를 상속해주는 애다. 실제 정보는 당연히 ConcreteSubject에 들어가 있음. 그리고 해당 정보를 get/set 해준다. 
+  - 이렇게 해주지 않으면, observing 할 클래스에다가 attach,detach,notify를 일일이 다 추가해 줘야 하는데, 그러기는 상당히 귀찮다. 그냥 새로 파서, 볼 클래스를 상속받아서 observe 관련 함수만 구현해 주면 되는것이다.
 
 + Observing 하는 객체에 대한 state는 속성값으로 표현할 수 있고, 그 속성의 변수값이 어떻게 바뀌는가에 따라 클래스의 상태가 변화한다. 
++ Subject에 대한 변화가 생겨서 Subject가 nofity 해주면, observer들에게 연결된 update가 생성될 수 있게끔 해준다! 하지만, Observer가 보고 안보고는, 각 Observer들이 update하는지 하지않는지에 따라 달리는 것임.
++ Observer들이 보기에 따라, 다양하게 해당 Subject를 바라볼 수 있다. 
+  <img src = "Ch7_5.png" />
+  
 
-### 
+<strong>왜 이렇게 만들었는지는 중요하지 않다. 어떤 문제가 있을 때 이렇게 했으면 좋겠다! 하고 추천을 해주는 것이지, 구현과 설계는 굳이 이렇게 하지 않고 다르게 해도 상관은 없다! 이게 무조건 좋다라는 이야기가 되어서는 안된다.</strong>
+
+### Design Problems
+
++ 디자인에서 어떤 패턴을 쓸려면, 현재 마주하고 있는 설계문제에 적용할 수 있는 디자인 패턴이 어떤 것이 있는지는 알고 그에 맞게 써야 한다. 
+  - Observer Pattern : 여러 객체에, 관찰될 객체의 상태가 변경되다는 것을 알릴 때 사용
+  - Façade pattern(파사드 패턴) : 객체와 관련된 interface 숫자가 좀 될때 사용. 
+    <img src = "Ch7_5.png" />
+    
+    - 하나를 바꿔 줄 때 여러개를 그에 맞게 다 바꿔줘야 하며, 내부를 다 알아야 해서 복잡하다.
+    - 그냥 중간에 통신하는 애 하나만 주고, 나머지는 통신하는 중간 애한테만 다 일임하는 패턴
+    - 장점 : 하나만 신경쓰면 되어서, 필터 역할을 해 준다. 
+    - 단점 : 클래스 한개 더 만들어야 해서 귀찮다.
+    
+  - Iterator Pattern : Collection이 구현되는 방식에 관계없이, Collection의 요소에 Access 하는 표준적인 방법
+      
+      <img src = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Iterator_UML_class_diagram.svg/750px-Iterator_UML_class_diagram.svg.png" />
+      
+      - 개체 수가 50개가 될수도, 100개가 될 수도 있다. 
+      - 그냥 그 다음 것을 찾다가, 없으면 끝내는 식.
+  - Decorator Pattern : 런타임에서, 기존 클래스의 기능(functionality)을 확장하고 싶을 때 사용하는 패턴.
+      
+      <img src = "https://user-images.githubusercontent.com/30790184/85813744-06ccf580-b79f-11ea-8da7-da5888c017d1.png" />
+      - 
 
 
 
