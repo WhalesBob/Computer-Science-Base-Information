@@ -86,7 +86,22 @@
 
 <img src = "Ch8_1.png" />
 
++ Test Case : Test Input과 기대값(expect value)가 합쳐진 것.
+  - 설계할 때 Requirement 보고 이야기할 때, 어떤 것을 눌렀을 때 무엇이 나와야 하는지 같은 것들.
+  - 처음에 기대했던 것과, 나중에 나오는 것을 비교하면서 테스팅을 진행할 수 있다.
++ Test Data : Test에서의 Input
++ Test Result : Test에서의 Output
++ Test Report : 몇개 통과했는지, 몇개 Fail났는지 나오는 Report
 
+### Stages of Testing(테스팅 단계)
 
++ Development Testing(개발 테스팅)
+  - 시스템 개발할 때, 개발 중간에 이루어지는 여러 가지 테스팅. 
++ Release Testing
+  - 개발이 끝났고, 출시하려고 하는 프로그램을 다른 테스트 팀(QA 팀)에서 테스트해 보는 것.
++ User Testing
+  - 실제 사용자가 테스팅하는 것. 결국 Release Testing하는 사람도 개발자임. 실제 사용할 사용자가 할때는 또 다르게 될 수도 있다.
+  - ex) 핸드폰을 샀는데, 기능 다 매장에서는 잘 되었는데 집에서는 안되는 경우, 와이파이 표시는 떠있는데 실제로는 데이터를 소모하는 경우 등이 있을 수 있다.
+  - 유저가 사용하는 환경에서 사용해 보아야 한다. 
 
 
