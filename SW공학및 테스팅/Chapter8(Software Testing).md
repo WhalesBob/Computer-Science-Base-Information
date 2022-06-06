@@ -402,7 +402,39 @@
   - 실제로 해당 시스템에 우리가 사용하고자 하는 시스템을 녹였을 때를 기준으로 잘 만들어졌는가? 가 중요하다. 
   - "실제로 내가 사용하고자 하는 환경에서, 그 환경에 의존해서 잘 동작하는가?"
   - "실제 환경에서 동작하는데 있어서 적합한가?" (System 상에서 Failure 이 나면 안된다는 이야기)
-  - 
+    - 정상적인 상황에서 정상적으로 사용할 때, 우리가 원하는 대로 사용하려고 했던 것에 대해서는 반드시 시스템이 죽어서는 안된다!!
+
++ 그래서 Release Testing의 경우, Black-Box Testing을 많이 하게 된다. 
+  - 내부적으로 어떻게 만들어졌는지에 상관없이 그냥 인풋 아웃풋 원하는대로 넣어보면서 테스트 하는 것임. 
+
+### Release Testing and System Testing
+
++ Release Testing 은 System Testing의 한 종류라고 볼 수 있을 것이다. 
++ Release Testing 과 System Testing의 중요한 차이점 
+  - Release Testing은, 개발팀과 완전히 다른 사람들이 진행함. 
+  - 아예 개발자가 진행하지 않을 수도 있다. 비개발자가 진행할 수도 있다. (이미 내부를 대충 알고 있으니 그에 맞춰서 테스팅하려고 함)
+  - 개발을, 내부를 모르는 상태라면, 모르기 때문에 여러 가지 생각할 수 있는 것들이 있다. 
+  - 개발자들이 주로 하는 테스팅은, Defect Testing을 주 목적으로 테스팅을 진행함.
+  - Release Testing은, 그런 결함 찾는 테스팅을 하는 것이 아니다. 그냥 쓰는대로 쓰는데, 아무런 문제없이 동작하는지, 그 사이에 성능적으로도 괜찮은지를 체크하며 테스팅하게 된다. 
+  - 개발자들이 테스트 할 때는, 에러가 있는지 없는지가 중요하고, Release Testing에서는(개발자가 아닌 사람들 입장에서 보았을 때는) "쓰기 좋은가?" 에 초점이 맞춰져 있는 것이다.
+    - 똑같은 프로그램 두개 있음녀, 이 중에 사용자는 더 사용하기 좋은 프로그램을 사용할 것이다. 
+   
+### Requirements Based Testing 
+
++ Requirement를 보고 Testing하는 것이다. (Requirement에 맞게끔 시스템이 동작하느냐를 보는 것이 Requirement Testing)
++ Requirement 하나하나 보고 Testing 한다.
+
+### Features Tested by Senario
+
++ Feature를 Testing 하는데, 시나리오에 의해 테스트하는 것이다. 
++ Feature 예시 : Downloading, Uploading / Authentication / Encryption, Decryption  요런 것들.
++ 요런 기능들을 보면 Feature라고 할 수 있음. Feature 단위로 Test 해야 한다!
+
+### Performance Testing
+
++ Performance(성능)를 확인한다. 이것도 Release Testing에서 많이 확인하게 된다. 
++ Release Testing의 경우, 정상적인 상황에 대해서 잘 동작하는지 확인하는 만큼, 성능을 테스트하는 것이 의미가 있다. 
++ Performance Testing은 정상적인 상황에 대해서 확인하는 작업을 거치다 보니, Release Testing, 혹은 System Testing 이라고 볼 수 있다.
 
 
 
