@@ -296,4 +296,17 @@
 + 장비에 실어서 해 봐야 하는 상황도 있음. 개발 환경에서 할 수 없는 것들도 많이 해본다. 
 
 ### Use-Case Testing
-+ 
++ System 단위의 기능들에서, Use-Case 단위의 큰 기능들을 위주로 테스팅해보면 될 것이다. 
++ Use-Case 안에는 Functionality, Non-Functionality 도 있을 것이다. 이런 것들을 다 테스트하면 된다!
++ 주로 Sequence Diagram으로도 많이 함. 하나의 기능을 상세화시켜서 볼 수 있다!
+  - Test Case를 가지고 Sequence Diagram으로도 나타낼 수 있다. 
+    - Use Case가 되게 추상적으로 적혀 있다 보니, Sequence Diagram으로 풀어내어 할 수도 있는 것이다. 
+
++ System Testing의 경우, 절대로 다 해보지 못한다!
+    - Unit Testing의 경우, 마음먹으면 진짜 다 해볼 수 있다. 돈과 시간이 문제임. 
+    - ex) 에어컨의 경우, 어디에 설치하는지, 어떤 환경에 설치해보는지 등을 싹 다 테스팅해볼 수는 없다.
+    - 30분 돌려볼것인지, 2시간 돌려볼 것인지, 등 이런 시간적인 부분도 "모든 걸 다" 해볼 수는 없는 노릇이다.
+    - 그래서 항상 테스팅할 때는 상한선을 정해 놓고 테스팅해야 한다. 상한선을 넘으면 "Stress Testing" 이 된다. 
+    - 그럼 어떤것들은 꼭 해야 하냐?
+      - 모든 System Function들은 한번씩은 다 해봐야 한다.
+      - Function 의 조합들은 한번씩 해봐야 한다.(Integration Testing)
