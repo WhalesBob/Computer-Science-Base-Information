@@ -211,6 +211,7 @@
   - Decorator Pattern : 런타임에서, 기존 클래스의 기능(functionality)을 확장하고 싶을 때 사용하는 패턴.
       
       <img src = "https://user-images.githubusercontent.com/30790184/85813744-06ccf580-b79f-11ea-8da7-da5888c017d1.png" />
+      
       - 객체에 동적으로 새로운 기능을 추가할 수 있게 하는 패턴이다. 정적으로 서브클래스를 생성하지 않고, 동적으로 생성하기 때문에 런타임에 유연하게 동작 가능하다 
       - 보통 상속으로 SubClass 를 계속 만드는 방법이 실질적이지 못할 때 사용하고, 동적으로 투명하게 다른 객체에 영향을 주지 않고 각각의 객체에 새로운 기능을 추가할 수 있다. 이런 데코레이터 패턴을 적용하면, 기능을 무한정 추가할 수 있다.
       - 참고 : https://sup2is.github.io/2020/06/26/decorator-parttern.html
