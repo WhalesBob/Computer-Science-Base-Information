@@ -134,4 +134,24 @@
 
 + Business Project나, 환경들을 평가해 보자
   - 평가할 때도 관점에 따라 달라짐. 
+     - System EndUser
+     - Business Customers
+     - Line Managers
+     - IT Managers
+     - Senior Managers
+  - 여러 이해관계자와 이야기해서 수합해서 하자.
+
+### Factors Used In Environment Assesment
+
++ 연식 : 얼마나 오래되었는지?
++ Failure Rate :  일주일 동안 에러가 몇번 일어나는지?
+  - Failure를 사람마다 어떻게 인식하느냐에 따라 다름.
+
+등등
++ 가장 Critical 한것이 가장 영향을 많이 준다!
+
+
+
+
+
   
