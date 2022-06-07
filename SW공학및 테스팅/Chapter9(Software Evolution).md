@@ -150,6 +150,18 @@
 등등
 + 가장 Critical 한것이 가장 영향을 많이 준다!
 
+### System Measurement
+
++ Change Request는 몇개인가?  Used Request는 몇개인가? 
+  - 사용 UI가 10개 있지만, 5개밖에 안쓰면 5개임. 나머지 5개는 쓸데없이 만든 것이다.
++ 안쓰는 데이터는 얼마나 있는가?
+  - 안쓰는 데이터는 삭제하는 것이 좋다
+
++ 결국 이런것들이 다 돈에 연관된다고 함.(저장용량)
+
+## Software Maintenance
+
+
 
 
 
