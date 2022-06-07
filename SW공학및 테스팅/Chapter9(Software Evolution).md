@@ -177,5 +177,26 @@
 
   (42/61)
   
-
   
+### Refactoring
+
++ ReEngineering은, 유지보수를 하다가 결국 새로 구조를 짜야겠다 싶어서 하는 것임
++ Refactoring은, 만들다 보니 유지보수 힘들것같아서 유지보수 하기좋게 바꾸는 것임. 
++ 하는 행위는 같을 수 있지만, 목적이 다르다. 
++ 단순히 함수이름 바꾸는 것이 Refactoring이 아니다. Complexity가 줄어들어야 한다!
++ Refactoring하면, 성능상 개선사항이 있어야 한다.
+
++ Refactoring에는 기능이 추가되는 것이 되어서는 안된다. 그냥 구조만 바꾸는 것이다. 
++ Refactoring 하다하다 안되면 Reengineering 하는 것이다. 
+
+
+### Bad Smells in Program Code
+
++ Duplicate Code (코드 중복)
++ Long Method
++ Switch Case statement
+  - 이렇게 하다보면 코드 중복이 일어나고, 스위치 값은 유형에 따라 또 달라진다. 객체지향 언어에서는 다형성으로 바꿔서 코딩하자.
++ Data Clumping(데이터 무더기)
+  - 데이터 무더기는 동일한 데이터 항목 그룹(클래스의 필드, 메소드의 매개변수)이 여러 위치에서 발생할때를 보고 말함. 이런 것들은 종종 모든 데이터를 캡슐화하는 객체로 바꿔 쓸 수 있다. 
++ Speculative Generality(추측에 근거한 일반화)
+  - 개발자들이 미래에 필요할 경우에 대비해, 프로그램에 일반성을 포함할 때 발생한다. 간단하게 제거할 수 있다.   
