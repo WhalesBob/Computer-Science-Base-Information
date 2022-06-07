@@ -173,7 +173,9 @@
 + Maintenance Cost는 Development Cost의 2배에서 10배까지 볼 수 있다.
   - 개발 잘 해줘야 Maintenance Cost가 줄어든다!
   - 예전에는 개발비용이 많이 나왔지만, 요즘은 Framework 잘나와서 예전의 1/5까지 줄어들었다.
-  
+
+
+  (42/61)
   
 
   
