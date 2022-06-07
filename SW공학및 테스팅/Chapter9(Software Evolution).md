@@ -89,3 +89,49 @@
 
 <img src = "Ch9_4.png" />
 
++ System Hardware
++ Supports Software
++ Application Software
++ Application Data
++ Business Processes
++ Business Policy and Rule
+
+### Legacy System Layers
+
+<img src = "Ch9_5.png" />
+
+### Legacy System Replacement
+
++ Legacy System을 Replacement 하는 것은 일반적인 Software System을 Evolution하는것보다 훨씬 더 리스크가 크다. 
+  - Legacy System은 두가지 관점으로 바라볼 수 있다
+    - 오래되었다. (이미 너무 구식이다)
+    - 그럼에도 불구하고 아직까지도 쓰고 있다.
+  - 이것을 바꾸겠답시고 새로 건드는데, 동작하지 않으면, 혹여나 삭제를 시켜버렸다면 더이상 찾을 방도가 없다. 
+  - 복사하다가 파일이 깨져서 나왔는데, 복구가 안되면 큰일남.
+  - 이런 부분을 이해하고 접근해야 한다.
++ 예전에는 이런 Software Engineering 적인 것이 없었기 때문에, 상당히 커플링이 높은 경우가 많다. 
+  - 프로그램도 그럼 뒤죽박죽일 확률이 아주높다. 
+  - 필요한 데이터도 많아지고, documentation도 없고, 언어도 Cobol 이런거면 폭탄이다.이런것들을 고려해서 해라! 
+  - 가급적 잘개 쪼개어서 하나씩 천천히 반복적으로 하는 수밖에 답이 없다. 
++ 이런 상황에서 Replacement를 할려면 어떻게 해야 하는가?
+  - Layer 별로 하는 것이 좋다. 
+  
+  
+### 그래서 위험을 무릎쓰고 어떤 것을 건들 것인가? (Legacy System Category)
+
+<img src = "Ch9_6.png" />
+
++ Low Quality, Low Business Value : 그냥 없애라
++ Low Quality, High Business Value :
+  - 시스템 퀄리티는 낮은데 고가치의 Business 하고 있는 경우, 새로 바꾸거나, 새로 만들어서 바꿔치기 하는것도 방법이다. 
+  - 아니면 그냥 있던거를 잘쓰자
+
++ High Quality, Low Business Value : 
+  - Business 가치도 따지기 나름이다
+  - 이해관계자와 잘 이야기해서 잘 처리해라.
+
+### Business Value Assessment 
+
++ Business Project나, 환경들을 평가해 보자
+  - 평가할 때도 관점에 따라 달라짐. 
+  
