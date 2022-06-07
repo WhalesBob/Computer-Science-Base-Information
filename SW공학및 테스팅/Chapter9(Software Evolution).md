@@ -161,9 +161,19 @@
 
 ## Software Maintenance
 
++ Maintenance는 , Evolution과는 다르게 그냥 "유지보수" 해 주는 것이다. 
++ Fault Repairs : 그냥 고치기
++ Environmental Adaptation : 안드로이드에서 잘되었으니, 아이폰으로 바꿔주세요!
++ Functionality Addidion and Modification : 추가 기능이 있었으면 좋겠으니, 추가하고, 안쓰는기능 없애기.
+  - Addition 과 Modification은, Impact Analysis 하는것이 다르다. 그래서 굳이 구분해 둔 것이다.
+  - 수정하면, 그거에 영향받는 모든 것이 영향미치는데, 새로 만들면 그런거 없다. 
 
+### Maintenance Costs
 
-
-
++ Maintenance Cost는 Development Cost의 2배에서 10배까지 볼 수 있다.
+  - 개발 잘 해줘야 Maintenance Cost가 줄어든다!
+  - 예전에는 개발비용이 많이 나왔지만, 요즘은 Framework 잘나와서 예전의 1/5까지 줄어들었다.
+  
+  
 
   
