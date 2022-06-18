@@ -148,4 +148,15 @@
 + 관계 instance는 동적인 특성이 있다(생겨났다 사라졌다 한다.)
 + relation 에서, 속성(attribute) 는 5개이다.     
 + relation 에서, tuple의 총 갯수를 cardinality 라고 할 수 있다.
++ Domain : 하나의 속성에서 취할 수 있는 값의 범위
+  - 학생이라는 relation에서 학년이라는 속성의 domain : 1~4
+
++ relation 의 특징 : 
+  - 한 relation 에서 속성의 이름은 유일해야 함. 
+    - 중첩되면 query 를 못돌리겠지
+  - relation 에서 tuple과 속성의 순서는 무의미하다. (query 문 돌려보면 무의미 하더라)
+  - 중복된 tuple은 삽입될 수 없다. (완전히 속성값이 싹다 같은 애들은 들어갈수가 없다)
+    - 어차피, 최소한 id라도 다름.
+  - 더이상 나눌 수 없는 값(원자값)으로 tuple 에 들어가야 한다. 
+    - ex) 주소를 자세히 하고 싶으면, 세분화해서 넣어야 함. 
 
