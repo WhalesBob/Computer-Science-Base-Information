@@ -160,3 +160,43 @@
   - 더이상 나눌 수 없는 값(원자값)으로 tuple 에 들어가야 한다. 
     - ex) 주소를 자세히 하고 싶으면, 세분화해서 넣어야 함. 
 
++ key : 어떠한 relation에서, tuple들을 "유일하게 구분해 낼 수 있는" 속성들의 집합
+  - 학번이라는 속성을 토대로 tuple들을 구별해 낼수 있으니, key 안에 들어가게 된다. 
+  - 전화번호 라는 속성을 더 넣는다면, 학생들마다 전화번호가 다 다를테니 key 안에 들어갈 것이다. 
+  - 한 table 안에 삽입될 수 있는 tuple은, 반드시 서로 가지고 있는 key가 다 달라야 함.
+
++ 후보 키(candidate key), 주 키(primary key) , 외래 키
+   - 후보 키 : 속성 집합 중, "유일성"과 "최소성" 을 만족하는 key.
+      - 유일성 : tuple 끼리 겹치는 것 없이. tuple - key 가 1 : 1 이 되어야 함.
+      - 유일성이 만족되어야 tuple 들을 구별할 수 있다. 
+      - 최소성 : relation 안에 있는 tuple을 구별해내기 위해, 속성이 최소한으로 들어가야 한다
+      - 두개 묶여서 primary key로 만든다 하면, "최소성" 을 만족하지 못하는 것이다. 
+      - 위의 사례에서는, "학번" 하나만으로 tuple을 모두 구분해낼 수 있다. 
+      - 두 개의 속성을 묶어서 tuple을 구분해 내는 것은, key는 될 수 있지만 후보 key가 될 수는 없다.(유일성은 만족하지만, 최소성을 만족하지 않기 때문)(학번만으로도 구분할 수 있다)
+      - 어떠한 relation 에서, 후보키는 여러 개가 나올 수 있다. 
+
+  - 주 키(primary key) : 후보 키 중 가장 적합한 것을 primary key로 정함.
+    - 위의 사례에서, 학번과 전화번호 중 더 적합한 것은 학번이다. 
+    - 그래서 학번으로 primary key를 정하는 것이 더 바람직하다. 
+    - 하나의 relation 에서 여러 tuple 중 하나의 tuple을 식별해낼 수 있는 역할을 수행한다.
+  
+  - 외래 키 : 어떠한 relation에서 한 속성이 다른 relation 에서 primary key로 작동하고 있으면, 해당하는 그 속성을 보고 외래 키라고 부른다.
+    -  외래 키를 가지고, A relation 과 B relation 이 연결 지어진다고 생각할 수 있다. 
+
++ 관계에 대한 연산 (with query)
+  - 삽입(insert) : tuple을 삽입하는 연산
+     - insert into ~~~~(A,B,C,D) values (X,Y,Z,W) 
+     - 위와 같은 식으로 query 문을 만들 수 있다.
+
+  - 삭제(delete) : 관련된 tuple을 삭제 
+    - delete ~~~
+  - 수정(update) : 
+    - update ~~~~~~~ set XXXXX where itemname like '%Y%'
+  - 조회(select) : 
+    - select * from ~~~~~~ where name like '%X%' 
+   
+   
+### DBMS(DB 관리 시스템)의 구성
+
++ DBMS 는 DB를 정의하고, 구축/조작/제어하여 DB에서 정보를 쉽게 활용할 수있도록 만든 프로그램.
++ 종류 : MySQL, SQL server, MariaDB, PostgreSQL 등
