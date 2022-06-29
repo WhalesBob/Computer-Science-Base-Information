@@ -41,3 +41,27 @@
 + Layer 별로 무엇을 해야 하는지를 정의해 둔 Chapter이다! 
 
 <img src = "images/CompNetwork_Ch4_1.png" />
+
+### 4-2 Switching
+
++ Routing vs Switching
+  - Routing은, Router를 거쳐가는 것.
+  - Switching 자체는 L2 Level에서 한다. 
+  - Switching : 교환
+  - 가는(통행하는) 길을 바꿔준다는 의미로다가 사용된다.
+  - 중간중간에 길을 바꿔줘야 한다고 하는데, 일단 뒤에서 쭉 봅시다.
+
++ Circuit Switching vs Packet Switching
+  - 현대의 인터넷은 Packet Switching을 많이 사용한다.
+  - Packet을 여러 개의 router로, 경로를 통해서 목적지까지 전달한다.
+  - Packet Switching은, Packet 단위로 전달한다는 것임.
+  - Circuit : 회로, 회선
+  - Circuit Switching 쓰는 대표적인 사례 : 일반전화(인터넷 전화 아닌 집전화)
+    - 집전화에서의 전화음이 Signal 경로설정해주는 소리라고 함.(Signaling)
+    - 통신하기 전에 준비하는 단계라고 한다. 
+    - 일반 전화 통신은 Circuit Switching이다. 
+  
+  - 이동하는 Path를 확보해 두고, 통신을 하는 것이다. 
+  - 일반전화망을 전문적으로 PSTN(Public Switch Telephone Network)이라고 한다!(Circuit Switching의 대표적인 예시다.)
+
++ Circuit Switching 
