@@ -40,3 +40,4 @@
 
 + Layer 별로 무엇을 해야 하는지를 정의해 둔 Chapter이다! 
 
+<img src = "images/CompNetwork_Ch4_1.png" />
