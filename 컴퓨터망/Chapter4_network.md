@@ -92,6 +92,7 @@
     - source address는 의외로 별로 많이 쓰이지는 않는다. 보안체크할때 정도 쓰임.
 
 <img src = "images/CompNetwork_Ch4_4.png" />
+
 + Virtual Circuit 
   - ATM(Asynchronous Transfer Mode) : Virtual Circuit을 사용함.
   - 완전한 Circuit은 아니고, Packet 단위로 이동하지만, 경로는 하나로 미리 지정해 통일했다.
@@ -99,8 +100,17 @@
   - Packet Switching과 Circuit Switching이 섞여 있다고 할 수 있다.
   - Circuit Switching이 한길로만 가는 Concept이고, Packet으로 쪼개는 것이니, 두 가지를 다 따온 것이라 볼 수 있다.
   - 직접 ATM 기술을 쓸 일은 없다고 한다.(KT 같은 backbone 망에서만 쓰인다.)
-  - Circuit Switching과 Packet Switching의 장점을 따 온 방법이다. 
-    
+  - Circuit Switching과 Packet Switching의 장점을 따 온 방법이다.
+  
+  
+### Network Layer Services
+
++ IP Address 를 보고 Routing 해주는 Service
+
+<img src = "images/CompNetwork_Ch4_5.png" />    
+
++ 과정
+  - 맨 위에 Upper Layer(Transport Layer)에서 
  
 
   
