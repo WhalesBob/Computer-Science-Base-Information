@@ -130,6 +130,7 @@
     * 0.0.0.0 과는 반대이다. 
     * 255.255.255.255 는 Broadcast Address 라서, 이 주소로 패킷을 쏘면, 해당 network 안에 있는 모든 컴퓨터에 패킷이 전송된다. 
     * 이 주소는 보통 Subnet 안에서만 전송된다. 정말 온 지구상에 다 퍼지면, 문제가 될 수 있기 때문에, router들은 해당 주소를 block 한다. 
+    * 모든 애들한테 다 보내면, 전체 네트워크가 다운되어 버릴 위험이 있다!
     
 3. Loopback Address : 127.x.y.z     
     * 컴퓨터 한대 안에서, 네트워크 바깥으로 나가지 않고, L1에서 다시 올라오는 것. 
@@ -139,3 +140,33 @@
 4. Private Network
 
 <img src = "images/CompNetwork_Ch5_11.png" /> 
+
+    * 주로 공유기 상에서 많이 쓴다. 
+    * 주로 큰 공유기에서는 왼쪽 두개, 작은 공유기에서는 오른쪽 두개를 많이 사용한다. 
+    * 공유기 안에 있는 private computer들은 이 주소를 사용하고 있는 것이다. 
+
+5. Direct Broadcast Address
+    * Prefix 까지는 특정 Prefix를 쓰는데, Suffix에는 모두 1로 채우는 것이다. 
+    * 보통 사용자는 쓰지 않고, Router를 건들 때 이것을 사용한다고 한다.
+    * 해당 Router 안에 있는 모든 애들이 다 받을 수 있게 처리하는 것.
+    * Limited Broadcast와 차이점 : Limited Broadcast는 그냥 그 안에서 사용하지만, Direct Broadcast는 해당 router에 연결되어 있는 애들한테 보내는 것.
+    
+### NAT(Network Address Translator)
+
+<img src = "images/CompNetwork_Ch5_12.png" /> 
+
++ Public IP와 Private IP를 바꾸어 주는 역할을 담당한다. 
++ 공유기 안에서 172.18.3 이라는 private address를 사용했지만, Internet 으로 나오면 의미가 없어진다. 
+  - Internet 에서는 Public IP를 사용해줘야 한다! (그림에서의 200.24.5.8)
+  - NAT router  왼쪽에 있는 애들은 Public IP를 공유할 수 있다. 
+
++ Subnet 통신할 때, 이 가운데에서 NAT router 가 매칭해 주는 것이다.
+  - 바깥에 누구랑 통신하고 있는지 다 기록하고 있다. 
+  - 중간에서 Mapping Table이 관리하고 있기 때문에, 중간에서 NAT 가 누구한테서 뭐가 왔는지 실시간으로 매칭시켜서 통신할 수 있게 해준다. (NAT는 표 보고 전해주면 된다)
+
+<img src = "images/CompNetwork_Ch5_13.png" /> 
+
++ Translation 할때, Private Port 번호까지 같이 본다.
+  - Port 번호까지 같이 보면서, NAT 테이블을 관리한다. 
+  - ex) Private Port 1400이 external 외부에 있는 누군가와 통신을 TCP 방식으로 하고 있다!
+  - 주로 이 5가지 정보를 테이블이 가지고 있다. 
