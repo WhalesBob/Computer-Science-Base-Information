@@ -20,3 +20,19 @@
 + 지구 상의 IP 주소들을 Class A,B,C,D로 쪼개 놓았다.
 
 <img src = "images/CompNetwork_Ch5_2.png" />
+
++ Class A : 0으로 시작함(50%)
+  - 0~127 사이의 첫 숫자
++ Class B : 10으로 시작함(25%)
+  - 128~191 사이의 첫 숫자
++ Class C : 110으로 시작함(12.5%)
+  - 192~223 사이의 첫 숫자
++ Class D : 1110으로 시작함(6.25%)
+  - 224~299 사이의 첫 숫자
++ Class E : 1111로 시작함.(6.25%)
+  - 240~255 사이의 첫 숫자
+  
++ 첫 번째 숫자를 보면 어떤 Class에 속해 있는지 알 수 있다.
+  
+<img src = "images/CompNetwork_Ch5_3.png" />
+<img src = "images/CompNetwork_Ch5_4.png" />
