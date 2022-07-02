@@ -36,3 +36,46 @@
   
 <img src = "images/CompNetwork_Ch5_3.png" />
 <img src = "images/CompNetwork_Ch5_4.png" />
+
+#### NetID and HostID
+
+<img src = "images/CompNetwork_Ch5_5.png" />
+
++ Class를 할당해 주는 곳은 인터넷 기구에서 해 준다.
+
++ Class A에서는, 1 byte만 net id로 고정되어 있고 나머지 3 byte는 host id
+  - Class A를 할당받은 기관에서 사용할 수 있는 IP는 2^24 개이다.
+  - <img src = "images/CompNetwork_Ch5_6.png" />
+  - Network ID 0번부터 127번 중 하나를 할당받아 사용한다
+  - 전 세계에서 Class A를 할당받을 수 있는 기관은 120개 정도밖에 없다.  
+  - 한번 Class A 대의 Network를 할당받으면, 대단히 풍성하다. 
+  - Class A를 사용하는 기관들은 다 미국에 있다. 
+  - Class A를 다 쓰지 못하고 있는 상태이고, 대부분의 IP 주소가 남아도는 상태이다.
+
++ Class B에서는, 2 byte를 ned id로 고정하고, 나머지 2 byte(16bit)를 host id로 사용한다.
+  - 경북대가 Class B를 할당받아 사용중이다. (국립대라 그렇다고 한다)
+  - 2^16 개(65536 개) 를 host id로 사용할 수 있다.
+  - 아직까지는 대단히 풍부한 IP 갯수를 할당받은 것이다.
+  - Class B 역시, 다 쓰지 못하고 남아도는 상황이다.(경북대 인원 해봐야 2만명임)
+
++ Class C에서는, 3 byte를 ned id로 고정하고, 나머지 1byte를 host id로 사용한다.
+  - 256개 정도의 IP밖에 사용하지 못한다. 
+  - Class C를 할당받을 때는, Block으로 Class C를 여러 개 할당받아 사용한다.(SuperNetting)
+  - Class C부터는, IP가 대단히 부족한 상황이다.
+  
++ Class D에서는, Multicast Address로, 컴퓨터에 할당하는 것이 아닌 임시적으로 Group 간의 통신에 할당받아 사용하고 반환하는 클래스이다.
+
++ Class E는 백업용으로 사용한다.
+
++ Classless Addressing : Class 별로 나누는 것이 안좋은거 알아서, 2000년대부터는 Classless로 사용했다. (뒤에 다시 나옴)
+
+
++ Network ID, Host ID
+  - Network ID : Network Address 부분을 이야기함. 네트워크 식별자 역할을 함.
+
+### Classless Addressing
+
++ Class A,B,C 가 좋은 것이 아님을 깨닫고, 2000년대부터 Classless Addressing이 나왔다.
++ 할당을 더이상 Class 별로 하지 않고, 그 이후로부터 Class에 상관없이 할당한다.
++ 임의적으로 쪼개어 나누어주는 것이 Classless인데, 이때부터는 Network HostID 의 Class 별 제한이 사라져버렸다.
+
