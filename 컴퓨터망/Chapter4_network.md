@@ -84,9 +84,23 @@
     - Internet Protocol(IP)는 전달하는 역할을 함!
     
    - <img src = "images/CompNetwork_Ch4_3.png" />
+   
       - 각 Router 마다 Routing Table과 목적지를 보고 어디로 보내야 할지 알 수 있는 table
    
    - Packet-Switched Network 에서, Forwarding(다음 라우터로 전달하는 것) decision은 패킷의 목적지 address를 보고 결정하는 것이다!
+    - 목적지 주소를 보고, 다음 Router로 전달하다 보면, 어느 순간에 도착해 있을 것이다.
+    - source address는 의외로 별로 많이 쓰이지는 않는다. 보안체크할때 정도 쓰임.
+
+<img src = "images/CompNetwork_Ch4_4.png" />
++ Virtual Circuit 
+  - ATM(Asynchronous Transfer Mode) : Virtual Circuit을 사용함.
+  - 완전한 Circuit은 아니고, Packet 단위로 이동하지만, 경로는 하나로 미리 지정해 통일했다.
+  - 길을 미리 뚫어 놓고, 보낼때는 Packet 단위로 보낸다. 
+  - Packet Switching과 Circuit Switching이 섞여 있다고 할 수 있다.
+  - Circuit Switching이 한길로만 가는 Concept이고, Packet으로 쪼개는 것이니, 두 가지를 다 따온 것이라 볼 수 있다.
+  - 직접 ATM 기술을 쓸 일은 없다고 한다.(KT 같은 backbone 망에서만 쓰인다.)
+  - Circuit Switching과 Packet Switching의 장점을 따 온 방법이다. 
+    
  
 
   
