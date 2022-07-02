@@ -1,6 +1,5 @@
 # Chapter 5. IPv4 Addresses
 
-
 ### Introduction
 
 + IP Address는 모든 컴퓨터에서 Unique하게 다 얻을 수 있어야 한다. 그래야 Global 하게 어떤 것이 어떤 컴퓨터인지 파악할 수 있다.
@@ -90,13 +89,16 @@
   
 <img src = "images/CompNetwork_Ch5_8.png" /> 
 
-+ Default Mask
-
-
++ Supernet Mask
+  - Subnet Mask의 반대 개념
+  - Class C의 경우, Block을 만들어 기관에 전달했기 때문에, 해당 기관으로 패킷을 보내려면 Supernet Mask를 사용해 Router로 보낼 수 있다.
 
 ### Classless Addressing
 
 + Class A,B,C 가 좋은 것이 아님을 깨닫고, 2000년대부터 Classless Addressing이 나왔다.
 + 할당을 더이상 Class 별로 하지 않고, 그 이후로부터 Class에 상관없이 할당한다.
 + 임의적으로 쪼개어 나누어주는 것이 Classless인데, 이때부터는 Network HostID 의 Class 별 제한이 사라져버렸다.
+
++ Network ID, Host ID라는 표현을 쓰지 않고, Prefix, Suffix라는 표현으로 바꾸어 사용한다.
+
 
