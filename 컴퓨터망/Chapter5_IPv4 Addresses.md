@@ -72,6 +72,27 @@
 
 + Network ID, Host ID
   - Network ID : Network Address 부분을 이야기함. 네트워크 식별자 역할을 함.
+  - 경북대 IP 주소가 155.230으로 시작하는데, 해당 두 숫자가 경북대 IP Address라는 것을 전 세계가 다 알고 있다.
+  - 일단 155.230 자체를 경북대 Router로 보내는 것이 중요하고, 다른 곳에서는 그 뒤의 숫자에 관심가질 필요 없다. 다른 Router들은, 네트워크 ID에만 관심 가져서 경북대 Router에 보내는 것만 중요한 것이다.
+  - 다른 Router들은, 그래서 뒤에 것을 보지 않고 Network ID만 본다.
+  - 경북대까지 오면, 경북대 Router에게서는 드디어 그 뒤에 것이 의미가 있는 것이다.
+
++ Network Mask
+  - 위의 사례처럼, 단순히 Network ID만 처리하면 되는 경우 사용할 수 있는 것이 Network Mask이다.
+  - Network ID 부분만 1로 세팅하고, 나머지 Host ID를 모두 0으로 세팅해서 0과 1의 논리곱(AND)을 해주면, 실제 IP에서 Network 파트만 남고, 나머지는 0으로 가려버릴 수 있다.
+  - Router들은, Network Mask를 통해 Network ID만 보고 나머지 부분은 신경쓰지 않는다.
+
+<img src = "images/CompNetwork_Ch5_7.png" />
+
++ Subnet Mask
+  - Network 를 더 쪼개어, 경북대 Router에서 어느 과, 어느 단대로 보낼지 알아내는데 사용하는 Mask.
+  - 해당 부분까지 가면, 어느 단대의 Router로 보내는지 알 수 있는 정보가 된다.
+  
+<img src = "images/CompNetwork_Ch5_8.png" /> 
+
++ Default Mask
+
+
 
 ### Classless Addressing
 
