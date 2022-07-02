@@ -62,6 +62,31 @@
     - 일반 전화 통신은 Circuit Switching이다. 
   
   - 이동하는 Path를 확보해 두고, 통신을 하는 것이다. 
-  - 일반전화망을 전문적으로 PSTN(Public Switch Telephone Network)이라고 한다!(Circuit Switching의 대표적인 예시다.)
 
 + Circuit Switching 
+  - 전체 메세지가 시작점(source) 에서 목적지까지 쪼개지지 않고, 그대로 전달되는 기술.
+  - 한 경로를 다 차지하고, 그대로 그 경로대로 전달된다.
+  - ex) 일반전화망을 전문적으로 PSTN(Public Switch Telephone Network)이라고 한다!(Circuit Switching의 대표적인 예시다.)
+  
++ Packet Switching
+  - Packet Switching 은 쪼개진다!
+  - Packet Switching에서 메세지가 처음에 쪼개져서, Packet 단위로 Shooting하는데, 목적지에 도착해서는 원본 순서대로 복구되는 식이다.
+  
+  - <img src = "images/CompNetwork_Ch4_2.png" />
+  
+    - Packet을 쏘면, router를 지나면서 각각 Packet이 쪼개진다.
+    - 그래서 위의 사진에 보이는 것처럼 order가 다르게 전달될 수 있다.
+    - 각 Router에서는 Routing Table을 보고(ex : R1에서 해당 패킷을 R2로 보낼지, R3로 보낼지 등) 어느 Router로 패킷을 보낼지 결정한다(물론 거의 최단경로로 간다)
+    - 물론 Routing Table에 따라 다른 곳으로 갈 수도 있다.(거의 이럴 일이 없지만, 가끔씩 중간에 Routing Table이 바뀌기도 한다)
+    - Router에서는 목적지의 주소를 보고 처리하는 것은 맞다. 하지만 이론적으로는 최단경로가 아닌 다른 길로 갈 수는 있다. 
+    - 어쨌든 도착하면 거의 out of order 될 각오를 해야 한다. 
+    - 이때 순서를 다시 정렬해서 위쪽 layer로 올리는 일은 TCP가 함!
+    - Internet Protocol(IP)는 전달하는 역할을 함!
+    
+   - <img src = "images/CompNetwork_Ch4_3.png" />
+      - 각 Router 마다 Routing Table과 목적지를 보고 어디로 보내야 할지 알 수 있는 table
+   
+   - Packet-Switched Network 에서, Forwarding(다음 라우터로 전달하는 것) decision은 패킷의 목적지 address를 보고 결정하는 것이다!
+ 
+
+  
