@@ -99,6 +99,43 @@
 + 할당을 더이상 Class 별로 하지 않고, 그 이후로부터 Class에 상관없이 할당한다.
 + 임의적으로 쪼개어 나누어주는 것이 Classless인데, 이때부터는 Network HostID 의 Class 별 제한이 사라져버렸다.
 
+<img src = "images/CompNetwork_Ch5_9.png" /> 
+
 + Network ID, Host ID라는 표현을 쓰지 않고, Prefix, Suffix라는 표현으로 바꾸어 사용한다.
+  - 기존에는 n 값이 8,16 이었지만, 이제는 1~32 사이 어떤 숫자가 와도 된다!
 
+<img src = "images/CompNetwork_Ch5_10.png" /> 
 
++ 숫자 쓰고 '/'(슬래시) 이후 n을쓰면, 어디까지가 prefix 인지 알수 있게 해 준다.
+  - prefix 숫자만 보고 routing을 할 수 있을 것이다. (뒤에는 신경안써도된다)
+  - 고정된 숫자가 다 풀려버린 것이다!
+
++ classful 에서 prefix length 
+  - A : 8
+  - B : 16
+  - C : 24
+  - D,E : 4
+  
+### Special Addresses
+
++ 특수한 용도의 address들!
+
+1. Address : 0.0.0.0 
+    * "지금 내가 주소가 없다" 는 것을 나타냄.
+    * 지금 할당된 주소가 없으니, 주소를 줄 것을 요청하는 것.
+    * 보통 DHCP 쓰기 전에 이런 것으로 패킷을 보낸다. 
+    
+2. Limited Broadcast Address : 255.255.255.255
+    * Limited Broadcast 는, 해당 SubNetwork 안에 있는 모든 것들에게 보내는 것.
+    * 0.0.0.0 과는 반대이다. 
+    * 255.255.255.255 는 Broadcast Address 라서, 이 주소로 패킷을 쏘면, 해당 network 안에 있는 모든 컴퓨터에 패킷이 전송된다. 
+    * 이 주소는 보통 Subnet 안에서만 전송된다. 정말 온 지구상에 다 퍼지면, 문제가 될 수 있기 때문에, router들은 해당 주소를 block 한다. 
+    
+3. Loopback Address : 127.x.y.z     
+    * 컴퓨터 한대 안에서, 네트워크 바깥으로 나가지 않고, L1에서 다시 올라오는 것. 
+    * Client도 해당 컴퓨터, 서버도 해당 컴퓨터로, 주로 개발자가 테스트용으로 잘 사용할 수 있다.
+    * 127 도 A 안에 남겨놓고, 누구한테 안 준 것 중 하나이다. 
+    
+4. Private Network
+
+<img src = "images/CompNetwork_Ch5_11.png" /> 
