@@ -109,8 +109,61 @@
 
 <img src = "images/CompNetwork_Ch4_5.png" />    
 
-+ 과정
-  - 맨 위에 Upper Layer(Transport Layer)에서 
- 
+#### Source Computer (시작 컴퓨터) 에서 일어나는 과정
 
+  - Source Computer 에서, 맨 위에 Upper Layer(Transport Layer)에서 패킷이 내려오면 진행되는 과정이다.
+
+1. Packetize
+    * IP 정보를 넣어서 Packet을 꾸며 줌. 
   
+2. Find next-hop logical address
+    * 다음 목적지, 다음 router가 어디인지, next-hop을 결정한다. 
+    * 이때 routing table을 훑어 보고, 어디로 보내야 하는지 본다.
+    * logical address 는 IP 주소를 말하는 것이다.
+  
+3. Find next-hop MAC address
+    * 위의 2번에서 보았던 것을 바탕으로, 다음 목적지의 MAC Address를 본다.
+    * 다음 목적지의 L2 목적지를 보는 것이다.
+    * IP Address를 알아왔으니, 그에 해당하는 다음 router 의 MAC Address를 보는 것.
+    * IP Address는 L3 주소, MAC Address는 L2 Address!
+    * 모든 장비는 IP, MAC Address를 둘 다 가진다!
+      - MAC Address는 바로 옆 장비와 붙어 있어서 의미가 있고, IP 주소는 Global 하게 의미가 있음.
+      - IP 자체는 hop을 건너뛰는 것이다.
+
+4. Fragment
+    * 필요하면 쪼갠다.
+  
+<img src = "images/CompNetwork_Ch4_6.png" />  
+
+#### 중간 router들 사이에서 일어나는 과정
+
+1. 오는 Interface에서의 Data Link Layer에서 정보를 받아서 다시 Network Layer로 올라온다.
+    * Packet이 LAN Cable을 따라 흘러들어 올 것이다.
+
+2. (Router 에서 받았을 때)Find next-hop logical address 찾는다.
+
+3. Find next-hop MAC Address
+
++ 위의 과정이 반복되는 것이다!
+  - datagram 으로 받아서, next-hop logical address, next-hop MAC address 계속찾고, fragment 내서 보낸다(fragment는 필요한 경우).
+  
+  
+<img src = "images/CompNetwork_Ch4_7.png" />    
+
+#### 목적지 computer에서 일어나는 과정(Network Layer)
+
+1. Depacketize
+   * 필요없는 것들 다 뺀다. 
+
+2. 분석하는 과정
+   * 모든 Packet이 다 도착했는지?
+   * 어떤 Packet들이 왔는지?
+ 
+3. Reassemble
+   * 쪼갠 부분이 있다면 합쳐준다. 
+   * 다 모아서 위의 Layer로 보낸다.
+   
++ 3개 과정에서 가장 중요한 것은 목적지의 IP Address이다!
+  - 실제 cmd에서 tracert 찍어보면 몇개의 router를 거치는지 확인할 수 있다.
+  
+### 정리 : L3는 무슨일을 하는가?  
