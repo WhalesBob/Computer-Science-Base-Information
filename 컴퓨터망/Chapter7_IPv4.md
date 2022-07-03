@@ -19,6 +19,7 @@
   - VER : IP 버전을 나타내기 위한 버전 영역.(4bit 차지)
   - HLEN : 4 byte를 기본 단위로 하는 헤더의 길이를 규정해 놓은 것. 헤더 크기.(4bit 차지)
     - HLEN = 5 : 5*4byte = 20 byte
+    - Header의 크기가 20~60 byte 사이여야 하기 때문에, HLEN은 20/4 = 5. 5 보다는 커야 한다. 아니면 잘못된 정보이다. 
     
   - Service Type : 네트워크를 통해 데이터를 전송하고자 할 때 사용자의 데이터마다 우선권을 부여할 수 있는, 그러한 것들을 표시해 놓은 것.(8bit 차지)
     - Routing 할때 중요하게 보는 것.
@@ -28,8 +29,9 @@
       - R : 신뢰성 최대화
       - C : 비용 최소화
 
-  - Total Length : 전체 패킷 길이. IP 데이터그램의 총 길이를 나타낸다. 
+  - Total Length(16bit) : 전체 패킷 길이. IP 데이터그램의 총 길이를 나타낸다. 
     - byte 단위!! 패킷의 끝이 어디인지를 확실히 알 수 있다.
+    - Header를 더한, Datagram의 전체 Length.
 
   - Identification ,Fragmention, flag : fragmentation과 관련 있는 애들이다.
     - 패킷이 지나가는 네트워크가 다양하다.(이더넷, 이동통신, 블루투스 등).
@@ -69,6 +71,58 @@
   
   - Source IP Address / Destination IP Address
   - Option : 들어갈 수도 있고 안들어갈수도 있음. 
-     
-     
-     
+          
++ Service Type : CodePoint라고 있는데, 지금은 잘 안쓰인다고 한다. 
+  - 이 Packet의 Payload가 어떤 종류의 Service인지 알려줌. 
+  
+<img src="images/CompNetwork_Ch7_3.png"/>  
+
++ About Eternet Frame 
+  - MAC에서 L2 Trailer, L2 Header가 있는데, 그 사이에 size가 보통 정해져 있다. 
+  - 위의 그림에서 적혀 있는 46 byte. 저 값의 Maximum Size가 MTU(Maximum Transmitting Unit) 이다. 
+  - 이동통신망은 MTU가 몇 byte인지, Ethernet은 MTU가 몇 byte인지 다 정해져 있다. 
+  - 이 MTU 정보로 Fragmentation 할지말지 결정하는 것이다.
+  
+<img src="images/CompNetwork_Ch7_4.png"/> 
+
++ About Protocol Info in Packet 
+  - Header 의 Protocol Field에서, 어떤 Protocol이 올 수 있는지 에 대한 부분.
+  - TCP, UDP, ICMP, IGMP, OSPF 등 올 수 있다. 
+  - 각 Protocol 마다 숫자가 정해져 있다. 
+  - Header 내의 Protocol Field 정보를 바탕으로, Router도 해당 패킷의 Protocol 정보를 알 수 있음. 
+ 
++ 연습문제 
+  - 01000010 은 에러이다
+    - 0100 : Version 정보. 4면 ㄱㅊ
+    - 0010 : 최소한 Header Length 가 5 이상으로 나와야 하는데, 2면 안된다. 2면, header length가 2*4 = 8byte라는 소리다. 에러라서 폐기.
+    
+### Fragmentation
+
++ Network 마다 MTU 정보가 있어서, 그것에 따라서 Packet이 쪼개질 수 있다!(Fragmentation)
++ MTU :
+  - 위의 그림에서 적혀 있는 46 byte. 저 값의 Maximum Size가 MTU(Maximum Transmitting Unit) 이다. 
+  - 이동통신망은 MTU가 몇 byte인지, Ethernet은 MTU가 몇 byte인지 다 정해져 있다. 
+  - 이 MTU 정보로 Fragmentation 할지말지 결정하는 것이다.
+  - MTU에 맞출려면, Packet을 쪼갤 수 밖에 없음. 그렇게 Packet을 쪼개는 것이다. 
+  - 물론 Header값은 쪼개질 수 없다. Data 부분만 쪼개진다고 생각하면 된다. 
+  - Data 길이가 MTU 보다 클 때 쪼개는 것이다. 
+   
+<img src="images/CompNetwork_Ch7_5.png"/>  
+  
++ Flags Field
+  - D(DO NOT) : 쪼개어도 되는지 안되는지? 
+    - 쪼개지면 의미가 사라지는 경우, 1로 표기 해 둔다.
+    - 만약에 쪼개어야 하는 상황인데, 쪼개지 말라고 표기된 경우, 해당 Packet을 없애버리고, 발신 컴퓨터에 알려준다. 
+    - 보내는 애가 이 D 값을 세팅한다. 
+  - M(More) : 1로 세팅 된 경우. "쪼개졌다!" 라는 것을 의미한다. 
+    - M 값이 1이라는 이야기는, 뒤에 정보가 더 있다는 의미이다. 
+  
+  - 해당 값은 11이 올 수 없다.
+    - 1이 쪼개지 말라는 의미인데, 뒤에 1은 쪼갰다는 의미이니까, 오면 에러이다. 
+   
+  - 반면, 당연히 00은 올 수 있다. 
+    - 쪼개어도 된다고 해 두었는데, 쪼갤 필요가 없어서 00이 올 수 있다. 
+
+<img src="images/CompNetwork_Ch7_6.png"/> 
+
++ Fragmentation Example 
