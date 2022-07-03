@@ -144,3 +144,24 @@
     
     
 ### OPTIONS
+
++ Options 는 없을 수도 있고, 최대 40byte까지 있을 수 있다. 
+
+<img src="images/CompNetwork_Ch7_8.png"/> 
+
++ Option 이 온다면, 위의 format으로 온다!
+  - Type, Length, Value 라서 TLV Format이라고 함. 
+  - 이렇게 3개로 나뉘어서 의미를 지니고 있음. 
+
+<img src="images/CompNetwork_Ch7_9.png"/>
+
++ Header Option으로 올 수 있는 것들.
+  - No Operation : 이 옵션이 끝이고, 더 없다!
+    - 그냥 넣어주는 애이다.
+    - Header는 4byte 단위로 나와야 하다 보니, 4byte 단위를 채워 주려고 넣음. 
+  
+  - 실제 의미 있는 것들
+    - Loose Source Route
+    - Timestamp
+    - Record Route
+    - Strict Source Route
