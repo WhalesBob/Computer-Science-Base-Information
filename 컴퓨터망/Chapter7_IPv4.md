@@ -126,3 +126,21 @@
 <img src="images/CompNetwork_Ch7_6.png"/> 
 
 + Fragmentation Example 
+  - 위 그림에서는 Header를 뺀 것을 보여주고 있음. 
+  - 총 4000 byte 크기이다.
+  - 어떤 Router에 왔는데, MTU 크기 때문에 3개로 쪼개는 상황이다. 그래서 1400 byte 2개, 나머지 용량으로 쪼갠 상황이다. 
+    - 쪼개고 나면, Offset에 저 값이 들어간다. (두번째 line의 맨 마지막에)
+    - Offset 에는, data 크기에 8로 나눈 값을 쓴다고 한다.
+    - 13 bit 에 맞출려다 보니, 16-13 = 3bit, 즉 8로 나눠서 저장한다고 한다. 
+    - 극단적인 경우, total length가 가장 큰 경우라도 커버를 해야 하니, 16bit 짜리를 13 bit에 mapping 하는 것이라고 한다. 
+    - 초기값, 시작값을 써주는 것이다. 
+    - 상대적 위치니까, 원래 Packet(0으로 시작하는)에서 어느 정도 떨어진 위치에 있는 것인지 알 수 있다. 
+    
+  - 필요하면, 쪼갠 것에서 더 쪼갤 수 있다! 
+  - <img src="images/CompNetwork_Ch7_7.png"/> 
+
+    - Fragment ID는 똑같음. 
+    - Flag에서 M 값이 0이라는 것은 맨 마지막 것이라는 것을 의미.
+    
+    
+### OPTIONS
