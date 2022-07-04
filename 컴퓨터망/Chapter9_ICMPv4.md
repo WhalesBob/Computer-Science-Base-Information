@@ -77,7 +77,34 @@
   - Packet이 Delivery 되는 도중 생기는 문제를 Router가 모두 다 아는 것은 아니다. 
     - 모르는 이유로 삭제된 Packet도 존재한다. 
     
-    
++ IP Protocol에는, Flow Control, Congestion Control이 없다. 
+  - 유일하게 있는 Control은 ICMP 뿐이다. 
+  - Flow Control, Congestion Control 은 오직 TCP 가 한다고 한다. 
+  - IP Protocol 은, Delivery 를 수천만개 시켜야 하는 까닭에 이런 control 기능을 넣지 못한다. 
+  - TCP는 처음과 끝에만 있는 것. IP는 전달만 해준다. 
+  - 유일하게 있는 Control 이, ICMP Reporting 하는 정도이다. 
+  
+<img src="images/CompNetwork_Ch9_5.png"/>  
+  
++ Source-Quench
+  - 그만 보내라고 하는 경우.(이때는 router 단계에서 packet 버리고 통보한다)
+  - 보통 network에서 congestion(혼잡) 이 발생하면(상황이 안좋아지면), 그만 보내라고 하는 경우.
+
++ Time-Exceeded
+  - router가 TTL 값 체크해서 TTL 이 0이 되면 time-exceeded message를 보낼 수도 있다.
+  - Time-Exceeded 에서 Code 가 0이 있고 1이 있는데, 0일 경우에는 TTL 값, 1인 경우에는 시간을 의미한다. 
+  - code가 1인 경우에는, fragment가 된 애를 받는데 assemble 시간이 너무 오래 걸리는 경우이다.
+    - 처음 것으로부터 1분(예시, 각 정해진 시간이 있다) 지났는데도 나머지 fragment가 안 오고 있는 경우가 있으면, 계속 기다릴 수 없으니 그냥 다시 보내라고 하고 폐기하는 경우이다.
+
+<img src="images/CompNetwork_Ch9_6.png"/> 
+
++ Parameter Problem
+  - 해석하다가 이해 안되어서 다시 보냄.
+  - router 나 destination host에서 만들어 보낼 수 있다. 
+
++ Redirection
+  - 오류가 아니지만, 앞으로는 저기에 보내라! 지금거는 내가 친절하게 저쪽으로 전송해 줄게! 하고 보내는 경우. 
+
   
     
   
