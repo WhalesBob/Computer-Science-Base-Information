@@ -43,11 +43,40 @@
 
 ### Three Phases(보내는 3단계)
 
+<img src="images/CompNetwork_Ch10_3.png"/>
 
-
-
-
-
-
-
++ 진행과정
+  - home에 있을 때 : 
+    - Agent Solicitation(IP 주소 달라고 Agent에 요청)
+    - Agent Advertisement(IP가 무엇인지 주변까지 다 알리는 것)
+    
+  - Foreign Network 로 넘어갔을 때 
+    - Agent Solicitation(Foreign Agent에게 새로요청 해야함)
+    - Agent Advertisement
+    
+  - Foreign Network 에서 IP 받은 후
+    - Registration Request : 기존 Home Agent에게 알리는 것.
+    - Registration Reply : Home Agent 로부터의 회신
+    - Home Address 는 Mapping Table로 해당정보를 관리함.
+    
+  - Data Transfer : 다른 애가 보냈을 때 어떻게 처리되는지?
+ 
+ <img src="images/CompNetwork_Ch10_4.png"/>
   
++ Agent Solititation 할때는 ICMP 를 사용해서 진행된다. 
+  - 가급적 새로운 Protocol을 만들지 않는다고 한다. 
+  
+ <img src="images/CompNetwork_Ch10_5.png"/>  
+  
++ Care-of Address 등록할 때는, UDP Protocol을 사용한다. 
+  - Well-Known Port 434 를 사용한다.
+
+### Inefficiency in Mobile IP
+
++ Double Crossing
+
+<img src="images/CompNetwork_Ch10_6.png"/>  
+
++ Triangle Routing
+
+<img src="images/CompNetwork_Ch10_7.png"/>  
