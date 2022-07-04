@@ -90,22 +90,38 @@
   - 그만 보내라고 하는 경우.(이때는 router 단계에서 packet 버리고 통보한다)
   - 보통 network에서 congestion(혼잡) 이 발생하면(상황이 안좋아지면), 그만 보내라고 하는 경우.
 
-<img src="images/CompNetwork_Ch9_6.png"/>  
 + Time-Exceeded
   - router가 TTL 값 체크해서 TTL 이 0이 되면 time-exceeded message를 보낼 수도 있다.
   - Time-Exceeded 에서 Code 가 0이 있고 1이 있는데, 0일 경우에는 TTL 값, 1인 경우에는 시간을 의미한다. 
   - code가 1인 경우에는, fragment가 된 애를 받는데 assemble 시간이 너무 오래 걸리는 경우이다.
     - 처음 것으로부터 1분(예시, 각 정해진 시간이 있다) 지났는데도 나머지 fragment가 안 오고 있는 경우가 있으면, 계속 기다릴 수 없으니 그냥 다시 보내라고 하고 폐기하는 경우이다.
 
-<img src="images/CompNetwork_Ch9_7.png"/> 
+<img src="images/CompNetwork_Ch9_6.png"/>  
 
 + Parameter Problem
   - 해석하다가 이해 안되어서 다시 보냄.
   - router 나 destination host에서 만들어 보낼 수 있다. 
 
+<img src="images/CompNetwork_Ch9_7.png"/> 
+
 + Redirection
   - 오류가 아니지만, 앞으로는 저기에 보내라! 지금거는 내가 친절하게 저쪽으로 전송해 줄게! 하고 보내는 경우. 
+  - 앞으로 어디에다가 보내라고 다시 ICMP 로 메세지 날려 줌. 
 
++ Query(Echo-Request and Echo-Reply Message)
+  - <img src="images/CompNetwork_Ch9_8.png"/> 
+  - Echo Request와 Echo-Reply가 쌍으로 존재한다. 
+  - 상대방이 살아 있는지 확인할 때 ICMP를 사용한다. 
+  - Ping Command 에서 Echo Request,Reply 사용한다. 
+
++ TimeStamp
+  - 시간 잴 때 쓰지만, 잘 안쓰인다. 
+
+### Debugging Tools
+
++ 코딩한 다음 디버깅할 때, 혹은 망관리할 때 쓰는 Tool들이 있다.
++ Ping
+  - 살아 있는지 확인하는 것
   
-    
-  
++ Traceeroute
+  - 중간 router를 파악하는 것.    
