@@ -44,5 +44,29 @@
   
   - Proxy : 위임받는다 라는 한글 뜻이 있다. 
   - ARP 기능을 위임받아서 다른 애가 대신 해준다. 
+  - 여기서는 요청을 보내는 router나 host가 ARP 주소를 물어서 ARP Router까지 BroadCast를 보낸 경우이다.
+  - Proxy ARP Router는, 자신과 연결되어 있는 subnetwork에 그 broadcast를 보내지 않고, "대신" 해당 IP 주소를 가지고 있는 컴퓨터의 MAC Address를 대신해서 unicast를 보냄.(해당 정보를 다 알기 때문에,대행해준 것이다)
+  - 추가 그림설명 
+    - 동그라미 : Router
+    - 네모박스 : LAN Cable Network
+    
+<img src="images/CompNetwork_Ch8_6.png"/> 
+
++ ARP FlowChart
+  - 개발할 때 필요한 흐름도이다. 
+  - 그와 관련된 기능(모듈) 과 코드가 다 있다.
+
+<img src="images/CompNetwork_Ch8_7.png"/> 
+
++ ARP Table
+  - 수시로 관리되고 있는 것이다. 
+  - 어떤 주소를 누가 사용하고 있는지, ARP로 확인했는지 등 정보가 나와 있는 table 이다.
+  - 거의 1분에 한번씩 확인되고 있는 정보들이다. 
+  - State
+    - P : Pending(확인 중)
+    - R : Replied(이미 받은 것)
+    
+  - 이것을 알고 있어야, 데이터를 보낼 일이 있으면 바로 보낼 수 있을 것이다. 
+  
   
   
