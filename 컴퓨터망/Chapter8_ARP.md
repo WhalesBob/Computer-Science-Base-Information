@@ -24,4 +24,25 @@
   - 이런 식으로 상대방의 IP와 MAC
   - 이 ARP 자체는 IP Header를 쓰지 않는다!
     - L2 Frame에서는 IP Header가 없음. L2 Frame 안에 ARP가 바로 들어간다고 한다. 
-    
+    - 어차피 MAC 주소를 몰라서 못쓰는 것도 있음.
+
+<img src="images/CompNetwork_Ch8_3.png"/>  
+
++ ARP 쓰는 4가지 case
+  - Host - Host
+  - Host - Router
+  - Router - Host
+  - Router - Router
+
++ ARP 주고받는 Example
+
+<img src="images/CompNetwork_Ch8_4.png"/>   
+
++ Proxy ARP
+
+  - <img src="images/CompNetwork_Ch8_5.png"/> 
+  
+  - Proxy : 위임받는다 라는 한글 뜻이 있다. 
+  - ARP 기능을 위임받아서 다른 애가 대신 해준다. 
+  
+  
