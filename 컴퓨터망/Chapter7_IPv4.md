@@ -156,12 +156,48 @@
 <img src="images/CompNetwork_Ch7_9.png"/>
 
 + Header Option으로 올 수 있는 것들.
-  - No Operation : 이 옵션이 끝이고, 더 없다!
-    - 그냥 넣어주는 애이다.
-    - Header는 4byte 단위로 나와야 하다 보니, 4byte 단위를 채워 주려고 넣음. 
+
+  - <img src="images/CompNetwork_Ch7_10.png"/>
+  
+  - No Operation : 그냥 의미 없는 것.
+    - 그냥 넣어주는 애이다.(그냥 채우려고 하는 것)
+    - Header는 4byte 단위로 나와야 하다 보니, 4byte 단위를 채워 주려고 넣음. (byte가 4의 배수가 되도록 채워주는 것, 이 작업을 padding 이라고 부른다.)
+    
+  - End of Option : 이 옵션이 끝이고, 더 없다! 바로 데이터가 온다는 의미.   
   
   - 실제 의미 있는 것들
     - Loose Source Route
     - Timestamp
     - Record Route
     - Strict Source Route
+  
+  - Single-Byte : 오게 되면 1byte 단위로 오게 된다. 
+  - Multiple-Byte : 오게 되면 4byte 단위로 오게 된다. 
+  
+  - <img src="images/CompNetwork_Ch7_11.png"/>
+  
+  - Record Route 
+    - 말그대로 경로를 기록함. 
+    - Router를 진행할때마다 Router의 주소를 채워준다.
+    - IP(Rounter) Address가 4byte니까, Multiple-Byte
+    - Option MAX : 40 byte이니까, Router를 10개 정도 기록할 수 있다. (10개째는 안된다! 기본적으로 Time-Length 값을 채우는 게 있다고 함. 그래서 실질적으로는 9개 쓸 수 있다. )
+    
+  - <img src="images/CompNetwork_Ch7_12.png"/>  
+    
+  - Strict/Loose Source Route
+    - Source Routing : 원래는 Router가 Routing 하는데, 이 Option이 들어있으면, 어떤 Router로 갈지 미리 다 정해놓는 것이다. Source 가 Route를 다 결정해 놓은 것이다. 
+    - 보통은 Source가 이렇게 안하고, 망 관리자가 결정하는 문제이다. 
+    - 망 관리자가, 망 관리 용도로 일부러 저렇게 보내볼 수 있다. 
+    - routing table을 대놓고 위배하는 것이라, 일반 사용자가 막 쓰면 위험하다. 
+    - Strict Source Route : 두번째 보내려고 봤는데, 그런 Router가 없다고 한다. 그럼 그냥 Packet을 없애버리는 경우. (엄격하게 적용)
+    - Loose Source Route : 두번째 보내려고 봤는데, 그런 Router가 없다고 한다. 그럼 다른 방법을 찾아보는 경우(좀 loose하게 적용)
+    - 당연히 최대 9개까지 Router를 지정할 수 있다. 
+    - 엄격하게 적용하면 strict, 대략적으로 적용하면 loose
+    - 아래 그림에서, 처음에는 140~으로 시작했던 애가 첫번째 router 지나고 나면 67~ 로 바뀌어 있는데, 이는 지나온 router를 그 자리에 덮어쓰면서 기록하는 것이다. 
+    
+    
+  - TimeStamp
+    - 시간 재는 것이 필요할 때가 있다. 그때 사용하는 것.
+    
+### CHECKSUM
+
