@@ -66,5 +66,10 @@
   
 ### Multicast Routing
 
-+ 
++ Unicast Routing 에서는, domain에서의 각 router가 routing table이 있어서, shortest path tree를 만들어서 진행할 수 있었다. 
++ Multicast Routing 에서는, 관련된 각 router들이 각 group에서 shortest path를 만드는 tree를 각각 만들어야 한다. 
++ 그래서, 시작점 base의 tree approach 할때, 각 router는 하나씩 shortest path tree를 가진다.
 
+### MBONE (Multicast BackBONE)
+
+(그냥 12장 41,42 보기)
