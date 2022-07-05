@@ -39,4 +39,32 @@
     - real time service 할때는, delay가 대단히 심하다. 
   - 이때 쓰이는것이 Class D를 사용한다. 
   
+### Multicast Addresses
+
+<img src="images/CompNetwork_Ch12_4.png"/> 
+
++ CIDR
+  - 224.X... : LAN 안에서 쓰는 multicast 주소
   
+<img src="images/CompNetwork_Ch12_4.png"/> 
+  
++ Mapping Class D to Ethernet Physical Address
+  - Ethernet 에서도 Multicast Address가 따로 있다. 
+  - MAC도 Multicast Address 가 따로 있다. 
+
+### IGMP(Internet Group Management Protocol)
+
++ Multicast Routing Protocol은 router 끼리 하는 것
++ IGMP는 router와 host 간에 진행된다. 
++ router로 하여금, host가 정보를 받아야 한다는 것을 알게 해 주는 것.(요청 보내라!)
++ router가 multicast member가 있는지 없는지 아는 것. 몇명인지는 상관없고 알기만하면 됨! 어차피 위에다가 요청보내야 하는것은 똑같다.
+
++ IGMP Message(2개밖에 없다)
+  - Membership Query : 내 관할에 있는 것 중 Class D 에 관심있는지 자기 구역 내에 물어보는 것.
+  - Membership Report : Host들이 Router들에게 필요하다고 메세지 보내는 것.
+  
+  
+### Multicast Routing
+
++ 
+
