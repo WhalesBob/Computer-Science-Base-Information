@@ -64,7 +64,13 @@
   - end 급 유저가 아닌, 서버 통신에서 주로 사용된다!
   
   + TCP 와의 추가적인 차이점 
-    - TSN(Transmission Sequence Number) : Byte 단위로 전송하는 것이 아닌, packet 단위로 전송해 보낸다. 
-    - SI(Stream Identifier) : Stream ID가 다 할당이 되어 있다. 
-    - SSN(Stream Sequence Number) : Stream 내에서도 순서가 있다!
+    - TSN(Transmission Sequence Number) : Byte 단위로 전송하는 것이 아닌, packet 단위로 전송해 보낸다. SCTP에서는, Data Chunk(묶음, 덩어리) 는 TSN 을 활용해서 numbering 된다. 
+      - Data를 나르면 Data Chunk, 나머지 다른것은 Control Chunk
+    - SI(Stream Identifier) : Stream ID가 다 할당이 되어 있다. 다른 Stream을 구별하기 위해서, SCTP에서는 SI를 사용한다.
+    - SSN(Stream Sequence Number) : Stream 내에서도 순서가 있다! SCTP 에서는 Stream 내에서 순서 매기기 위해서 SSN을 사용한다.
     - Packets : TCP에서는 Segment 라고 했지만, SCTP 에서는 그냥 Packet이라고 부른다. 
+
+<img src="images/CompNetwork_Ch16_3.png"/> 
+
++ TCP Segment 와 SCTP에서의 Packet 비교.
+  - 
