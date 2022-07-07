@@ -73,4 +73,11 @@
 <img src="images/CompNetwork_Ch16_3.png"/> 
 
 + TCP Segment 와 SCTP에서의 Packet 비교.
-  - 
+  - 맨 위(Source port Address, Destination Port Address) 는, TCP,UDP,SCTP 등 다 똑같다. 
+  - SCTP의 두번째 나오는 Verification Tag 는, 보안용으로 체크하는 것이다.(32bit)
+  - SCTP에서는 Checksum 이 3번째 줄에 나온다.
+  - SCTP의 맨 위 3줄이 가본 Header이다. 
+  - 그 아래 Chunk 라는 애들이 나타난다. Control Chunk가 4번째, Data Chunk가 5번째 줄.
+  - SCTP 에서는 control 정보와 data 정보가 다른 chunk 이다.
+  - 요렇게 5줄 묶어서 하나의 Packet이다. 
+  - Packet 안에 Header 와 Chunk 가 존재하는데, Chunk는 Control, Data Chunk 가 있는 것.
