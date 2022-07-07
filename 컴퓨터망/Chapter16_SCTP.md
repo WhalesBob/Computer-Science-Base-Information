@@ -81,3 +81,36 @@
   - SCTP 에서는 control 정보와 data 정보가 다른 chunk 이다.
   - 요렇게 5줄 묶어서 하나의 Packet이다. 
   - Packet 안에 Header 와 Chunk 가 존재하는데, Chunk는 Control, Data Chunk 가 있는 것.
+
+<img src="images/CompNetwork_Ch16_4.png"/> 
+
++ Packet, data chunks, and Streams
+  - 패킷이 4개 존재하고, 각 패킷에는 header, control chunk, data chunk가 각각 온다.
+  - data chunk에서도 세부적인 내용을 보면, TSN(Transmission Sequence Number) 값이 packet 에 따라 올라간다. 
+  - First Packet에서 chunk 하나에서 보니, SI(Stream ID)가 0번, SSN(Stream Sequence Number)은 맨 첫번째 chunk 라서 0번이다.
+  - First Packet에서 SSN은 위에서 아래로 갈수록 증가한다. 
+  - Stream 별로 SSN이 쭉 가고, 두번째 packet에서 보면, TSN은 그냥 chunk 단위로 계속 올라가는 것이 보인다. SSN은 Stream ID 별로 올라간다. 
+  - 패킷 한개에 여러 개의 Control 정보와 Data 정보가 있는데, 패킷 한개에는, Stream ID가 크게 한개씩 들어간다. 
+  - Data Chunk 에서 필요한 값 3가지 : TSN , SI, SSN 이렇게 3가지
+  - TSN은 일괄적으로 매기는 것이고, SI, SSN은 Stream 별로 매기는 것.
+  - Acknowledge(승인) Number 는 data chunk 별로, 받았는지 받지 않았는지 넘버링하는 것을 data chunk 단위로 하는 것이다.
+  - control chunk는 따로 acknowledge number가 없다. 필요한 경우, control chunk는 다른 control chunk 에 의해 승인(받았는지 안받았는지) 받는다. 
+
+### Packet Format
+
+<img src="images/CompNetwork_Ch16_5.png"/> 
+
++ SCTP Packet Format
+  - General Header가 12byte
+  - Control Chunk가 Data chunk 보다 먼저 옴. 
+  - 분홍색 부분이 General Header
+  - 맨 첫부분이 Port 번호(Source Port, Destination Port)
+  - 이후 Verification tag, Checksum. Checksum도 32bit 사용한다. (TCP는 16bit 사용했다)(이렇게 Checksum을 더 정확히 할 수 있다)
+
+<img src="images/CompNetwork_Ch16_6.png"/> 
+
++ Multiple-Stream Concept
+  - 각 Chunk 가 기본적으로 Type, Flag, Length, Chunk Information 순으로 온다. 
+  - 말 그대로, Type은 어떤 Type이 오는지 적혀있는 부분.
+  - 기본적인 길이는 4byte(32bit)이다! 딱 4byte로 자르고, 모자라면 넣어서라도 4의 배수로 채운다. 
+  - 얘만 data고 다른것들은 전부다 Control Chunk....(이부분은 뒤에 들으면서 반드시 수정이 필요한 부분!)
