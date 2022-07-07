@@ -23,3 +23,14 @@
     - 받는 애는 Port 번호 보고 아는 것이다!
   - 3. Broadcast 하면 어딘가에 있는 서버가 받아서 응답해 주는 것이다.(DHCP Reply)
   - 4. 받는 애한테는 IP를 알려준다. "니가 쓸 주소는 이것이다!"  
+  
+<img src="images/CompNetwork_Ch18_2.png"/>  
+  
++ 만약 DHCP Server가 다른 곳에 있을 때
+  - 당연히 Broadcast 패킷은 Router를 넘을 수 없다. 
+  - 그래서 필요한 것이 Relay Agent이다. 
+  - Relay Agent는 DHCP Server의 Unicast address를 알고 있어서 대신 보내줄 수 있다. 
+  - DHCP Server는, Relay Agent의 IP주소를 알기 때문에 해당 Broadcast를 Relay Agent를 통해 받고, 다시 똑같이 해당정보를 DHCP Server가 Relay Agent를 통해 주고, Relay Agent가 다시 DHCP Client에게로 주소를 주는 식이다.
+  
++ Use of UDP Ports
+
