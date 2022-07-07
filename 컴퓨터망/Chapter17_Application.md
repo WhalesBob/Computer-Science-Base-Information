@@ -65,5 +65,24 @@
       - 2. Bind
       - 3. Listen
       - 4. Accept(새로 들어감)
+      - 위 시작부분에 Sync, Sync ACK, ACK(나중에 또 정리) 이렇게 3개 들어감
+      - 이 과정이 다 끝나면 accept가 반환이 되고, fork 함수 써서 
     - Client
-      - connect 가 있음. 
+      - Client 에도 새로 connect 가 있음. 
+      
+    - <img src="images/CompNetwork_Ch17_6.png"/> 
+    
+    - 이렇게 돌면 위의 것(Server 쪽)을 Parent Process, 아래의 것을 Child Process 라고 하여, Child Process가 Client 하나를 받아주는 것.
+    - 이런 식으로 Client 하나하나를 다 받아 주는 것이다(Fork 함수 써서). 
+    - 다 끝나면, Close함. TCP의 4-way Termination 부터 시작한다. 
+    
+### PEER-TO-PEER PARADIGM(P2P)
+
++ Client-Server는 일방적인 관계이다. 
+  - Client 는 요청하고, Server는 주는 관계
+  - 홈페이지가 Server에서 오는 것임. 
+  
++ P2P는 이런 것이 아닌 동등한 관계이다. 
+  - 대표적인 예시 : VoiceIP
+
++ P2P도 사실 Client-Server를 양쪽으로 구현하면 된다. 기능 똑같이 한다음에, 둘다 왓다갓다 할수있다.
