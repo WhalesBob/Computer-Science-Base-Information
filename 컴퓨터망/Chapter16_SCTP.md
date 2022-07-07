@@ -114,3 +114,17 @@
   - 말 그대로, Type은 어떤 Type이 오는지 적혀있는 부분.
   - 기본적인 길이는 4byte(32bit)이다! 딱 4byte로 자르고, 모자라면 넣어서라도 4의 배수로 채운다. 
   - 얘만 data고 다른것들은 전부다 Control Chunk....(이부분은 뒤에 들으면서 반드시 수정이 필요한 부분!)
+    - Control Chunk 가 많은 이유는, Control Chunk 는 Control Chunk 에만 응답함. 동료가 많다.
+    - 순수 Data는 거의 한개밖에 없다. 
+  
+  - <img src="images/CompNetwork_Ch16_7.png"/> 
+  
+  - 많은 control chunk 와 한 개의 type의 data chunk(type 0번)가 있다.  
+  - 거의 TCP Header에 있던 걸 다 끄집어 낸 것이라고 한다. 
+  - padding byte는 length 정보에 포함되어 있는 숫자가 아니다. 
+
+
+<img src="images/CompNetwork_Ch16_8.png"/> 
+
++ Data Chunk
+  - 
