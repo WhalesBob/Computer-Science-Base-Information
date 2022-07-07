@@ -127,4 +127,20 @@
 <img src="images/CompNetwork_Ch16_8.png"/> 
 
 + Data Chunk
-  - 
+  - Data Chunk 안에 Header 와 Payload 가 있다. 
+  - 두번째 줄에 TSN(Transmission Sequence Number)가 들어간다. 
+  - 세번째 줄에 SI(Stream ID), SSN(Stream Sequence Number)가 들어간다. 
+  - 당연히, 2~3번째 줄이 제일 중요하다. 4번째 줄까지가 Data Chunk의 Header 부분이다. 
+
++ Control Chunk
+
+  - <img src="images/CompNetwork_Ch16_9.png"/> 
+
+  - INIT Chunk
+    - Data 부분은 포함되어 있지 않다. 
+
+  - INIT ACK Chunk
+  
+  - COOKIE ECHO Chunk
+  
+  - COOKIE ACK
