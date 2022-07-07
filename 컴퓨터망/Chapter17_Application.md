@@ -40,4 +40,30 @@
 <img src="images/CompNetwork_Ch17_4.png"/>
 
 + Socket의 Concept
-
+  - L4에는 TCP SCTP가 있고, Socket Type이 다 다르다. 
+  - 
+  - TCP는 Sok_Stream, UDP는 SOK_Datagram, UDP 는 SOCK_Sequencial Packet 등 다르다. 
+  - SOCK_RAW(IP) : ICMP 같은 경우 바로 TCP 안쓰고 바로 IP 씀. 
+  - <img src="images/CompNetwork_Ch17_5.png"/>
+  
+  - Socket Address : IP Address 와 Port 번호 있음.
+  
+  - Socket 호출순서(UDP) : 
+    - Server : 
+      - 1. Socket 열기
+      - 2. bind 하기.
+      - 3. recvfrom 으로 땡겨(?) 옴.(받기
+      - 4. HandleRequest
+      - 5. Sendto(쏘는것) (이후 2번과 3번 사이로 들어감)
+    - Client : 
+      - Socket 열고 바로 데이터 쏘기(Sendto)
+      - 이후 recvfrom 으로 받기.
+      
+  - Socket 호출순서(TCP)
+    - Server : 
+      - 1. Socket 열기
+      - 2. Bind
+      - 3. Listen
+      - 4. Accept(새로 들어감)
+    - Client
+      - connect 가 있음. 
