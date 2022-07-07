@@ -113,7 +113,7 @@
   - 각 Chunk 가 기본적으로 Type, Flag, Length, Chunk Information 순으로 온다. 
   - 말 그대로, Type은 어떤 Type이 오는지 적혀있는 부분.
   - 기본적인 길이는 4byte(32bit)이다! 딱 4byte로 자르고, 모자라면 넣어서라도 4의 배수로 채운다. 
-  - 얘만 data고 다른것들은 전부다 Control Chunk....(이부분은 뒤에 들으면서 반드시 수정이 필요한 부분!)
+  - 하나만 data고 다른것들은 전부다 Control Chunk....
     - Control Chunk 가 많은 이유는, Control Chunk 는 Control Chunk 에만 응답함. 동료가 많다.
     - 순수 Data는 거의 한개밖에 없다. 
   
@@ -156,7 +156,72 @@
     - 쿠키는 클라이언트의 상태 정보를 로컬에 저장했다가 참조한다. 
     - 클라이언트에 300개까지 쿠키를 저장할 수 있고, 하나의 domain 당 20개의 값만 가질수 있다. 
 
-+ Other Chunk
-  - Data 통신할 때 관련된 Chunk
++ Data 통신할 때 관련된 Chunk(Control Chunk)
+
   - SACK(Selective ACK) Chunk
-    - 
+    - gap, block : TSN 값으로, 어디서 어디까지는 받았고, 어디까지는 못받았는지 한큐에 다 알려주는 것.
+    - 효율이 엄청 올라간다. 
+    - Data Chunk에 대응되는 것이라고 함. Data Chunk을 기반으로 SACK Chunk를 보낸다.
+    
+  - HEARTBEAT & HEARTBEAT ACK Chunk
+    - 왜 나왔는가 ? : Multihoming 때문에 나옴. 평소에는 Primary 만 쓰다가, 문제 생기면 Backup으로 가야 되는데 Backup 이미 미리 준비되어야 한다. 뜬금없이 Backup을 부를 수 없으니, 끊임없이 HEARTBEAT Chunk 를 보내 확인한다. 
+    - HEARTBEAT으로 계속 체크해야, 문제가 생기면 Backup으로 바로 Switching 이 가능하다. 
+    
++ 통신을 끝낼 때 관련된 Chunks : SHUTDOWN(Control Chunk)
+  - SHUTDOWN을 보내고, SHUTDOWN ACK로 응답하는 구조.
+  - SHUTDOWN, SHUTDOWN ACK, SHUTDOWN COMPLETE 순으로 3번 주고받는다. 
+  
++ 이렇게 많기 때문에 DATA Chunk에 비해 Control Chunk가 많아질 수 밖에 없었다.
++ TCP에서는 Flag로 처리했던 내용을, SCTP 에서는 큼직큼직하게 Chunk 로 처리했다.
+
++ Error Chunk(Control Chunk) : 에러 생겼을 때 사용하는 Chunk
++ Abort Chunk(Control Chunk) : 끝낼 때 사용하는 Chunk. TCP의 Reset
+
+### AN SCTP ASSOCIATION
+
++ SCTP에서의 connection 은 Association 이다!
+
+<img src="images/CompNetwork_Ch16_10.png"/> 
+
++ 시작할 때 : Four Way Handshaking
+  - INIT 보냄.
+  - INIT ACK로 응답
+  - COOKIE ECHO 를 다시 보냄(해킹방지)
+  - COOKIE ACK가 오면 시작 버전 끝
+  
+  - 이때 서버는 INIT 할때 뭐 아무것도 하는게 없다. 그냥 응답만 보낸다. 
+     - TCP 는 Sync가 오면, 이미 Resource 를 쓰지만, SCTP는 이때 아무것도 안하고, COOKIE ECHO가 와야 해커가 아니라고 판단하는 것이다. 그리고 COOKIE ACK를 보내고 Resource를 만들기 시작한다. 이렇게 TCP 의 Sync Attack 문제를 해결함.
+     
+<img src="images/CompNetwork_Ch16_11.png"/> 
+
++ Data 주고받을 때 
+  - Data Chunk 보내고, SACK(Selective ACK) 로 응답함.
+  - 이렇게 계속 반복한다. 
+  - 어디까지 받았고, 어디는 받지 못했는지 다 알수있다. 
+  
+<img src="images/CompNetwork_Ch16_12.png"/> 
+  
++ 끝낼 때
+  - TCP는 4번 주고받지만, SCTP는 3번 주고받는다.
+  
+<img src="images/CompNetwork_Ch16_12.png"/>   
+
++ Abortion 은 갑자기 끝내는 것.
+
+### STATE TRANSITION DIAGRAM
+
++ Connection 상태 변화를 감지하는 단계 보고 State Transition Diagram 이라고 부른다. 
+
++ TCP와의 차이점 정리
+  - Connection 관리하는 방법
+  - Message 구조
+  - Multistreaming, Multihoming 도입
+  - Socket Programming도 나와 있다. 
+
++ Flow Control 과 Error Control 은 TCP 부분과 같다. 
+  - 이 부분은 TCP에서 정리해서 갖고 오기.
+  
+### 정리
+ 
++ SCTP도 쓰이지만, 서버단에서 많이 쓰고, End User 에서는 안쓰인다.   
+  - 쓸수있지만, 이미 되어있는것을 갈아엎는게 애바여서 안쓰임. 
