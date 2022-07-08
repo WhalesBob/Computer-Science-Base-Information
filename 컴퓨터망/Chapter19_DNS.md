@@ -43,8 +43,9 @@
 + Zone  
   - domain name들이 모여 있는 전체 .com 이런 애들은, 서버 하나로 관리가 안된다. 
   - 그래서 많은 서버들로 나뉘어져 있다. (하나의 node인데도 불구하고)
-  - 그래서 domain 이 더 나눌 수 없는 domain 인데도 불구하고 여러 개로 되어 있으면 domain=zone
-  - 나눌 수 있으면 domain != zone
-  - (새로정리)
+  - 그래서 domain 이 더 나눌 수 있는 domain 이며, 여러 개로 되어 있으면 domain=zone
+  - 나눌 수 없으면 domain != zone
   
-  
++ Primary and Secondary Servers
+
+
