@@ -69,7 +69,37 @@
   - Flag(16bit) : 제일 왼쪽 비트가 사용되고, 나머지 bit들은 다 0으로 세팅된다. 제일 왼쪽 bit는 서버에게 broadcast reply 하라고 해주는 부분이다. 
     - reply가 unicast로 들어오면, 보내는 IP 주소를 받는 본인이 모르는 상태로 뿌려지게 되기 때문에 패킷이 버려진다. 
     - IP Datagram이 broadcast이기 때문에, 모든 host가 다 받아볼 것이고, broadcast message를 진행할 수 있게 된다. 맨 왼쪽 자리 숫자가 0이면 unicast, 1이면 broadcast 로 들어간다고 생각하면 된다. 
-    
-    
+  - Client IP Address(32bit,4byte) : client가 해당정보 안 갖고있으면 값이 0, 아니면 Client IP Address
+  - Your IP Address(32bit,4byte) : reply msg 안에 서버가 담아준 client IP Address
+  - Server IP Address(32bit,4byte) : reply msg 안에 서버로부터 채워진 서버의 주소
+  - Gateway IP Address(32bit,4byte) : reply msg 안에 서버로부터 채워진 router의 주소
+  - Client Hardware Address(16byte) : client 의 physical address. 물리적인 주소를 client가 적어서 주면, 더 효율적일 것이다.
+  - Server name(64byte) : Reply 패킷에 담겨 있는, 서버에 의해 채워지는애. 서버의 도메인 주소가 null-terminated string의 상태로 들어가 있다. 서버가 해당부분에 데이터를 안채우고 싶으면, 다 0으로 채운다. 
+  - Boot filename(128byte) : bootfile의 full pathname이 들어가 있다(null-terminated string). 클라이언트는 이 주소를 가지고 다른 booting 정보를 얻을 수 있다. 서버가 해당부분에 데이터를 안채우고 싶으면, 다 0으로 채운다. 
+  - Options(64byte) : 추가적인 정보를 넣거나(네트워크 마스크 or default router address), 다른 특정 정보를 넣는다. 이 부분에는 reply msg 에서만 정보가 들어간다. 
+  
+### CONFIGURATION
+
++ 어떻게 주소를 주는가?
+  - static 한 방법,  dynamic한 방법이 있다. 
+  
++ static 한 방법 : 
+  - DB에 저장해놓고 준다. 
+  
++ dynamic 한 방법 : 
+  - second DB에 가능한 IP Address poll이 있는데, client가 임시주소가 필요할 때 마다 DHCP가 유통기한이 있는 임시 IP Address를 준다. 
+  - client가 DHCP Server에 request를 보내면, 서버가 먼저 static DB 안에 해당 physical address가 있는지를 확인하고, 있으면 영구적인 IP를 준다. 
+  - 없으면, second DB의 안에서 하나 골라서 주고, dynamic DB entry에 추가해 둔다. 
+  - network에 해당 컴퓨터가 연결되고 연결 해제될 때 임시 IP주소를 줄 수 있어서 효율적이다. 
+  - 당연히 연결끊기면 IP 주소도 회수
+
+<img src="images/CompNetwork_Ch18_5.png"/>
+  
++ Transition State
+  - dynamic IP 할당을 위해서, DHCP Client 는 어떤 메세지를 보내고 받는지에 따라 "상태 머신(State Machine)"의 역할을 수행하게 된다. 
+  - 메세지 유형은 DHCP Packet에 있는 Tag 53의 Option에 따라 정해진다. 
+  - BOOTP Protocol에 값을 추가하는 대신, Tag-length-value에서 value에 따라 다르게 하는걸로 하기로 함. 
+  
+
   
   
