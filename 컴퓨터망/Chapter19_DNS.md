@@ -1,6 +1,6 @@
 # Chapter 19. Domain Name System(DNS)
 
-<img src="CompNetwork_Ch19_1.png"/>
+<img src="images/CompNetwork_Ch19_1.png"/>
 
 + TCP/IP Protocol은 IP Address가 필요한데, 이런 복잡한 숫자 대신에 그냥 "이름" 을 사용하고 싶더라
 + name 을 address에 매핑하거나, address를 name에 매핑하는 등의 작업이 필요하다. 
@@ -26,3 +26,25 @@
   - PQDN(Partially Qualified Domain Name)
     - 부분 주소 도메인 네임, 혹은 상대 도메인 네임이라고 부르며, DNS root의 모든 label을 포함하지 않는다. 
     - 단순히 호스트네임이라고 하며, 전체 주소 도메인 네임의 가장 왼쪽에 위치한 label 이다. 
+
+<img src="images/CompNetwork_Ch19_2.png"/>
+
++ Domain 
+  - Domain 안에 Domain이 들어갈 수 있는 구조이다. 그냥 tree 구조 상에서 묶음이면 다 domain 이다.
+
++ Distribution of Name Space
+  - 하나에만 다 넣고 관리할려니까, 너무 방대하다. 
+  - 하나만 failure 나도 전체 인터넷이 망가질 수 있다. 
+  - 그래서, DNS Servers 들을 분산시켜서 역시 똑같이 Tree 구조로 관리할 수 있다. 
+  - DNS는 작은 domains(subdomain)들로 나뉘어지고, 계속 tree 처럼 아래로 내려가면서 관리될 수 있다.
+
+<img src="images/CompNetwork_Ch19_3.png"/>
+  
++ Zone  
+  - domain name들이 모여 있는 전체 .com 이런 애들은, 서버 하나로 관리가 안된다. 
+  - 그래서 많은 서버들로 나뉘어져 있다. (하나의 node인데도 불구하고)
+  - 그래서 domain 이 더 나눌 수 없는 domain 인데도 불구하고 여러 개로 되어 있으면 domain=zone
+  - 나눌 수 있으면 domain != zone
+  - (새로정리)
+  
+  
