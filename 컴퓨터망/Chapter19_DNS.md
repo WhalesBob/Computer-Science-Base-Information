@@ -48,4 +48,35 @@
   
 + Primary and Secondary Servers
 
+  - primary server는 디스크 파일에서부터 모든 정보를 load 해 옴
+  - secondary server는 primary server로부터 모든 정보를 가져 옴.
+  - secondary 가 primary로부터 정보를 갖고오는 것을 보고 zone transfer 라고 부른다. 
+
+### DNS IN THE INTERNET
+
+<img src="images/CompNetwork_Ch19_4.png"/>
+
++ DNS used in the Internet
+  - Generic Domain
+    - 아래에서부터 위로 읽어나간다. 그렇게 root 까지 접근함
+    - 그냥 맨 끝에 오는 애들이 다르다. 
+  - Country Domain
+    - 마찬가지!
+    - country domain 이다보니, 맨 끝에 오는 애들이 으레 국가이다.
+  - Inverse Domain
+    - <img src="images/CompNetwork_Ch19_5.png"/>
+    
+    - 숫자가 앞에 오고, 그다음에 root로 갈수록 다시 기존 domain 처럼 name 가지면서 올 수 있다. 
+
+### RESOLUTION
+
+
+### DNS MESSAGES
+
++ query 와 response. 두 가지 타입의 메세지를 주고받을 수 있다. 
+
+<img src="images/CompNetwork_Ch19_6.png"/>
+
++ query message는 header와 question record 가 들어감
++ response message는 header, question record, answer record, authoritative record, additional record가 온다. 
 
