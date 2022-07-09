@@ -25,6 +25,28 @@
 
   - 맨 왼쪽 첫번째 bit가 0이면 data, 1이면 control character
   - ascii랑 비슷한 부분이 있다. 
-  - 
+  - <img src="images/CompNetwork_Ch20_2.png"/>
+  - cat filea ~~ : Linux에서 파일 ~의 내용을 출력시키라는 의미
+  - ex) EC : 지워라. / IAC : 컨트롤한다는 의미
+  - 하나하나가 다 코드가 되어서 감. 
+  - 이런 Control 정보가 그대로 Client 에서 Server로 감. 
+  
++ NVT Character set for option negotiation(Sync를 맞춰야 해서 협상하는 것)
+  - 세부적인 사항에 대해서 협상하는 것.
+  - WILL : 옵션을 쓰겠다는 의미
+  - WONT : 옵션을 쓰는것을 거부하는 것.
+  - 쌍방 간의 능력을, 상태정보를 교환하고 협상한다. 협상해 놔야 다음 telnet 쓸때 무리가 없다.
+
+<img src="images/CompNetwork_Ch20_3.png"/>
+
++ Example
+  - 학교에 있는 Telnet server에 컴퓨터로 접속하는 것.
+  - sender랑 receiver랑 negotiation 주고받는 것.
   
   
+### SECURE SHELL(SSH)
+
++ 보안을 강화시켜서 나온 것.
+
++ Telnet의 Sub Port 번호 : 3
++ SSH Port 번호 : 22
