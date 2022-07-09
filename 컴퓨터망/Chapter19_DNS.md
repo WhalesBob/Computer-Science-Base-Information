@@ -70,6 +70,21 @@
 
 ### RESOLUTION
 
++ Resolution : 
+  - name을 address에 매핑시키거나, address를 name에다가 mapping 시키는 것을 보고 name-address resolution 이라고 부른다.
+
+<img src="images/CompNetwork_Ch19_7.png"/>
+
++ Recursive Resolution
+  -  최종적인 답을 찾아갈 때까지 recursive 하게 resolution을 찾아가는 것
+  
+<img src="images/CompNetwork_Ch19_8.png"/>  
+  
++ Iterative Resolution 
+  - Recursive하게 안 가면, 반복적으로(iteratively) mapping할 수도 있다. 
+  - 만약에 server에 name에 대한 authority가 있으면, 바로 답을 보내줄 것이다. 
+  - 아니면, 이것을 해결해 줄 수 있다고 믿는 서버의 IP주소를 다시 준다. 
+  - 반복적으로 찾게 된다.
 
 ### DNS MESSAGES
 
@@ -80,3 +95,25 @@
 + query message는 header와 question record 가 들어감
 + response message는 header, question record, answer record, authoritative record, additional record가 온다. 
 
+<img src="images/CompNetwork_Ch19_9.png"/>
+
++ Header format
+
+### ENCAPSULATION
+
++ DNS는 응용계층인데, TCP를 쓰는가 UDP를 쓰는가?
+  - 서버가 일단 UDP를 하고, 응답할게 많아서 512byte가 넘고 있는것 같으면 TCP로 전환
+  - 512byte보다 작으면 UDP, 넘어가면 TCP
+  
+### DDNS
+
++ DDNS(Dynamic DNS)
+  - 보통 DNS는 static이다. 너무 자주 바뀌면 혼란을 줄 수 있기 때문
+  - 가끔씩 바꿔야 할 때가 있다.(name 등록을 자주 하는것)
+  - 보안 때문에 정보를 바꿔서 주기도 함. 
+
+### SECURITY OF DNS
+  - 만약에 해커들이 경북대 name server 3개 다 무너뜨리면, 통신 안되는 것임. 
+  - DNS를 방어하기 위해, security를 강화해서 나온 것이 DNS Security(DNSSEC)
+    - IETF 표준이다. 
+    
