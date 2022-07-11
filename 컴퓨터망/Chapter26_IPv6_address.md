@@ -115,12 +115,19 @@
   
 ### GLOBAL UNICAST ADDRESSES
 
+<img src="images/CompNetwork_Ch26_5.png"/> 
+
 + 2번째 block에 할당된 부분
 + 보통 미국 인터넷 기구가 할당해 두었다. 
   - 16진수가 2나 3인 것이 Global Addresses
-  
-  
   - 앞에 Prefix가 정해져 있다. 
+  - Interface ID는 할당하지 않는다(MAC 주소를 끌어온다)
+  - 앞에 24bit를 주소 할당함. 
+  - 보통은 앞 48bit를 network 할당하고, Subnet ID는 그 안에서 쪼개지는 것이다. 
+  - 보통 표준적으로 48bit 단위로 각 기관에 할당해 주고, 맨 뒤 24bit는 MAC 주소 집어넣고, 중간 16bit는 기관 내에서 알아서 Subnet ID로 사용함
+  - 이렇게 하면, 지구상 network block을 할당받을 수 있는 기관의 숫자만 2^48 개이다. 
   
-   
+  
++ Interface ID
+
     
