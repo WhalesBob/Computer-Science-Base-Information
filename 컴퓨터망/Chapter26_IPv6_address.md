@@ -79,6 +79,48 @@
   - 맨 앞 96bit는 다 0으로 채우고, 뒤 32bit를 IPv4 Address로 채워넣는 방식
   - Version 4 Compatible Address 라고 한다. 
   
++ Mapped Address
+  - Compatible Address 와 비슷함
+  - Version 4 Mapped 인데, 맨 뒤에 있는 것이 V4와 비슷하지만, 그 앞에 필요에 따라 16bit가 1로 오는 경우가 있다.
+  - 통신 방식에 따라 조금씩 다름. 
+    - 어떤 경우에는 Mapped 쓰고 어떤 경우에는 Compatlble 사용함
+    
+<img src="images/CompNetwork_Ch26_3.png"/>     
+    
++ Unique Local Unicast Address(Site Local)
+  - 만약에 경북대 도메인 사이트라면, 그 안(경북대) 에서만 사용하겠다는 의미.
+  - 경북대 바깥으로 안나가고, local(지역 내) 에서만 마음대로 쓰겠다!
+  - Site Local 이나 Unique Local 이라고 불림. 
+  - Prefix가 위 그림처럼 세팅되어 있다면, Site Local 이라고 볼 수 있다. 
+  - 바로 뒷부분에 Random Number가 들어가고, Subnet ID(16bit), Interface ID(64bit) 가 들어간다.
+    - Interface ID는 MAC Address 를 토대로 집어넣게 된다. 
+    - Subnet ID : IPv4와 같은 Subnet 개념
+    
+<img src="images/CompNetwork_Ch26_4.png"/>       
+    
++ Link Local Address
+  - 특정 Ethernet 안에서만 사용하는 Local Address
+  - Site Local은 경북대 내부(example) 에서 사용하는 것이다 보니 Router를 몇개 지나가지만, Link Local은 Router를 지나지 않는다. 
+  - Router 안에 있는 애들에서만 도는 것이다. 
+    - Link가 Ethernet Cable 임. 
+    - Prefix가 정해져 있음(16진수로 변환하면 F280)
+      - F280 으로 시작하는 주소로, LAN 안에 있는 애들끼리 통신할 수 있다. 
+    
+    - 맨 뒤 Interface ID가 들어가고, MAC 주소를 포함하고 있다. 
+      - Version 6에는 MAC 주소를 포함하고 있어서, MAC 주소로 식별할 수 있다.(Interface ID에)
+      
++ Multicast Address
+  - Version 4에서는 Class D 였는데, Version 6에서는 맨 앞이 다 1인것(FF로 시작하는 것) 으로 시작한다. FF로 시작하면 다 Multicast 주소임.
+  - 주소 갯수는 나머지가 15byte(120bit) 가 남는다. 2^120 개 만큼의 IP 주소가 있는 것임. 
+  
+### GLOBAL UNICAST ADDRESSES
 
++ 2번째 block에 할당된 부분
++ 보통 미국 인터넷 기구가 할당해 두었다. 
+  - 16진수가 2나 3인 것이 Global Addresses
+  
+  
+  - 앞에 Prefix가 정해져 있다. 
+  
    
     
