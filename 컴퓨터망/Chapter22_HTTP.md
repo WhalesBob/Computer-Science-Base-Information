@@ -124,7 +124,7 @@
     - cgi bin 사용해서 pl 파일을 실행시킴.
     - 실행 결과를 쭉 써서 response에다 알려달라고 요청함.
 
-<img src="images/CompNetwork_Ch22_7png"/> 
+<img src="images/CompNetwork_Ch22_7.png"/> 
  
  + Example 3
  
@@ -134,7 +134,7 @@
     - 이미지 하나 받고 Connection 끊고, 다시 Collection 새로 설정하는 등, 같은 서버인데도 타이밍에 따라서 TCP를 여러 번 세팅해야 할 수도 있다. 
     - 대단히 비효율적일 수 있다. 
 
-<img src="images/CompNetwork_Ch22_6png"/> 
+<img src="images/CompNetwork_Ch22_6.png"/> 
 
 +  1.0 에서 1.1 로 올리면서, persistent connection 을 만들었다.   
   - 비효율을 개선한 작업.
