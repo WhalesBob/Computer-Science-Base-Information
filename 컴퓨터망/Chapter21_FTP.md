@@ -10,7 +10,7 @@
   - 20번은 data connection을 위한 Port
   - 한 Port에 섞여 버리면 어디가 control, 어디가 data인지 구별할 수 없을 것이다.
   
-<img src="images/CompStart_Ch21_1.png"/>  
+<img src="images/CompNetwork_Ch21_1.png"/>  
 
 + FTP
   - 멀리 있는 사람이, 서버에서 파일을 업로드하거나 다운로드 받는 것.
@@ -22,12 +22,12 @@
     - 필요하면 파일을 구체적으로 다운로드 해야 함. 
     - 파일 내용 자체는 Data Channel로 주고받는다. 데이터만 이 채널로 주고받음.
 
-<img src="images/CompStart_Ch21_2.png"/>  
+<img src="images/CompNetwork_Ch21_2.png"/>  
     
 + Opening the control Connection
   - Control 정보가 망을 지나갈 때 역시 NVT Format으로 통일시켜서 간다. 
 
-<img src="images/CompStart_Ch21_3.png"/>
+<img src="images/CompNetwork_Ch21_3.png"/>
 
 + Creating the data Conneciton
   - Data 만 가는 Data Connection 이 별도로 존재한다. 
@@ -44,7 +44,7 @@
     - File Transfer Command
     - Miscellaneous(기타) Command
   
-  - <img src="images/CompStart_Ch21_4.png"/>
+  - <img src="images/CompNetwork_Ch21_4.png"/>
   
   - Response 
     - 처리결과를 알려주는 애
@@ -65,7 +65,7 @@
   - 파일을 당겨올 수도 있고, 목록을 당겨 올 수도 있다. 
   - 보통 목록 보고, 파일을 당겨 올 것이다. 
 
-<img src="images/CompStart_Ch21_5.png"/>
+<img src="images/CompNetwork_Ch21_5.png"/>
 
 + 실제 Flow로 보는 사례
   - 먼저 Cliet가 Control Process를 열고, 필요한 정보를 주고받는다.
@@ -84,4 +84,17 @@
   - Underline : TCP
   - Port 번호 : 20 , 21
   
-### TFTP()
+### TFTP(Trivial FTP)
+
++ Trivial : 사소한, 단순한
++ TFTP 는 UDP(69번) 을 사용함
+  - 보통 System 내에서 Booting과 관련된 중요한 정보들만 다운로드/업로드 하려고 만든 것.
+  - UDP라 Simple 하게 몇가지만 정해 놓음.
+  
++ Message Categories
+  - RRQ : Read Request Q
+  - WRQ : Write Request Q
+  - DATA : 데이터
+  - ACK : OK
+  - ERROR 
+  - 간단한, 필요한 Booting 정보 얻어올 때 사용하기 위해 옛날에 개발된 것이다.
