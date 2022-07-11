@@ -126,8 +126,43 @@
   - 보통은 앞 48bit를 network 할당하고, Subnet ID는 그 안에서 쪼개지는 것이다. 
   - 보통 표준적으로 48bit 단위로 각 기관에 할당해 주고, 맨 뒤 24bit는 MAC 주소 집어넣고, 중간 16bit는 기관 내에서 알아서 Subnet ID로 사용함
   - 이렇게 하면, 지구상 network block을 할당받을 수 있는 기관의 숫자만 2^48 개이다. 
-  
+
+<img src="images/CompNetwork_Ch26_6.png"/> 
   
 + Interface ID
-
+  - EUI 라고 하는, IEEE 에서 MAC 주소 비슷한 것을 만들어 놓았음.
+  - 48bit(6byte) 가 64bit size에 딱 안 맞아떨어져서, 별도로 64bit size에 MAC 주소 비슷하게 만든 것이 EUI-64가 되었다. 
+  - EUI-64 를 Interface ID 에 할당할 때 다 똑같이 내려오고 하나만 다르다
+    - 1번째 byte의 7번째 bit가 EUI-64는 0인데, 이 부분만 1로 바꿔주면 된다. 
+    - 나머지 부분은 똑같이 EUI를 적어주면 된다. 
     
+  - IEEE에서 정의한 EUI-64라는 주소가 있는데, 이것을 할당받은 디바이스에 대해서 버전 6로 바꿔줄 때는, 나머지 다 똑같고 그저 1번째 byte의 7번째 bit 만 0에서 1로 바꿔주기!(나머지는 다 똑같다) 
+  
+<img src="images/CompNetwork_Ch26_7.png"/> 
+
++ 그럼 MAC 주소는 어떻게 Interface ID로 바꾸는가?
+  - MAC 주소는 48bit, Interface ID는 64bit 라서 2byte가 늘어나야 한다. 
+  - MAC 주소를 3byte 씩 잘라서 벌린 다음, 2byte를 집어넣는 식이다. 
+  - 2byte 집어넣는 것은 "1111111 11111110"(FFFE) 를 집어넣으면 된다. 
+    - 정해져 있음. 
+  - 추가로, 1번째 byte의 7번째 bit를 0에서 1로 바꿔준다. 
+    - 16진수로 나타나 있다면, 앞에서 2번째 숫자에 + 2 하면 된다. 
+ 
+### AUTOCONFIGURATION
+
++ Version 4를 세팅할려면 2가지 방법이 있었다
+  - Manual 로 입력하는 방법
+  - DHCP로 받는 방법(Server에서 받아오는 방법)
+  
++ Version 6에서는 여기서 한개 더있다.
+  - 자기 Address를 자기가 직접 결정하는 방법(Auto-Configuration)
+  - MAC 주소가 이미 있으니, network 의 Prefix만 알면 된다. 
+
++ 그럼 Ethernet Address가 F5-A9-23-11-9B-E2 였던 애의 Link-Local Address 는?
+  - FE80::F7A9:23FF:FE11:9BE2
+  - FE80 앞에다가 붙여주면 Link Local
+  - 중간에 FFFE 넣어준다(Interface ID)
+
++ 위의 문제에서 Global Unicast Address 는?(Prefix : 3A21:1216:2165, Subnet ID : A245)
+  - 3A21:1216:2165:A245:F7A9:23FF:FE11:98E2
+  
