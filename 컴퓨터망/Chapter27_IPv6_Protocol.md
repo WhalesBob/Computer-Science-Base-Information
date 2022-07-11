@@ -62,3 +62,5 @@
     
 + Extension Header Format
   - Next Header 오고, Payload가 쭉 오는 식
+
++ Padding : 채우는 것(보통 4byte, 4의 배수 형태로 와야 하기 때문.)
