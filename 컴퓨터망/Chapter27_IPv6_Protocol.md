@@ -62,5 +62,57 @@
     
 + Extension Header Format
   - Next Header 오고, Payload가 쭉 오는 식
+  - Hop by Hop
+  - Destination
+  - Source Routing
+  - Fragmentation
+  - Authentication
+  - ESP
 
-+ Padding : 채우는 것(보통 4byte, 4의 배수 형태로 와야 하기 때문.)
++ Source Routing
+  - v4에서 패킷이 지나갈 것을 미리 어디로(어느 router로) 지나갈지 다 정리해 놓은 것.(시작부분에서)
+
++ Fragmentation
+  - v4에서 Header에 있던 내용
+  - v4에서는 ID, Flag, Fragmentation 있었음
+  - v4에서는 3bit를 차지했던 flag는 v6에서 드디어 2byte만 차지한다(진짜 쓸것만 사용)
+
++ Authentication & ESP
+  - 보안 파트에서 좀 더 자세히 다룬다. 
+  - Authentication 은 좀 느슨한 정도, ESP는 강한 보안
+
+
+### TRANSITION FROM IPv4 TO IPv6
+
++ 하루아침에 변할 수 있을리가 없다. 어떻게 v4에서 v6으로 이동할 것인가?
+  - transition : 이전
+  
++ 이전에 관련된 기술이 3가지 있다
+  - Dual Stack : v4, v6 둘다 사용하는 것
+  - Tunneling : v6 가 되는 애들 끼리, 중간에 v4를 encapsulization 시켜서, 중간에 version 4를 지나가는 느낌으로 가는 것
+  - Header Transaction : 그냥 통신 자체를, v4 Host와 v6 Host 가 통신하는 것
+    - 중간에 Header 바꿔서, v6 에서 v4로, v4에서 v6로 가는 방법
+
+<img src="images/CompNetwork_Ch27_5.png"/> 
+
++ Dual Stack
+  - 컴퓨터 내에 v4, v6둘다 깔아 놓은 것
+  - 필요에 따라서 socket 열 때 어떤 버전으로 통신할지 정함
+
+<img src="images/CompNetwork_Ch27_6.png"/>
+
++ Tunneling 
+  - v6 끼리 통신하는 데, 지나가는 망만 v4임.
+  - v6 끼리 가다가, v4쪽으로 가면 위에 header가 v4 용으로 하나 더 붙는다. 
+  - 이런 concept를 IP in IP Tunneling 이라고 함. (IP 안에 IP가 있다)
+    - Outer Header(v6), Inner Header(v4)
+    - 터널에서 나오면 v4 Header 떼어내고 원본만 보내는 것이다. 당연히 v4 Tunnel 지나갈 때는 붙어야함.
+    - site 별로 약속을 해 두어야만 할 수 있는 기법이다.
+
+<img src="images/CompNetwork_Ch27_7.png"/>
+ 
++ Header Transaction Strategy
+  - 지나가는 지역을 따라서, Header를 바꿔버림(v6 -> v4)
+  - 가운데 Gateway 에서 Header를 바꿔주는데, 물론 다 rule이 존재함. 
+
++ v6 가 기술은 굉장히 좋지만, 기존 것이랑 호환이 대단히 안 되어서 덜 쓰이고 있다.
