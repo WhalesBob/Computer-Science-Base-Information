@@ -63,6 +63,83 @@
 ### HTTP (HyperText Transfer Protocol)
 
 + TCP를 사용하며, Well-Known Port 80번을 사용.
++ Request/Response 로 주고받으며, 이 한 쌍을 Transaction(HTTP Transaction) 이라고 부른다. 
+  - Transaction 은 HTTP에서 기본 통신 단위이다. 
+  
+<img src="images/CompNetwork_Ch22_2.png"/>  
 
++ Format of the Request Message
+  - Header 가 여러 개 나오는데, TCP Header의 그 Header는 아니다. 
+    - Content Name 관련된 Header가 여러 개 있다. (다른 TCP/IP 같은 Header가 아니다!)
+  
+  - 기본적으로 다 Text 기반이다. (TCP/IP는 다 Binary Format)
+  - Text 기반으로 Header가 쭉 나오고, Body 정보가 나오는데, 그 사이에 Blank LIne이 있어야 함. 
+    - Blank Line 기반으로 Header와 Body의 경계점을 판단하게 된다. 
+    - Blank Line 이 없으면 판단하지 못한다. 
+    
+  - Request Line의 Method, URL, Version 이 sp(스페이스) 로 구분되어 나온 뒤, Header 정보가 쭉 나온다. 
+  - 이후 Blank Line 나오고 Body 정보가 나온다. 
+  - Method 
+    - GET : 받는 것
+    - POST : 올리는 것.
+    - Method 정보가 맨 처음으로 나온다. 
+    
+  - Header Line
+    - 뒤에 Body 를 처리할 때 올 수 있는 것들을 다 집어넣는다.
+    - 종류가 대단히 많다.   
+    
+<img src="images/CompNetwork_Ch22_4.png"/>    
+    
++ Format of the Response Message
+  - Request Msg와는 맨 앞 부분만 다르다
+    - Request Msg에서는 Request Line이었던 부분이, Response 에서는 Status Line으로 바뀜.
+  - 나머지는 다 똑같고, Text Format이다!
+  - 거의 다 똑같은데, Status Line 에서의 URL 부분이 달라진다. 
+    - URL 이 Status Code로 바뀐다. 
+    - Code 부분에 숫자(10진수) 3개가 나온다. 
+    - 100번대 : Information(참고용)
+    - 200번대 : Success( ex : 200 OK )
+    - 300번대 : Redirection (다른데로 가라는 의미)
+    - 400번대 : Client 쪽의 Error
+    - 500번대 : Server 쪽의 Error
+    - 각각의 10번대 1번대는 상세한 이유에 대해서 나온다.
+      
+<img src="images/CompNetwork_Ch22_3.png"/>
+
++ Example
+  - Request : GET 으로 이미지 파일을 받고 싶다고 보냄. 
+    - VERSION : 1.1
+    - ACCEPT : gif 나 jpeg OK 라는 의미
+    
+  - Request
+    - Server가 응답 주면서, HTTP/1.1 200 OK(설명문구)를 보냄.
+    - Header 에, 그에 대한 설명 문구가 옴. 
+    - Header에 오늘 날짜 들어감
+    - Blank Line 온 뒤에, 문서의 body 부분이 들어간다. 
+    
+<img src="images/CompNetwork_Ch22_5.png"/>    
+
++ Example 2
+  - Request : POST 로, 파일을 올리고자 함.
+    - cgi bin 사용해서 pl 파일을 실행시킴.
+    - 실행 결과를 쭉 써서 response에다 알려달라고 요청함.
+
+<img src="images/CompNetwork_Ch22_7png"/> 
+ 
+ + Example 3
+ 
+  - server 에 image 2개랑 파일 하나를 받고자 함. 
+    - 기본적으로 HTTP 는 underline 으로 TCP를 사용하고 있다.
+    - TCP 3 way handshaking 한 후, Request를 보낼 것임.
+    - 이미지 하나 받고 Connection 끊고, 다시 Collection 새로 설정하는 등, 같은 서버인데도 타이밍에 따라서 TCP를 여러 번 세팅해야 할 수도 있다. 
+    - 대단히 비효율적일 수 있다. 
+
+<img src="images/CompNetwork_Ch22_6png"/> 
+
++  1.0 에서 1.1 로 올리면서, persistent connection 을 만들었다.   
+  - 비효율을 개선한 작업.
+  - connection 한번 열고 안 끊고, 계속 열어놓음. 
+  - 요청이 오지 않으면 그때 닫는다. 
+ 
 
 
