@@ -21,5 +21,26 @@
   - Destination Unreachable
   - Time Exceeded
   - Parameter Problems
-  - Packet Too Big
+  - Packet Too Big(새로 들어온애)
+  
+### INFORMATIONAL MESSAGE
 
++ Query에 해당되는 것
+  - Echo Request
+  - Echo Reply
+
+### NEIGHBOR-DISCOVERY MESSAGE(ND)
+
++ ARP 에 해당하는 애
++ LAN 안에서 MAC, IP를 얻어오는 것이었음
++ ND : IP 주소를 던져서 MAC을 얻어오는 작업( ARP 와 같음 )
++ Reverse ND : 거꾸로 MAC 주소를 던져서 IP를 얻어오는 작업 ( Reverse ARP와 같음)
+
++ Router Solicitation Msg, Router Advertisement Msg 가 ICMPv6에 나오는데, 이미 v4에 다 있는 내용
+  - Router와 Host끼리 주소 갈구하고 가르쳐주는 것. 
+  - 서로 주기적으로 주소를 주고받는다.
+  
++ Neighbor Solicitation Msg, Neighbor Advertisement Msg
+  - Router-Host 사이에만 주고받는 것이 아닌, Host 끼리도 주고받을 수 있다. 
+
++ Redirection Msg
