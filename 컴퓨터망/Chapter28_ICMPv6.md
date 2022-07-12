@@ -44,3 +44,21 @@
   - Router-Host 사이에만 주고받는 것이 아닌, Host 끼리도 주고받을 수 있다. 
 
 + Redirection Msg
+
++ Inverse-Neighbor-Solicitation/Advertisement Msg 
+  - MAC 주소 던지면서 IP 받아오는 애
+  
+### GROUP MEMBERSHIP MESSAGES
+
++ 기능은 version 4의 IGMP와 같다
+
++ version이 2까지 나와 있음.
+  - MLD(Multicast Listener Delivery)v1 이 IGMPv2 에 대응
+  - MLDv2가 IGMPv3에 대응
+  
++ MLD v1 v2 차이점
+  - MLDv1 : Class D만 사용함
+  - MLDv2 : Group Address(Class D) + Source Address(시작주소)  를 같이 본다. 
+
++ Membership Query : ICMPv4에서의 Query Report
++ Membership Report : ICMPv4 에서의 Response
