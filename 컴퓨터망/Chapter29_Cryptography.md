@@ -138,9 +138,64 @@
   - 무결성도 검증하면서, key가 있기 때문에 암호화도 있고, integrity도 있는 식이다. 
   - 이런 과정을 거쳐서 나온 code를, 원래 메세지와 MAC 코드를 함께 비교한다. 
   - 차이점 : key 값이 들어가는 것.
+  - 둘다 서로를 풀려면 키 값을 둘다 알고 있어야 한다. 
+    - 그래야 값이 바뀐지 아닌지 확인할 수 있다.
+    
++ MAC 이 integrity도 체크하고, message authentication(인증) 도 체크한다
+  - hash function 과 secret key 둘다 알고 있음.
 
+### DIGITAL SIGNATURE(디지털 서명)
 
++ 디지털 서명을 진행할 때는 키를 public key를 사용한다. 
 
+<img src="images/CompNetwork_Ch29_13.png"/>
+
++ 보내는 사람이 private key로 코딩을 해서 signing을 하고, message와 signature를 둘다 보냄
+  - public key로 verify 해서 이미 온 message와 비교하여 같으면 된다. 
+  - 기존 암호화와 서명은 송수신자의 위치가 바뀌었다는 차이가 있다. (순서가 거꾸로다)
   
+<img src="images/CompNetwork_Ch29_14.png"/> 
+
++ 신뢰할 수 있는 제 3자가 끼여들어서 인증하는 방법
+  - 제 3자가 보증서서 진행하는 방법이다. 
+  - 중개인 역할을 하는 사람이 있어, 부인하는 것을 봉쇄한다.
+  
+<img src="images/CompNetwork_Ch29_15.png"/>   
+
++ Message Digest를 적용한 RSA Signature
+  - 디지털 서명할 때 많이 사용하는 방식
+  - Alice 가 sign 하면, hash 돌려서 digest 값과 key 값을 같이 뽑아낸다. 
+  - 원본 메세지도 같이 보내서 인증한다. 
+  - 도착하면, 메세지를 hash 돌려서 다시 뽑아내고, 받은 값을 숫자 바꾼 것으로 복호화해서 같은지 확인한다. 
+  - digest와 key 값을 동시에 적용함.
+  
++ Integrity & Cryptography 동시관리
+  
+### KEY MANAGEMENT
+
+<img src="images/CompNetwork_Ch29_16.png"/> 
+
++ 키를 전문적으로 관리해 주는 센터가 있다
++ Session(일시적인) Symmetric Key는 둘 사이에 필요에 의해서 딱 한번만 사용함. 
+
+<img src="images/CompNetwork_Ch29_17.png"/>
+
++ KDC Center 를 통한 Session 키를 만드는 과정
+  - Alice가 Center에 키값요청
+  - Center가 Key 값을 전달함. 
+  - Ka를 갖고 있고 Kb를 준다(Bob에게)(물론 KDC에 Bob도 회원가입 되어 있어야 함)
+  
+<img src="images/CompNetwork_Ch29_18.png"/>  
+
++ Diffie-Hellman Method
+  - p와 g는 public 한 값. 
+  - 알려진 값을 토대로 어떻게 key 값을 만드냐?
+  - x,y는 자기네들끼리 알고 있는 값
+  - 서로 자기들이 지수승 해서 R1,R2 해서 전달하고, 다시 x제곱 y제곱 해서 다시 secret key 준다. 
+  
+  
+
+
+
   
   
