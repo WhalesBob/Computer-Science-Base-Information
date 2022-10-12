@@ -190,3 +190,31 @@
 |CPU가 일하지 않고, 기다리는 시간이 있을 수 있음|CPU가 언제나 동작하고 있음|
 |사람과의 Interaction 과 비용을 줄여줌|CPU 활용도를 극대화함|
   
++ Time-Sharing Process(1970s~1980s)
+  - Batch-Multiprogramming 시스템 구도의 논리적 확장이 이루어짐. 
+  - CPUC가 job 들을 switching하는 것이 엄청 자주 일어나서, 각자의 job들이 돌아가고 있는 와중에도 해당 사용자들과 상호작용하는 것이 가능해짐. 
+  - interactive computing이 가능해짐.
+  - 각 유저가 메모리 상에 최소 한 개의 프로그램(Process) 을 실행시킴
+  - 반응시간(Response Time) << 1s
+  - Job & Process를 Scheduling하는 과정
+    - System Clock이 Interrupt를 발생시킴
+    - 각 시간대마다 System 이 컨트롤해서 Processor 를 각기 다른 Job에 줌(Time-Slicing)
+    - CPU 시간이 Sliceㄹ 나뉘어져서 프로세스들을 순차적으로 돌리게 됨.
+
+  - 실행되는데 한시간짜리 프로그램을 작동시킨다고 한다면, I/O가 없다고 해서 계속 그것만 실행시킨다고 한다면, 컴퓨터는 그 사이에 사용자의 추가적인 명령 신호를 받아들이지 못한다. 
+  - CPU Utilization은 거의 100% 이겠지만, 사용자 경험 측면에서 되게 불만이 발생할 것이다. 
+  - 할당받을 수 있는 CPU의 Computing 능력을, CPU를 점유할 수 있는 시간, 기회를 균등하게 나누어 주자! (1ms씩 나누어 주면 될 수 있다) 
+  - 실제로도 이렇게 한다! 
+    - CPU의 속도, 하드웨어의 속도가 워낙 빨라서, 사람이 입력을 하거나 아웃풋을 해석하는 시간 동안 충분히 다른 것들을 다 수행할 수 있기 때문에 가능했다. 
+    - 실제로는 1 nanosecond 동안 한개의 일이 수행되는 것인데, 사용자는 CPU를 온전히 다 사용하고 있다고 생각하게 되는 것이다(실제로는 10명이 사용하고 있더라도) 
+    - 10명이 사용하든 100명이 사용하든, Time Sharing 으로 인해서 각 User들이 CPU를 본인 혼자서 사용하고 있다고 "착각"하게 만드는 것이 Time-Sharing의 핵심이다. 
+  
+  - 이런 "착각"을 불러일으키는 것이 가능한 방식이 Time-Sharing 원칙이다. 
+  - Time-Sharing 방식은 기존의 Multiprogramming 이 지향하는 목적과는 다르다.
+  - 왜 Time-Sharing의 목적은 "Response Time을 줄이는 것" 인가?
+    - 애초에 계산을 요청했는데, 앞에 24000명씩이나 있어서 일주일 뒤에 나온다고 한다면, 매우 곤란할 것이다. 
+    - __Response Time__  : 컴퓨터에 요청하고, 그 첫번째 output 이 나올때까지의 시간<중요>
+
+<img src="image/Ch1_12.png"/>
+
++ Real Time System
