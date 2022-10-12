@@ -14,8 +14,7 @@
   - OS는 컴퓨터 하드웨어와 User Application Software 사이에서, 그 둘의 Interface 역할을 수행한다. 
     - Interface : 중간 사이의 소통창구 정도로 생각해도 좋다.
     - UI(User Interface) : 유저와 프로그램(?) 사이에서, 서로의 소통창구가 되어주는 것. 
-    
-    
+        
 + Kernel
 
   - <img src="image/Ch1_2.png"/>
@@ -83,10 +82,22 @@
         - 소스 코드를 볼 수 없고, 바꿀수 없음. 
         - 보안에는 더 강력하다고 알려져 있다. 
         
-  <img src = "Ch1_4.png"/>      
+  <img src = "image/Ch1_4.png"/>      
   
   - Monolithic Kernel(단일 커널) vs Micro Kernel(마이크로 커널)
   
     1. Monolithic Kernel(단일 커널) 
-        - 커널의 다양한 서비스 
+        - 커널의 다양한 서비스 및 높은 수준의 하드웨어 추상화를, 하나의 덩어리(주소 공간) 으로 묶어 놓은 것이다. 
+        - 운영체제를 개발자 입장에서는, 유지보수가 일반적으로 더 어렵다. 
+        - 디스크 드라이버에 정보를 추가하고 지우기도 빡세다. 
+        - 각 부분들이 효율적으로 서로 상호 소통하기 때문에, 속도가 빠르다
+        - Unix, Linux
+        
+    2. Micro Kernel(마이크로 커널)
+        - 하드웨어 추상화에 대한 간결한 작은 집합들을 제공하고, 더 많은 기능을 서버라고 불리는 "응용 소프트웨어"를 통해 제공한다. 
+        - 각기 다른 주소 공간에서 돌아간다. 
+        - 이런 서버들이 서비스라는 이름으로 불리고, 프로세스 간 통신(Inter-Process Communication, IPC)위에서 각기 상호 소통이 이루어진다. 
+        - Mac OS X, Windows NT, MINIX 등
+        
+   3. Hybrid Kernel -> 두개 섞어 놓은느낌     
         
