@@ -214,7 +214,32 @@
   - 왜 Time-Sharing의 목적은 "Response Time을 줄이는 것" 인가?
     - 애초에 계산을 요청했는데, 앞에 24000명씩이나 있어서 일주일 뒤에 나온다고 한다면, 매우 곤란할 것이다. 
     - __Response Time__  : 컴퓨터에 요청하고, 그 첫번째 output 이 나올때까지의 시간<중요>
-
+  
+  - __Context Switching__ : Round Robin 방법에서 A에서 B로 Job 을 바끌 때 일어나는 switching.
+    - 너무 자주 Context Switching이 일어나면, 오히려 이 Context Switching으로 인해 전체 Response Time이 줄어들 위험이 있다. 
+  
+  - Interactive Computing
+    - 사용자가 컴퓨터와 상호작용하고 생각할 수 있을 만큼 response time을 최소화해 놓은 컴퓨팅.
+    
+      - By Time-Sharing System
+    
+    - 멀티프로그래밍 이 확장된 버전임.
+    
+  - __ThroughPut__ : 정해진 시간 동안 수행되는 Task의 양이나 갯수.
+  
+  
 <img src="image/Ch1_12.png"/>
 
 + Real Time System
+  
+  - Hard Real-Time System : 곧죽어도 데드라인을 맞춰야 하는 시스템
+    - ex) 항공기 랜딩과 같은 시스템
+    - 맞추지 못했을 경우 재앙적인 결과가 나올 수 있는 곳에서 씀
+  
+  - Soft Real-Time System : 데드라인을 맞추지 못했더라도 재앙적인 결과가 나타나지 않을 경우 사용. 가끔가다가도 데드라인을 어길 수도 있는 Real-Time System.
+    - 대부분의 경우, 1초 안에 화면이 뜰 수 있는데, 주변 환경의 영향으로 더 늦게 뜰 수도 있음. 
+    - 그렇다고 해서 사람이 죽는 등 큰 손해가 발생하는 정도의 큰일이 발생하지는 않는다. 
+      - 다만, 사용자 경험 측면에서 해를 끼칠 수는 있다. 
+  
+    - QoS(Quality of Service) 
+      - ex) QoS 99% : 99번 안에는 deadline을 지키고, 한번 deadline을 어기는 정도. 
