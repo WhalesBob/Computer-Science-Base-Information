@@ -2,7 +2,7 @@
 
 <img src="image/Ch1_1.png"/>
 
-+ 운영체제(Operating System, OS)란? : 
+## 운영체제(Operating System, OS)란? : 
   - 컴퓨터 하드웨어의 자원을 효과적으로 잘 관리해 주는 시스템 프로그램이며, 사용자가 컴퓨터에 대해 잘 모르더라도 컴퓨터를 원활하게 잘 다룰 수 있도록 중간에서 도와주는 프로그램.
   
   - Application Software : High-Level Language(C/C++, Python, SQL...)로 쓰여진 프로그램
@@ -15,9 +15,10 @@
     - Interface : 중간 사이의 소통창구 정도로 생각해도 좋다.
     - UI(User Interface) : 유저와 프로그램(?) 사이에서, 서로의 소통창구가 되어주는 것. 
         
-+ Kernel
+## Kernel
 
-  - <img src="image/Ch1_2.png"/>
+   <img src="image/Ch1_2.png"/>
+   
   - 커널(Kernel) 이란, 운영체제의 핵심 부분으로, 커널의 역할 역시 운영체제의 핵심 부분임. 
   - 뒤에 나오는 운영체제의 내용은 당연히, 커널이 하는 역할이기도 하다. 
   - 커널 내에 있는 기능
@@ -36,8 +37,9 @@
       - 그렇지 않으면 하드웨어가 망가지거나, 하드웨어가 제 기능을 온전히 사용하지 못할 수 있다
       - 컴퓨터가 동작하는 일은, 운영체제 안에서 해결하거나, System Call에 접근해서 하는 일이다.
       
-+ OS의 두가지 측면
-  - <img src="image/Ch1_3.png"/>
+## OS의 두가지 측면
+   <img src="image/Ch1_3.png"/>
+   
   - 시스템 자원은 언제나, 동서고금을 막론하고 항상 한정되어 있다. 
   - 그래서 언제나 OS는 hardware 자원을 효율적으로 관리해야 한다. 그래서 performance를 최대화해야 한다. 
     - 한정된 자원을 효율적으로 잘 써서, 컴퓨터 성능을 Maximize 해야만 한다. 
@@ -46,7 +48,7 @@
   - 결론적으로, OS는 컴퓨터 시스템을 사용자가 편하게 사용할 수 있도록 만들어 줘야 한다!
     - 유저 프로그램을 실행시켜, 유저가 문제를 해결할 수 있도록 도움을 줘야 한다. 
     
-+ Categories Of Operating System(Two Aspect)
+## Categories Of Operating System(Two Aspect)
   - 얼마나 많은 유저들이 "그 순간에" 사용할 수 있는가?
     
     1. Single User System : 
@@ -101,8 +103,9 @@
         
     3. Hybrid Kernel -> 두개 섞어 놓은느낌     
         
-+ History of Operating System
-  - <img src="image/Ch1_5.png"/>
+## History of Operating System
+   <img src="image/Ch1_5.png"/>
+   
   - Serial Processing (~1950s)
     - 하드웨어는 비싸고, 사람은 쌌던 시대 
     - 최대한 하드웨어를 효율적으로 사용해 보자!
@@ -111,7 +114,8 @@
     - 개개인 유저가 콘솔에서 일하고, 오프라인에서 디버깅하는 시대 
     - job-to-job transition이 느렸다.
     
-  - <img src="image/Ch1_6.png"/>  
+   <img src="image/Ch1_6.png"/>
+   
   - (Single)Batch Processing(~1960s)
     - 여전히 컴퓨터가 아직 많이 비쌌던 시대. 그런 비싼 CPU가 노는 시간이 줄어야 했다. 
     - 모든 타입의 프로그램과 데이터를 다 한방에 넣어 놓고, 프로세스를 시작함. 
@@ -125,4 +129,21 @@
     - 역시 한 순간에 한 일만 하다 보니, 활용도가 여전히 낮았음.(CPU 활용도가 3.2% 수준)
     - 돌아가는 프로그램이 아닌 것이 매모리 상에 올라가 있었음.
       - 이 프로그램은 메모리를 관리해 주는 프로그램이었고, 이 프로그램이 OS의 시초라고 할 수 있겠다.
+    
+    
+<img src="image/Ch1_7.png"/>
+
++ Multiprogramming Batch Programming(1960~1970s)
+  - 여전히 I/O 가 잡아먹는 시간이 많았음. 그래서 최대한 I/O 에 들어가는 시간을 숨겨 보자!
+  - 그래서 Job에 I/O를 요처앟면, 그 프로세스는 CPU 상에서 내려서 I/O를 기다렸다가 받게 해 놓고, 다른 일을 하는 방식으로 처리할 수 있었다. 
+  - I/O를 기다리는 시간 자체가 사라지다 보니, CPU 활용 시간이 비약적으로 상승할 수 있었다.
+  - 기존에는 Job 1 이 수행이 끝날때까지 Job 2가 수행될 수 없는데, 이제는 바뀌어서 동시에 여러 개의 프로그램이 동작하는 방식이 되는 것이다. 
+    - 정확하게 한 순간에 한꺼번에 수행되는 것은 아니지만, 각 Job 들이 끝나기 전에 다른 것들이 돌아갈 수 있다!
+    - 이런부분을 보고 Multiprogramming이라고도 할 수 있다.
+    - 많은 유저들이 시스템을 공유하는 식이라고 볼 수 있다. 
+    - 두 개 이상의 batch program 이 한 프로세서에 같은 시간에 돌아가는 식이었기 때문에, 가능한 한 컴퓨터를 바쁘게 만들 수 있었다. 
+      - 프로세서가 Job들 사이에서 Switching 되는 식으로 처리될 수 있었다.
+    
+    - 동시에 이루어지는 프로그래밍(Concurrent Programming)이 가능해졌다.
+    - Job Scheduler가, 우선순위나 메모리 사이즈 같은 것들을 고려하면서 Job 들을 선택해 가며 일했다.
     
