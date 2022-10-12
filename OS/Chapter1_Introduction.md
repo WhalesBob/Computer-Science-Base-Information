@@ -168,3 +168,25 @@
   - Bound Register는, 해당 프로그램이 얼마만큼의 크기를 가지고 있는지에 대한 값을 저장한다. 
   - Bound Register가 필요한 이유 : 
     - Virtual Memory에 너무 큰 값이 입력될 경우, 매핑되지 않은 주소 구역에 참조를 할 수 있으므로, 이를 막기 위해서이다.(Memory Protection)
+
++ Concurrency and Synchronization
+
+<img src="image/Ch1_11.png"/>
+  
+  - Synchronization
+    - 요즘은 동시에 프로세싱이 가능한데, I/O가 동시에 읽다 보면, 내용물이 다 섞일 수 있을 것이다. 
+    - 이 문자열 앞뒤에 표시를 해주어, 따로 읽어 각각 합칠 경우, 각각 내용을 모아서 사용자가 읽을 수 있는 문자열이 완성될 것이다. 
+ 
+  - Synchronization 2
+    - 서울 ATM과 부산 ATM에서, 20만원 들어 있는 통장에서 동시에 돈을 10만원치 인출했다는 가정.
+    - Synchronizaiton 해주지 않으면, 돈이 0원이 남았는지, 10만원이 남았는지 판단하지 못할 수도 잇다. 
+       
++ Batch Programming vs Multi-Programming
+  - Batch Programming은 사용자와의 상호작용 없이 컴퓨터에 의해 차례로 실행되는 처리 작업 그룹인 반면, Multi-Programming은 단일 프로세서에서 여러 프로그램을 동시에 실행할 수 있는 OS 능력이다
+  
+|Batch Processing|Multi-Programming|  
+|-----|-----|
+|Slower|Faster|
+|CPU가 일하지 않고, 기다리는 시간이 있을 수 있음|CPU가 언제나 동작하고 있음|
+|사람과의 Interaction 과 비용을 줄여줌|CPU 활용도를 극대화함|
+  
