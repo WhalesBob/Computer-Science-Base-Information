@@ -147,3 +147,24 @@
     - 동시에 이루어지는 프로그래밍(Concurrent Programming)이 가능해졌다.
     - Job Scheduler가, 우선순위나 메모리 사이즈 같은 것들을 고려하면서 Job 들을 선택해 가며 일했다.
     
+<img src="image/Ch1_8.png"/>
+
++ 두 형태의 I/O
+  - 동기(Synchronous) I/O : I/O가 호출되면, 프로세스가 인풋이 들어올때까지 기다려줌
+  - 비동기(Asynchronous) I/O : I/O가 호출되면, 프로세스가 다른일 하고, I/O가 종료되면 그때가서 그 프로세스를 다시 처리해서 되돌려 준다
+    - CPU Utilization을 극대화하기 위해서 이렇게 처리한다. 
+    
+<img src="image/Ch1_9.png"/>    
+    
++ Memory Relocation 
+  - 프로그램이 0~1500번지까지의 크기가 여러 개 있으면, 실제 메모리 주소 안에 넣는 일은 MMU(Memory Management Unit, 하드웨어적으로 존재함)가 해준다.
+  - 메모리 주소(Logical Address)를 변환해서 Physical Address에 넣어준다. 
+  - 그렇게 해서, CPU가 엄한 곳(OS단이 존재하는 메모리나, 다른 프로세스에 할당된 메모리주소)에 접근하는 것을 막아준다. 
+
+<img src="image/Ch1_10.png"/> 
+  
++ Base/Bound Registers
+  - Base Register는, 실제 물리적인 메모리에서 해당 프로그램이 시작되는 주소값을 저장한다.
+  - Bound Register는, 해당 프로그램이 얼마만큼의 크기를 가지고 있는지에 대한 값을 저장한다. 
+  - Bound Register가 필요한 이유 : 
+    - Virtual Memory에 너무 큰 값이 입력될 경우, 매핑되지 않은 주소 구역에 참조를 할 수 있으므로, 이를 막기 위해서이다.(Memory Protection)
