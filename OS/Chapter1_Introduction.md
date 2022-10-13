@@ -234,7 +234,7 @@
   
 <img src="image/Ch1_12.png"/>
 
-+ Real Time System
++ Real Time System : deadline 이 존재하는 시스템. 
   
   - Hard Real-Time System : 곧죽어도 데드라인을 맞춰야 하는 시스템
     - ex) 항공기 랜딩과 같은 시스템
