@@ -6,7 +6,12 @@
 
 #### 위 그림에 대한 설명
 
-<span style="color:#ffdec0">빨간색</span> 
++ 색상 설명
+  - 파랑 네모 : Memory
+    - Device에 붙어 있는 Memory는, 해당 device를 controll 하기 위한 정보도 메모리에 포함되어 있다. 
+  - 빨강 네모 : register
+  - Green Circle : Processing Unit(Controller)
+  - 보라색 선 : System Bus
 
 + mode bit(Register) : 컴퓨터가 동작할 때 2가지 mode가 존재한다
   - CPU 권한을 누가 가지고 있냐에 따라 mode가 달라진다
@@ -16,7 +21,12 @@
     - 컴퓨터 OS는 관리해야 할 것이 많은데, User 에게 이런 Resource 고나리를 모두 일임했을 때 문제가 발생할 수 있다. 
     - 이런 접근(Critical 한 동작)들을 OS 가 관리하는 것이다. 
     - OS가 사전에 약속된 동작들을 수행하게 된다.(Protecting)
+    
++ Timer : Time-Sharing 을 위한 시간을 hardware 적으로 측정해 주는 것.(hardware)
 
++ I/O Device : 모니터, 프린터, 키보드 등
+  - 이 I/O Device 내에도, Device Controller 와, 내부의 local buffer가 들어 있음.  
+    
 + 휘발성 메모리(Volatile Memory) : 전원을 끄면 데이터가 날아감. 
   - 대표적인 예시 : SRAM, DRAM
 
