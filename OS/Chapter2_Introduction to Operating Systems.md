@@ -15,6 +15,8 @@
       
 ## Virtualization(가상화)
 
++ Virtualization : Trick!
+
 #### CPU Virtualization 
 
 <img src="image/Ch2_2.png"/>
@@ -35,8 +37,22 @@
 + 각 프로세스가, 각각 자신들만의 메모리 공간을 가지고 있다고 착각하게 만드는 것. 
   - Physical Memory는 "Array of bytes" (바이트의 배열)이다.
   - 원래는 Physical Memory의 공간은 한정적이다. 
-  - 실제 User, Programmer, Program 등은 Physical Memory 를 보는 것이 아닌, Logical Memory를 보고 있는 것이다. 
+  - 실제 User, Programmer, Program 등은 Physical Memory 를 보는 것이 아닌, Logical Memory를 보고 있는 것이다. (실제 DRAM이 아닌 Logical Memory에 접근!)
 
 <img src="image/Ch2_3.png"/>
 
-+ A가 부르는 100번지, B가 부르는 100번지, C가 부르는 100번지 주소는, 실제 Physical Memory에서는 다 다른 
++ A가 부르는 100번지, B가 부르는 100번지, C가 부르는 100번지 주소는, 실제 Physical Memory에서는 다 다른 Physical Memory Address 이다.
+  - 한쪽에서 돌아가는 프로그램에서는, 다른쪽에서 돌아가는 프로세스의 메모리공간을 침범하지 못한다. 
+  
+  
+## Concurrnecy 
+
++ 동시에 어떤 것들이 돌아가도, 하나만 돌았을 때와 결과가 차이가 없어야 함. 
+  - 동시에 수행하더라도, 얘를 혼자 수행했을 때의 결과와 서로 다르지 않음을 보장해 준다!
+
+
+## Persistence (컴퓨터의 신뢰성)
+
++ example 1)
+  - 데이터 센터가 있다고 했을 때, 수많은 저장장치들이 있을 것임. 
+  - 데이터 센터를 운영하는 OS가 있다고 했을 때, 
