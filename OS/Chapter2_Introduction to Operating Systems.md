@@ -43,13 +43,19 @@
 
 + A가 부르는 100번지, B가 부르는 100번지, C가 부르는 100번지 주소는, 실제 Physical Memory에서는 다 다른 Physical Memory Address 이다.
   - 한쪽에서 돌아가는 프로그램에서는, 다른쪽에서 돌아가는 프로세스의 메모리공간을 침범하지 못한다. 
-  
-  
-## Concurrnecy 
+    
+## Concurrency 
 
 + 동시에 어떤 것들이 돌아가도, 하나만 돌았을 때와 결과가 차이가 없어야 함. 
   - 동시에 수행하더라도, 얘를 혼자 수행했을 때의 결과와 서로 다르지 않음을 보장해 준다!
 
+<img src="image/Ch2_4.png"/>
+
++ 위 그림에서, 이렇게 Program Counter Register 에 두 Process가 동시에 참조를 해서 Update, Store를 하는 경우, Concurrency 를 보장할 수 없다. 
+  - 원래 Process는 거의 무작위로 실행되는 측면이 있다. 
+  - 이 경우에서 Concurrency를 만족시키기 위해서는, 강제로 두 프로세스의 실행 순서를 고정시키거나, 아니면 한쪽만 Program Counter를 쓰던가 둘중 하나만 해야 한다. 
+
++ 뭐 요런 "동시성" 문제를 concurrency 부분에서 배운다. 
 
 ## Persistence (컴퓨터의 신뢰성)
 
@@ -61,3 +67,5 @@
   
 + 데이터를 어떻게 하면 안전하게 저장할 수 있고, 유사시에 어떻게 하면 복구할 수 있는지? 
 + Storage 에는 어떤 명령어가 있고, 어떻게 사용자 CPU에 전달되는지?
+
++ About File System, 파일복구 등을 배우는 단계이다. 
