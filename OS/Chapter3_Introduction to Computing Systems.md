@@ -6,6 +6,8 @@
 
 #### 위 그림에 대한 설명
 
+<span style="color:red">빨간색</span> 
+
 + mode bit(Register) : 컴퓨터가 동작할 때 2가지 mode가 존재한다
   - CPU 권한을 누가 가지고 있냐에 따라 mode가 달라진다
   - mode bit 1(User Mode) : User가 CPU 권한을 가지고 있을 때, User Program이 돌게 된다. 
