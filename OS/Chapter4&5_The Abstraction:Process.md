@@ -62,6 +62,21 @@
 
 + Software 에서 Hardware 로 넘어가는 단계에서 중재자 역할을 해 주는 것이 ISA라고 할 수 있다.
 
++ State Machine
+   - 우리가 어떤 명령어를 주면, state가 하나씩 바뀌는 Machine
+   - 우리가 아는 모든 디지털 기기는 finite state machine 이다. 
+   - state 라고 하는 것은, 메모리나 레지스터 두개를 묶어서 말하는 것이다. 
+   - Insturction Set 이라고 하는 것은, 결국에는 "State를 바꾸는 일" 밖에는 하는 것이 없다. 
+   - ex)
+      - 1+2 = 3을 계산할 때, Register 두개에 1,2를 넣고, 결과를 다른 레지스터에 넣는다. 
+      - 결과를 다른 레지스터에 넣었으면, 해당 레지스터에는 이전의 어떤 값에서 3으로 그 state가 바뀌는 것이다. 
+      - 반대로, 이 결과값을 출력하고 싶으면, 레지스터 값을 출력하고 싶은 메모리에 다시 넣어 주어야 한다. 
+   
+   - Instruction Set이라고 하는 것은, 복잡한 문법을 다 차치하고, 결국에는 State를 바꾸는 것이다. 
+   - 그리고 State는 메모리 와 레지스터를 말한다. 
+   
+   
+
 ### Appendix : Instruction Set Architecture Example
 
 <img src="image/Ch4_5.png"/>
@@ -91,5 +106,24 @@
    
 ## Appendix : (Virtual) Memory (Logical Memory)
 
++ Logical Memory 부분이라는 것을 잊지 말자! 
+
++ 그리고 당연히, Memory 는 Byte Array이다.
+
++ 32bit Architecture
+   - 32bit Architecture는 4 byte 단위로 명령어가 이루어져 있다(1byte = 8bit)
+   - 명령어 길이가 32bit이다. 
+   - 32bit Architecture 는, 메모리 구조도 32bit 단위로 어떻게든 이루어진다. 
+   - 32bit을 가지고 표현할 수 있는 경우의 갯수는 2^32 개 이다. 2^32 B 는 4GB이다.
+      - 그래서 32bit Architecture가 가질 수 있는 Maximum Memory Size 가 4GB 이다. 
+   - 메모리 주소 길이가 32bit을 넘지 못한다. 
+      
+#### 질문 : 32 bit Architecture 에서, 1byte가 쭉 이어져 있는 것이 메모리이고, 명령어의 길이가 32bit 으로 이루어져 있는데, 하나의 메모리 주소가 가질 수 있는 size 는 어떻게 1byte 인가? 
+#### 혹시 하나의 메모리 주소가 가리키는 부분이 1byte 라는 의미로 받아들이면 되는 것일까? 메모리 "한 칸" 이라서?
+
++ CPU가 바라보는 메모리는, bytes Array이고, 메모리 size는 CPU가 몇 bit Architecture 이냐에 따라 다르다
+   - 32bit Architecture 일 때는 4GB, 64bit Architecture 일 때는 4 * 2^32 GB
+
 <img src="image/Ch4_6.png"/>
 
+   
