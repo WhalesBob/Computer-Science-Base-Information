@@ -192,3 +192,25 @@
   
 ### Summary of Exception 
 
+|Class|발생 이유|Async/Sync|Return 이후|
+|:-----:|:-----------:|:----------:|:-----------:|
+|Interrupt|I/O device로부터의 signal을 받아서 나옴|Async|항상 다음 명령어 코드로 넘어감|
+|Trap|의도된 exception으로부터 발생|Sync|항상 다음 명령어 코드로 넘어감|
+|Fault|잠재적으로 해결가능한 에러로부터 발생|Sync|현재 명령어 코드 재실행|
+|Abort|OS단에서도 해결할 수 없는 에러|Sync|아예 처음으로 돌아감|
+
+
+## Example : Interrupt Handler
+
+#### 시험 등장이력 있음
+
+<img src="image/Ch3_5.png"/>
+
+#### Interrupt 처리 순서
+
+1. 메모리의 현재 참조주소 : 1000번지
+  - PC(Program Counter) : 현재, 또는 그다음 봐야 할 명령어가 어디에 있는지를 저장하고, 알려주는  Register
+  - PC(Program Counter) 가 1000번지를 가리키고 있으니, #1000 에 있는 명령어가 수행된다(어셈블리어)
+  
+2. load a0, $4000 : 4000번지에 있는 메모리의 데이터를 갖고와서 , a0(register) 에 값을 넣어놔라!
+  - 근데 여기서 하드웨어에 있는 값을 가져와야 하는데, Interrupt가 터짐.
