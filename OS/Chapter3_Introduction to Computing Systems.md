@@ -148,20 +148,47 @@
 ## Synchronous Exception 
 
 + CPU 그 자체에서 trigger 걸려서 나온 Exception을 Synchronous Exception 이라고 부른다. 
+  - "Software Interrupt", 혹은 "Internal Interrupt" 라고도 불린다. 
 
 + Traps
   - 외부에서 문제가 생긴 것은 아니지만, 내부에서 system call을 부르는 경우나, 내부에서 스스로 trigger를 걸어서 OS에게 상황을 주는 것이다. 
   - ex) scanf를 받았을 때, 혼자서는 해결이 안되니, system call을 부르고, I/O를 요청한다음, 다른 것을 수행하고 있다가 그 정보가 들어오면 처리하고 system call을 끝냄. 그리고 그 "다음" 라인으로 감.
   
 + Fault
-  - 프로세스를 수행할 때, 프로세스는 당연히 메모리 안에 모든 명령과 데이터가 있을 것이라 생각함.
-  - 하지만 없으면, Page Fault 준다. 
-  - 이 Fault 에서, 해결 후 돌아가야 되는 곳은, 이전에 멈추었던 line의 code이다. 문제가 생겨서 해결하고 돌아왔으면 거기서 다시 시작해야 하는 것이다. 
-  - 의도되었던 부분은 아니다. 
+  - 무엇인가 User가 잘못한 부분이 존재함. or 무엇인가 의도하지 않은 실수를 한 부분이 여기에 해당됨.
+  - 가장 대표적인 예시 : Page Fault 
+    - 프로세스를 수행할 때, 프로세스는 당연히 메모리 안에 모든 명령과 데이터가 있을 것이라 생각함.
+    - 하지만 없으면, Page Fault 준다. 
+    - 프로그램에서 수행에 필요한 데이터가 메모리에 없는 경우가 Page Fault 이다. 
+    - 이때는 OS에게 요청하고, OS는 원하는 것이 Storage에 있을 수 있다고 판단해 원하는 부분을 Memory에 올린다. 
+    
+    - 이 Fault 에서, 해결 후 돌아가야 되는 곳은, 이전에 멈추었던 line의 code이다. 문제가 생겨서 해결하고 돌아왔으면 거기서 다시 시작해야 하는 것이다. 
   
 + Abort 
-  - 의도하지도 않았을 뿐더러, 완전히 에러가 발생한 경우. OS도 해결방법이 없다. 
+  - 완전히 멈춰버린 것!
+  - 의도하지도 않았을 뿐더러, 완전히 에러가 발생한 경우. __OS도 해결방법이 없다__ .
+    - 다른 부분은, falut 포함해서, 다 해결방법이 OS 내에 들어가 있다. 
   - 에러를 체크한 것이다. 문제 해결이 되면, 처음부터 다시 시작해야 함. 
   - (저번에 gdb에서 만났을 때는 메모리 침범 문제였었는데, Abort 라고 등장한 적이 있었다.)
   
+## Handling Exception
+
+<img src="image/Ch3_4.png"/>
+
++ Exception 해결 순서를 표현한 것이다 
+
+  1. Exception Number 확인하고, 전달됨.
+      - 미리 어떻게 되는 번호인지 다 저장해 놓음. 이 번호를 보고 OS가 아는 것이다. 
+      - Page Fault 면 14번. 14번에 해당하는 solution이 OS에 존재한다.
+     
+  2. OS의 Exception Table 에서 해당하는 번호의 메모리 주소를 참조함.
+      - 위의 Page Fault의 경우, 해당 Table에서 14번째 주소를 참조해 그 handler로 이동한다. 
+      - 해당 문제의 solution이 위치한 메모리의 주소를 Exception Table 이 가지고 있다. (Pointer 역할)
+     
+  3. 그 solution 의 코드를 OS가 수행함. 
+      - OS가 권한을 갖고 있기 때문에 OS가 수행함.
+
+  4. 그 다음, 상황에 맞게 다음 코드가 실행됨
   
+### Summary of Exception 
+
