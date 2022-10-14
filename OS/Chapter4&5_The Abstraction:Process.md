@@ -22,8 +22,24 @@
       - 컴퓨터 프로세서 내에서 자료를 보관하는 아주빠른 기억 장치. 
       - 메모리 계층의 최상위에 위치하며, 가장 빠른 속도로 접근 가능한 메모리.
 
-+ 폰 노이만 Architecture에서, CPU 는 오로지 메인메모리하고만 통신함. 
++ 폰 노이만 Architecture에서, CPU 는 오로지 메인메모리하고만 통신함.
 
++ Von Neumann Machine 과 지금의 컴퓨터
+   - Von Neumann Machine 에서의 레지스터 숫자 보다는 지금의 레지스터가 16개(혹은 32개)로 더 많다. 
+   - 하지만, 레지스터가 하는 역할 자체는 Von Neumann Machine 에서나 지금의 컴퓨터에서나 같다. 
+   - 같은 프로그램을 수행하기 위해 필요한 Information 들을 레지스터에 담아와서, 레지스터에 있는 값들을 가지고 연산하는 것이다. 
+   - 연산된 값도 다시 메모리에 주는 것도, 현재의 컴퓨터나 그때의 Von Neumann Machine과 같다. 
+      - Output Device에 CPU가 직접적으로 데이터를 줄 수가 없다. 
+      - 무조건 메모리에 담아야 하고, 메모리에 담고 있는 데이터를 Output Device에 넘겨주는 것이다. 
+      
++ Registers
+   - AC(Accumulator Register) : 누산 레지스터. 연산장치의 입출력 데이터를 임시적으로 기억하는 레지스터.
+   - PC(Program Counter) : CPU가 그 다음 참조해야 하는 명령어 코드 주소를 가지고 있는 레지스터. 
+   - CIR(Current Instruction Register) : 명령어 레지스터. 명령어를 읽어와 저장하는 레지스터. 해독,수행하기 전에 이 레지스터를 거친다. 
+   - MAR(Memory Address Register) : 현재 접근할 메인 메모리의 주소를 기억하는 레지스터
+   - MDR(Memory Data Register) : 메인 메모리로부터 읽거나 쓰여질 데이터를 일시적으로 저장하는 레지스터
+
++ Register가 필요한 이유 : CPU는 동시에 여러 개를 계산할 수 없으니, 중간에 저장하기 위해 레지스터가 실제로 필요할 수 밖에 없다. 
 <img src="image/Ch4_2.png"/>
 
 + Programmer의 관점에서 바라보는 CPU와 Main Memory
@@ -73,3 +89,7 @@
    
 #### 1 by 1 으로 수행하면서, 레지스터나 메모리에 업데이트함.    
    
+## Appendix : (Virtual) Memory (Logical Memory)
+
+<img src="image/Ch4_6.png"/>
+
