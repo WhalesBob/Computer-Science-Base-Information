@@ -299,9 +299,40 @@
   - byte 단위가 아니라 block 단위로 Interrupt를 발생시킴. 
   - CPU 에 Interrupt를 매번 걸지 않아 효율을 증대시킴. 
 
++ DMA 는 I/O Device에서 오는 내용을 직접적으로 Memory에 접근해 저장.
++ 반대 상황에서 메모리에 있던 내용을 I/O Device에 내보내야 할 상황이 되면 DMA Controller가 직접 메모리에 접근하여 그 내용을 I/O Device 에 내보냄. 
+
++ 외부 Device(Network Device 포함) 와 메모리 사이에 Data Transfer Operation 작업을 CPU가 안해도 되게끔 하는 것임! 그래서 CPU가 이런걸 상관안해도 되니까 CPU 성능이 상대적으로 올라가는 것이다. 
+
+#### CPU 개입 없이, 메모리 로부터(or 메모리로) 데이터를 transfer 할 수 있게 해 주는 것!(external Device에서부터)
   
   
+### Appendix : DMA Operation   
   
+<img src="image/Ch3_7.png"/>
+
++ HLQ/HLDA : System Bus 써도되냐고 grant 주고받는거 
++ DMA ACK/DRQ : I/O Device와 통신
+
++ DMA 의 Operation Mode(System Bus를 사용할 때 어떻게 사용하는지?)
+  - Burst 
+    - CPU 와 DMA 가 둘다 System Bus가 필요하지만, DMA 가 CPU에게 System Bus 여러 cycle을 양보받아서 대량의 data를 block 단위로 한방에 옮길때 사용하는 mode
+ 
+  - Cycle Steal
+    - CPU와 DMA 둘다 System Bus 가 필요할 때, 한 cycle 씩 돌아가면서 쓰는 mode.
   
+  - Transparent
+    - CPU가 System Bus 를 사용하지 않을 때, 그때 얌전히 가서 System Bus를 이용하는 mode.
+    
+  - 이 3가지 mode 중 DMA를 어떻게 사용할지는 Software Engineer들이 결정해야 할 문제임.  
   
-  
+### Appendix : DMA
+
++ DMA 의 장점 : 성능
++ DMA 의 단점 
+   - hardware를 추가해야 해서, 돈이 든다. (하지만 그 돈을 써서 얻는 성능 향상이 훨씬 크기는 함)
+   - coherence problem : 
+    - SSD에 특정 정보가 있어서 DMA 가 메모리에 업데이트했는데, 그 순간 SSD에 해당 부분의 새로운 정보가 업데이트되었다면, 어느 정보가 맞는 정보인지?
+    
+#### Bus에 대한 정보는 그냥 위에 설명된 대로 그냥 알고 있으면 된다. 
+
