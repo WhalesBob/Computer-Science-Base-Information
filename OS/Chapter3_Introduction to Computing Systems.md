@@ -209,8 +209,12 @@
 #### Interrupt 처리 순서
 
 1. 메모리의 현재 참조주소 : 1000번지
-  - PC(Program Counter) : 현재, 또는 그다음 봐야 할 명령어가 어디에 있는지를 저장하고, 알려주는  Register
-  - PC(Program Counter) 가 1000번지를 가리키고 있으니, #1000 에 있는 명령어가 수행된다(어셈블리어)
+    - PC(Program Counter) : 현재, 또는 그다음 봐야 할 명령어가 어디에 있는지를 저장하고, 알려주는  Register
+    - PC(Program Counter) 가 1000번지를 가리키고 있으니, #1000 에 있는 명령어가 수행된다(어셈블리어)
   
 2. load a0, $4000 : 4000번지에 있는 메모리의 데이터를 갖고와서 , a0(register) 에 값을 넣어놔라!
-  - 근데 여기서 하드웨어에 있는 값을 가져와야 하는데, Interrupt가 터짐.
+    - 근데 여기서 하드웨어에 있는 값을 가져와야 하는데, Interrupt가 터짐.
+    - __Interrupt Line__ 을 체크함. 
+    - System Bus 에 같이 있음
+    
+3.     
