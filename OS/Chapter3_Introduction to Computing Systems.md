@@ -210,11 +210,39 @@
 
 1. 메모리의 현재 참조주소 : 1000번지
     - PC(Program Counter) : 현재, 또는 그다음 봐야 할 명령어가 어디에 있는지를 저장하고, 알려주는  Register
+    - PSW(Program Status Word) : Mode bit을 나타내는 register 이름. 지금 저기에는 0x1(User Mode) 이라고 되어 있는 것임. 
     - PC(Program Counter) 가 1000번지를 가리키고 있으니, #1000 에 있는 명령어가 수행된다(어셈블리어)
   
 2. load a0, $4000 : 4000번지에 있는 메모리의 데이터를 갖고와서 , a0(register) 에 값을 넣어놔라!
-    - 근데 여기서 하드웨어에 있는 값을 가져와야 하는데, Interrupt가 터짐.
-    - __Interrupt Line__ 을 체크함. 
-    - System Bus 에 같이 있음
+    - __명령어를 수행하고 나서, Interrupt가 나는지 안나는지를 Interrupt Line에서 항상 체크한다__ .
+    - Interrupt Line 은, 딱히 특별히 뭐가 더 있는 것이 아니라, System Bus 안에 같이 있는 것이다.
+    - System Bus 에, 각각의 전선에 Timer, Keyboard Controller, IDE(HDD Controller) 등이 묶여 있음. 
+    - ex) 키보드 에서 어떤 데이터를 받아야 한다면, 키보드에서는 "네가 원하는 데이터가 입력되었어!" 라고 하고 싶다면, I/O Device(Keyboard) 에서 자체적으로 Interrupt Signal을 System Bus 에 띄운다. 
+    - 그러면 CPU가 Interrupt 가 나온 사실을 알게 된다. 
+    - 외부의 I/O Device 들은, 각각의 number를 가지고 있다. 
+    - 만약, CPU 가 체크해서 Interrupt 가 났으면, 먼저 System Bus에서 몇 번 에서 Interrupt Signal을 보냈는지 체크할 수 있다. 
+    - 위의 예시 그림에서는, __HDD Controller 의 번호인, 14 번에서 Interrupt Signal 이 발생__ 했다. 
     
-3.     
+    
+3. Interrupt가 확인된 순간에는, 현재 수행하고 있는 것을 멈춘다. 
+    - 이때부터는 CPU의 권한을 OS가 가져간다. 
+    - 이때 PSW(Program Status Word) 에는 0이 기록된다 (Mode bit : 0 , Kernel Mode)
+
+4. Interrupt Table(ex : 14) 로 가서, 지금 나온 Interrupt를 처리할 수 있는 Solution Code가 어디에 있는지 찾는다. 
+    - Interrupt Table 은, OS가 저장된 메모리 안에 존재한다. 
+    - ex) 찾아보니까, 지금의 Interrupt를 해결할 수 있는 Solution Code는 #456에 존재한다는 것을 발견했다. 
+    - __#456 에 있던 코드를, OS가 권한을 가진 채로, 처리한다.__ 
+    - 이때, #456 에 가서 코드를 한줄한줄 실행할 때, __Program Counter 의 데이터도 #456 으로 바뀐다__ .
+      - Program Counter 는, CPU가 가서 처리해야 할 메모리 주소를 가리켜야 하기 때문. 
+      - Interrupt Handler 를 수행할 때는, #456 에 있는 명령어를 수행해야 한다고 알려줘야 한다. 
+      - CPU는 단지, PC(Program Counter) 에 있는 주소값만 보고 그냥 그대로 따라가는 것이다. 
+      
+5. Interrupt Handler를 다 수행하고 나서, "Interrupt" 이니, __그 다음__ instruction 을 수행해야 한다. 
+    - 여기서 말하는 Interrupt 는, 외부 장치와 연관된 Asynchronous Exception 이다. 
+    - 그러면 당연히 다음 Instruction 을 수행해야 한다. 
+    - 이때, 다음 code를 수행하는 데 있어, PSW(Program Status Word)(Mode bit) 은 0x1로 바뀌고, PC(Program Counter) 도 #1004 로 바뀌어야 한다. 
+    - #1004에 있는 코드를 수행한다. 
+    
+#### 이 Flow를 수행하게 하려면, PC(Program Counter), PSW(Program Status Word)가 유기적으로 계속 바뀌어야 한다!
+#### 그리고 이 Flow를 기억해야 한다!
+
