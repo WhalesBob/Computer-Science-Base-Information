@@ -246,3 +246,62 @@
 #### 이 Flow를 수행하게 하려면, PC(Program Counter), PSW(Program Status Word)가 유기적으로 계속 바뀌어야 한다!
 #### 그리고 이 Flow를 기억해야 한다!
 
++ Context : 프로세스를 실행시키기 위한 정보들 중 일부
+  - CPU가 해당 프로세스의 명령어를 실행시키기 위해 필요한 "레지스터" 정보!
+  - 메모리에서 데이터를 가져와서, 레지스터에 넣어놓고 나서, 그 레지스터 안에 있는 것들로 더하고 빼고 곱하고 나누는 등의 행위를 한다.
+  - 물론 Context 말고 다른 정보들도 필요하지만, Context가 제일 많이 필요하다. 
+  
++ 유저 프로그램을 멈추고, Time-Sharing을 위해서 다른 프로그램으로 전환하기 위해 OS 로 갈때는, 멈춘 유저 프로그램 정보를 고대로 기억해야 한다. 
+  - 그래야지만, 다시 실행할 때 그 세팅상태 그대로 문제 없이 다시 실행시킬 수 있다. 
+  - 이렇게 Time-Sharing을 위해서 Context 정보를 Switching 하는 것을 보고 Context Switching 이라고 한다. 
+
++ PCB : 각 개별 Process에 대한 Context나 다른 여타 정보들을 프로세스 별로 관리하고 있는 block. 
+
++ Context Swiching 할 때, 필요한 관련 모든 프로세스 정보는 전부 다 OS가 관리하고 있어야 한다. 
+  - 그래야 한번도 멈추지 않았던것처럼, 문제 없이 다시 실행시킬 수 있다. 
+  - Mode bit 뿐만 아니라, 해당 프로세스가 실행되기 위해 필요한 정보들을 저장하고, 다시 필요할 때 restore 하는 과정이 필요함. 
+  - 이 정보들이 Process 별로 관리되어야 함. 
+  - 이 관리를 저장 관리 OS가 해야 함. 
+  - Time-Slice를 너무 작게 잡으면, Context-Switching에 대한 비용이 너무 많이 들어간다. 
+  - Time-Slice를 얼마로 잡을건지는 Engineer가 선택해야 한다. 
+  - 너무 길게 잡으면 Response Time 이 나빠져서 별로일 것이고, 너무 작게 잡으면 Context-Switching 하는 전체 비용이 너무 크게 잡힐 것이다. 그래서 잘 찾아야 함. (얼마나 Optimal 하냐?!)
+  - 이런 Time-Sharing을 위한 Context-Swiching을 위한 최적 루틴이 잘 짜여져 있고, 그 중 하나가 위에 있는 처리도표가 되겠다. 
+  - 위의 처리 루틴을 이해하자!!
+  
+## Computer System - DMA(Direct Memory Access)
+
+<img src="image/Ch3_6.png"/>
+
++ DMA 이전의 문제점
+  - I/O Device 들이 Interrupt 을 너무 많이 하니, CPU 효율이 나빠짐. 
+  - 원래는 CPU가 다 관리해야 하는데, 이러니까 CPU가 너무 낭비된다. 
+  - 원래는, CPU가 해당 Interrupt를 처리하면서, I/O Device에서 들어온 내용을 직접 메모리에 넣고, 그 다음 I/O Signal을 해당 타겟에 보내야 한다.(직접)
+    - DMA가 있으면 이런 처리를 메모리에 넣고, 그 메모리 내용을 I/O Device에 보내준다. 
+  - 이걸 CPU의 개입 없이, 조그만 Processor로 따로 처리해 보자!
+
++ 그래서 DMA는 어떤 이점을 주는가?
+  - DMA는 CPU가 받는 Interrupt 들을 자기가 다 받아 미리 처리하고(Memory 에 I/O 응답 값을 넣는 등), CPU에게는 "일을 내가 거의 끝내놨다. 너는 마무리 작업을 해라" 라는 signal 을 보내며, CPU에게는 interrupt를 한 번으로 줄여줌. 
+  - 이렇게 CPU의 부담을 줄여주는 것이 DMA가 하는 역할이고, 이점이다. 
+  - For Example : 
+    - 키보드의 키 하나를 누르면 1byte 정보가 keyboard buffer에 쌓이고, 키보드의 device controller 가 CPU에 interrupt를 건다. 
+    - 메모리 내로 방금 생성한 1byte 정보를 복사하라고 요청한다. 
+    - 이런 방식으로 키보드를 사용하면 CPU를 향해 수많은 Interrupt가 생성된다. 
+    - DMA는 이런 상황에서 본인이 해당 1byte 짜리 interrupt를 받아서, 메모리에 직접 정보를 넣는다. 
+    - 메모리에 넣은 정보가 특정 단위(페이지 혹은 블럭)를 넘어서면, 그제서야 DMA는  "CPU가 할 일을 DMA가 미리 끝내놓았으니, 나머지 작업을 처리하라!" 라는 의미를 담은 Interrupt를 CPU에 걸어준다. 
+  
+  - DMA 덕분에 CPU가 Interrupt 당하는 빈도가 줄기 때문에, 전반적인 CPU의 성능이 향상된다. 
+  - DMA는 메모리에 직접 접근이 가능한 Controller이다. 
+  
++ DMA 가 할 수 있는 일/하는 일
+  - DMA는 메모리에 직접적인 접근이 가능하다. 
+  - 빠른 입출력 장치를, 메모리에 가까운 속도로 처리하기 위해 사용한다. 
+  - CPU의 중재 없이 Device Controller 가 Device의 Buffer Storage의 내용을 메모리에 block 단위로 직접 전송함. 
+  - byte 단위가 아니라 block 단위로 Interrupt를 발생시킴. 
+  - CPU 에 Interrupt를 매번 걸지 않아 효율을 증대시킴. 
+
+  
+  
+  
+  
+  
+  
