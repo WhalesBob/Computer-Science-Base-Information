@@ -182,14 +182,28 @@
 
 + 앞에서는, Program, Process를 혼돈해서 사용했지만, 전공했다고 말하려면 구별해서 말할 수 있어야 한다. 
 
-#### Program vs Process vs Processor
+### Program vs Process vs Processor
+
+<img src="image/Ch4_8.png"/>
 
 + Processor : 하드웨어(CPU 프로세서, 중앙처리기, 처리기 등)을 말함. 
 
 + Program : 실행가능한(executable, reloadable) 형태의 Object File(or Something).
    - 저장장치(SSD, HDD) 에 상주하고 있음. 
+   - Program 은 code + data 의 집합이다. 
+   - Instruction + 실행할 때 필요한 data 들의 집합. 
+   - 그냥 Disk에 상주할 뿐이다. 
+   - 그렇기에 CPU 권한을 획득하지 못하고, 실행 "가능" 할 뿐, 실행될 준비가 되어있지는 않다.
+   - status 가 없다.
    
 + Process : Program 이 Memory(DRAM) 에 load가 되어 실행할 수 있게 되는 상태 
+   - Process는 "Instance of Running Program"(러닝 프로그램 자체인 객체) 이다. 
+   - 실행 시, 위치가 메모리에 올라와 있다. 
+   - Active Entity. (State가 가변적이다)
+   - 실행되고 있는 형태의 것이다. 
+   - Time-Sharing System 에서 실제로 관심있는 것은 이 "Process" 이다!
+   - Program 이라는 말은 이제 Persistence 이야기하기 전까지는 등장하지 않는다. 거의 Process에 주안점을 두고 이야기가 나온다. 
+   - Time-Sharing System 에서, 하나를 끊고 다른 것을 수행할때, 이게 가능할려면 메모리에 "Processs" 상태에 있어야 한다는 것을 전제로 한다. 
 
 + 만약 지금 갖고 있는 system이 Single Core Process System 이라면, Program 과 Process 는 혼돈될 수 있음.
    - 어차피 그렇다면, 수행가능한 프로그램이 하나밖에 없음. 
@@ -209,6 +223,15 @@
       - 메모리에 올라와야만 creation 된 것이고, run 되기도 하며, CPU를 할당받으려 기다리고 있기도 하고(waiting), 메모리에서 쫓겨나기도 한다(exit)
       - Process는 exit 되기도 했지만, 그 상태에서 메모리에 다시 올라가려고 대기 상태가 되기도 한다(zombie state)
       - 이렇게 프로세스는 다양한 상태(status)를 가질 수 있다.
+   
+   - 메모리에 있냐 vs 디스크에 있냐 차이가 제일 두드러지게 알 수 있는 차이점이라고 볼 수 있겠다. 그리고 실행준비 유무 정도. 
 
++ 쉽게 볼 수 있는 Program vs Process
+   - Chrome Browser 를 키기 전에 바탕화면에 존재하는 것(Chrome)은 Program.
+   - 더블클릭해서 Chrome 이 켜지면, Process가 그제서야 수행되는 것이다. 
+      - 더블클릭 : 하드웨어에 있는 프로그램이 메모리에 올라와서 CPU 사용권한을 획득하고, 수행됨. 
 
-      
++ 추가적인 이야기 
+   - 메모리는 항상 제한적이라서, Process 라 하더라도, 전체를 다 올려서 사용하지는 않는다.
+   - 우리가 당장 필요한 것만 올려서 사용한다. 
+   
