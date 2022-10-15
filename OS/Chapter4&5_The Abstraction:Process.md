@@ -235,3 +235,16 @@
    - 메모리는 항상 제한적이라서, Process 라 하더라도, 전체를 다 올려서 사용하지는 않는다.
    - 우리가 당장 필요한 것만 올려서 사용한다. 
    
+## Process Creation : A Little More Detail
+
+<img src="image/Ch4_9.png"/>
+
++ Program to Process
+   - Program Code, Data는 프로그램 영역
+   - 실행가능한 채로 있다가 메모리에 올라가게 되면, 각각의 해당 위치로 올라감
+   - 코드는 코드대로, 데이터는 데이터대로 올라감
+   - CPU는 그 메모리를 보고 실행할 수 있게 된다. 
+   - 다운로드를 받으면 디스크에 올라갔다가, 실행하면 메모리(DRAM) 에 올라감. 
+   
+   
+   
