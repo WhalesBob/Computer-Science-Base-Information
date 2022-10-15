@@ -150,4 +150,65 @@
 
 ## CPU Virtualization 
 
+<img src="image/Ch4_7.png"/>
 
++ CPU Virtualization 의 등장
+   - 컴퓨터가 가지고 있는 Physical Core(CPU) 는, (가정상) 1개이다. 
+   - 하지만, User, Programmer 에게 무한개 처럼 보이는 Logical CPU를 제공해야 함. 
+   
++ How to CPU Virtualize?
+   - OS에 의해서 구현된 것이 동작한다. 
+   - Time-Sharing 으로 동작한다.
+      - 각각의 User, 개별 Process, Program에 각각 CPU를 사용할 수 있는 시간을 주고, 그 시간동안만 사용한다는 개념
+      - 그럼에도 불구하고, CPU 처리 성능이 유저의 인식속도보다 굉장히 빠르기 때문에, User 혼자서 쓴다는 착각을 만들 수 있을 정도가 되어서 이런 CPU Virtualization 이 가능했다. 
+      - 일단 기본적으로 Round-Robin 방식이 대표적인 Time-Sharing 방식이다.
+      
+#### 그렇다면, Time-Sharing 을 위해 고려해야할 점은 어떤 것이 있는가?
+
++ 구현하기 위해서는 크게 2가지를 고려해야 한다. 
+
+1. 어떻게 지금 돌아가고 있는 프로세스를 정지시키고(끊고), 다른 프로세스를 수행했다가, 이어서 __다시 아무런 문제없이 돌아와서 끝까지 잘 수행되어 기대했던 결과를 낼 것인가?__
+      - 절대 기존에 기대했던 결과와 달라서는 안되겠다. 한마디로, Time-Sharing 이 프로그램이 동작하는 것에 대해 영향을 미치는 것처럼 보여서는 안 되겠다. 
+      - Timer Interrupt를 이용해서 처리하면 될 것이다.
+
+2. 이런 Time-Sharing 이 구현되어 사용 가능하도록 Hardware와 Software가 준비되었다고 한다면, 만약 프로세스가 2개가 아닌 __10개, 100개가 되었을 때 그 다음 처리해야 할 프로세스는 어떻게 결정하며, 어떤 과정으로 Process 에게 CPU 권한을 줄 것인지?__
+      - 그냥 순서대로 줄 것인지?(FIFO)
+      - OS 는, Process를 Stop 시키고 나서 어떤 Process 에게 CPU 권한을 줄 것인지 결정해야 한다. 
+      - 10개 중 일부 Process 를 끝냈는데, 3개의 프로세스가 새로 들어온다면 어떤 순서대로 배분할 것인지?
+      
++ 이런 Scheduling을 OS가 처리하게 된다. 
+
+## A Process
+
++ 앞에서는, Program, Process를 혼돈해서 사용했지만, 전공했다고 말하려면 구별해서 말할 수 있어야 한다. 
+
+#### Program vs Process vs Processor
+
++ Processor : 하드웨어(CPU 프로세서, 중앙처리기, 처리기 등)을 말함. 
+
++ Program : 실행가능한(executable, reloadable) 형태의 Object File(or Something).
+   - 저장장치(SSD, HDD) 에 상주하고 있음. 
+   
++ Process : Program 이 Memory(DRAM) 에 load가 되어 실행할 수 있게 되는 상태 
+
++ 만약 지금 갖고 있는 system이 Single Core Process System 이라면, Program 과 Process 는 혼돈될 수 있음.
+   - 어차피 그렇다면, 수행가능한 프로그램이 하나밖에 없음. 
+   - 저장장치에서 딱 하나의 "프로그램"만 메모리에 올라올 것임. 
+   - 이때는 프로그램과 프로세스가 동일한 의미로 사용될 수 있다. 
+   - 하지만 지금 시스템에서는 그럴 수 없다!
+   
++ Program vs Process 의 차이점
+   - 가장 크고 의미있는 차이중 첫번째는, CPU 권한을 받아 동작할 수 있냐 없냐의 차이다.
+      - 두 개가 각각 어디에 있느냐로 함축해 표현되기도 한다. 
+      - Program은 저장장치(디스크) 에 그냥 존재하지만, Process는 메모리에 올라와야지만 비로소 탄생한다. 
+   
+   - 두번째 차이 
+      - 프로그램은 status(lifecycel)가 없지만, 프로세스는 lifecycle을 갖는다. 
+      - 프로그램은 그냥 SSD, HDD에 존재하는 것일 뿐이다.
+      - 하지만, 프로세스는 Lifecycle 을 갖는다. 즉, 메모리에 올라오면 탄생된 것이고, 메모리에 올라오기 전에는 해당 프로세스가 존재하지 않는 것이다. 
+      - 메모리에 올라와야만 creation 된 것이고, run 되기도 하며, CPU를 할당받으려 기다리고 있기도 하고(waiting), 메모리에서 쫓겨나기도 한다(exit)
+      - Process는 exit 되기도 했지만, 그 상태에서 메모리에 다시 올라가려고 대기 상태가 되기도 한다(zombie state)
+      - 이렇게 프로세스는 다양한 상태(status)를 가질 수 있다.
+
+
+      
