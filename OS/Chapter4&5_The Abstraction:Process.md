@@ -119,11 +119,35 @@
    - 메모리 주소 길이가 32bit을 넘지 못한다. 
       
 #### 질문 : 32 bit Architecture 에서, 1byte가 쭉 이어져 있는 것이 메모리이고, 명령어의 길이가 32bit 으로 이루어져 있는데, 하나의 메모리 주소가 가질 수 있는 size 는 어떻게 1byte 인가? 
-#### 혹시 하나의 메모리 주소가 가리키는 부분이 1byte 라는 의미로 받아들이면 되는 것일까? 메모리 "한 칸" 이라서?
+#### 혹시 하나의 메모리 주소가 가리키는 부분이 1byte 라는 의미로 받아들이면 되는 것일까? 메모리 "한 칸" 이라서? -> 화요일 가서 질문하기. 
 
 + CPU가 바라보는 메모리는, bytes Array이고, 메모리 size는 CPU가 몇 bit Architecture 이냐에 따라 다르다
    - 32bit Architecture 일 때는 4GB, 64bit Architecture 일 때는 4 * 2^32 GB
 
 <img src="image/Ch4_6.png"/>
 
-   
++ (메모리 주소가)0000 0000 ~ FFFF FFFF 까지 있다(32bit Architecture)
+   - 이 구조로 구분할 수 있는 경우의 수는 2^32 개 이다. 그리고 이 경우의 수를 byte 하나에 매칭해 보면, 2^32 byte = 4GB 가 나온다. 
+   - 그래서 Maximum Memory Size가 4GB가 나오는 것이다. 
+   - 근데 지금 돌리는 게임 크기가 4GB 넘는 것들이 있는데, 이 부분은 어떻게 할 것인가? 에 대한 문제가 나온다. 
+      - By Memory Virtualization(무한한 메모리가 있는 것처럼 보이는 Virtualizaiton)
+
++ Kernel(OS) :  운영체제 부분이 메모리에 상주함. 
+   - OS 영역은 메모리에 고정적으로 들어간다 
+   - Linux는 25%, Windwos는 50% 정도가 메모리에 상주한다고 한다. 
+
++ Instructions : 유저 프로그램의 명령어(코드) 가 들어가는 부분이다.
+ 
++ Literals : 프로세스가 시작할 때 초기화되며, literal 상수(메모리 상의 값이 변하지 않는 데이터) 가 들어가는 부분이다. 
+
++ Static Data : 스태틱 영역의 데이터들이 들어가는 부분이다,. 
+
++ Stack : 함수(function) 이나 지역변수(local variable) 이 들어가는 부분이다. 
+
++ Heap : 동적 메모리할당(malloc, new 등의 키워드로 메모리 할당) 된 부분이 Heap 에 들어간다. 
+
++ 확실히 알아야 하는 것 : Virtual Memory 중 일부는 OS, 다른 일부는 User Program 영역에 들어간다는 사실을 알자.
+
+## CPU Virtualization 
+
+
