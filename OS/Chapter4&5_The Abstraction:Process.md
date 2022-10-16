@@ -373,8 +373,124 @@
    - ex) 특정인의 여권, 주소변동기록 등의 주민등록 관리 기록을, 그 사람이 사망하면 국가에서는 그 정보를 말소해도 된다. ( 사망햇으니, 국가가 더이상 관리하지 않는 것이다 )
    - 메모리에서는, 해당하는 Process 가 exit 이 되어, 메모리 상에서 날렸는데, OS는 해당 exit된 프로세스 정보를 일정 시간 쥐고 있는 경우가 있다. 이런 case state를 zombie state 라고 한다. 
    
+   - 언제 필요한가?
+      - fork를 불러서 Child Process 를 만들 경우, Child Process 가 완료될때까지 Parent Process 의 정보가 필요하다. 
+      - parent 프로세스를 메모리에서는 날리지만, 정보는 OS에서 계속 들고 있어야 한다. 
+      - Child 가 없어진 것을 확인해야, OS에서 parent process의 정보를 날린다. 
+      
+   - 이렇게, 이미 Process 가 종료되었는데도 그 프로세스의 정보가 남아 있는 경우를 보고 zombie state 라고 부른다. 
    
+   - Orphan State : Chlid Process는 종료되지 않았는데, Parent Process가 종료되어 "고아 상태" 가 된 경우. 
+   
+## 7-State Model
+
+<img src="image/Ch4_12.png"/>
+
++ 기본 5-State Model 에서 어떤 점이 다른가?
+   - Suspended 라는 개념이 추가되어, 5 에서 7로 state 종류가 늘었다. 
+
++ Difference Between Preemption VS Suspend
+   - 둘다 "정지하다, 끊어내다" 라는 표현으로, 무엇인가 현재진행되고 있는 것을 Stop 시키는 표현이다. 
+   
+   - Preemption 
+      - Running State 에서 Ready State로 바뀌는 것
+      - 현재진행되고 있는 것을 끊는 것이지만, Running State Process 를 Ready State로 옮기는 것이 Preemption 이라는 것을 알아야 함. 
+      - Suspend 와는 다르게, Ready State로 옮기는 것이고, 메모리 안에는 있는 것이다. 
+      
+   - Suspend
+      - 멈추고, 막는것은 같지만, Suspend 는 각 메인 메모리에서 프로세스를 Storage로 빼면서 "멈추고, 막는" 것이다. 
+      - Main Memory 의 Ready, Blocked State 에서, 메모리가 가득 차서 Ready/Suspend, Blocked/Suspend 부분으로 옮기는 것이 Suspend 이다. 
+         - 메모리의 크기가 항상 제한적이기 때문에, Storage로 그 Process를 Suspend 하는 것이라고 생각할 수 있다. 
+      
+      - Preemption 과는 다르게, 그 Process가 Main Memory 안에 없다는 것이 차이이다. 
+      - Why Suspend? : 만약 새로운 Process 가 Create(New) 되어서 Ready State에 들어갔다가 Running 되어야 하는데 공간이 없다면, 있는 Ready State에서 당장 사용자가 요구하는 것을 먼저 처리해야 하므로, 제일 중요한 프로세스를 처리하기 위해서 메모리 공간을 확충해야 한다. 
+      - 중요도가 낮다고 생각되는 Process 를 Storage 로 내릴 수밖에 없다. 
+      - Blocked State에 있는 애들도 메인 메모리를 차지하고 있기는 마찬가지이다. 
+      - Suspend 되면, blocked에 있던 애들도 blocked/suspend Storage 공간으로 내보내진다. 
+      - 그리고 Blocked Queue에 여유 공간이 생기면 그때 다시 메인 메모리 상으로 올린다. 
+      - Blocked 된 애들은 덜 급한게 맞으니, Blocked 들을 Ready 보다 우선적으로 내릴 수는 있다. 하지만, blocked 된 애들 중에 중요도가 높은 애들은, ready를 먼저 메인메모리에서 내리고 지켜줄 만큼 중요도를 가진다. 
    
 
+      - 만약 blocked/suspend 에 있던 애들 중에 I/O가 도착했으면? : Ready/Suspend로 이동한다. 
+      - blocked 에 있었지만, resource를 다 충족해서 바로 running state 나 ready state 로 갈 수 있을것 같지만, OS가 메모리로 불러줄 때가지 Ready/Suspend 에서 기다려야 한다. 
+      - 메인 메모리로 불러지면, 메인 메모리에서 기다렸다가 CPU를 받아서 running 되는 것이다. 
+
+#### Preemption vs Suspend 는 반드시 시험에 나온다. 교수님이 등장예고 하심.
+
++ CPU 권한이 있는지? 메인 메모리에 있는지 디스크에 있는지? resource 가 충분하지? 에 따라 7-state 를 구별할 수 있다. 
+
++ 어떤 event 가 일어날 때, 어느 부분에서 어느 부분으로 이동하는지 알도록 하자.
+
+### Appendix : Swapping
+
+<img src="image/Ch4_13.png"/>
+
++ Swapping 
+   - 프로세스의 일부를 메인 메모리로부터 디스크로, 디스크에서 메인 메모리로 바꾸는 것을 Swapping 이라고 한다. 
+   - Swap in : Disk 에서 Main Memory로https://www.kumoh.ac.kr/ko/sub04_02_04_01.do 올라오면 Swap In 이라고 한다. 
+   - Swap Out : Main Memory 에서 Disk 로 프로세스가 이동하면 Swap Out 이라고 한다. 
+   - 실제 디스크는, Executable File 로 저장되어 있는데, 그냥 일부를 Swapping 하는 부분에 사용해서 쓰는 것이다. 
+   - 일반 exit 과 suspended 되는 부분이 다른 것 : exit은 해당 프로세스에 대한 정보가 사라지지만, suspended 에 있는 애들은 PCB에서 사라지지 않는다 
+      - Disk 에 어떤 프로세스가 지금 존재하는지 알아야 해서, OS가 그 정보를 남겨놓을수밖에 없다.
+
++ Swapping 단점 
+   - Swapping 은 어떤걸 하냐? : 상대적으로 덜 중요한것, 혹은 inactive 한 Process를 내려보낸다. 
+   - 가급적 swapping 은 안 일어나는 것이 좋다. CPU가 연산하는 속도 대비, 메모리에서 읽고쓰는 속도가 느린데, 디스크 읽고쓰는 속도는 그것보다도 훨씬 느리기 때문이다. 
+   - (메모리 - 디스크) 간 읽고쓰는 속도는, (CPU-메모리) 읽고쓰는 속도의 1000배 느리다. 
+   - 그러므로 swapping 이 빈번하게 일어나면, 전체 컴퓨터 성능이 뚝 떨어지는것과 같은 영향이 생긴다. 
+   
+  - swapping 이 덜 일어나게 할려면, 그냥 메모리 용량을 늘려서 swapping을 줄이는 수밖에 없다. 
+  - 어떻게 보면 Swapping 도 I/O 이다. 
+  - 그래서 메모리를 더 쓰면 성능이 더 올라가는 부분도 있다. 
+  
++ 그럼에도 불구하고, 제한된 메모리를 효과적으로 사용하는 방법은 swapping 이다!
+
+## Process State Tracking : CPU only Case VS CPU with I/O Operation 
+
+<img src="image/Ch4_14.png"/>
+
++ CPU Only Case
+   - I/O가 발생하지 않고 나오는 것의 Tracking
+   - CPU 권한 없으면 ready 상태. 끝났으면 다시 다른 쪽이 ready에서 running 으로 바뀐다. 
+
++ I/O 가 발생한 상태 
+   - Resource 가 충분하지 않은 상태가 되었을 때(ex:I/O 요청), ready 가 아닌 blocked 상태로 이동. 
+   - blocked 이후, I/O 받았으면 다시 ready state
+   - 이후, CPU 권한을 받아야 Running
+   - Blocked 에서 Ready가 되었다고 해서 바로 CPU 권한 받을수 있는 것이 아니다! 그래서 Running 이 아니라 Ready에서 기다리는 것임. 
+   - Process 1 이 CPU 권한을 내려놔야만, Process 0 이 다시 Running 할 수 있다. 
    
    
+## PCB : Data Structure
+
++ PCB(Process Control Block) : 간단하게 말해, Process를 관리해야 할 때 필요한 Data Structure 
+   - 어떤 Process 는 Running, 어떤 프로세스는 Ready... 등등이 있는데 이 정보들을 당연히 일일이 관리해 줘야 한다. 
+   - 어떤 것을 어떻게 수행하는지도 다 관리해야 함.
+
++ What's Inside in OS(Kernel Area)?
+   - OS 에는 코드만 있는 것이 아니다. 
+   - Exception Handler, PCB 등이 당연히 있다. 
+   - Process 생성될 때, 그 정보(PCB 정보)도 OS의 특정 메모리 영역에 생성되고 관리된다.
+   
++ What's Inside in PCB?
+   - 각각 개별 Process에 대한 정보를 모두 갖고 있다.(하나의 Data Structure로써)
+   - Context Switching 하는 것도 다 OS에서 PCB 내부의 정보가 있어야 한다. 그래야 Process를 Time-Sharing 하면서 원활하게 Context Switching 을 진행할 수 있다. 
+   - 재수행할 때의 모든 정보를 Setting 해줘야, 멈췄던 부분에서, 그 전에 했던 부분을 문제없이 다시 재실행할 수 있는 것이다. 
+   - 내용물
+      - PID : 프로세스를 구분할 수 있게 해주는 Process ID 이다. 
+      - Process State : Process 상태는 시간에 따라 달라져야 한다. 
+      - Program Counter, CPU Register : CPU 가 돌아가기 위해서는 CPU 내의 register 값을 알아야 한다. 어떤 정보인지, 수행해야 할 instruction 이 어디에 있는지를 알아야 하니, 꼭 있어야 한다. 
+      - Scheduling Information, Memory Management Information 등등(나머지)
+    
+    - 특히 Program Counter 와 다른 CPU Register 에 대한 정보들을 Context 라고 부른다. 
+      - Process를 Stop 시켰을 때의 레지스터 정보가 있어야 다시 실행시킬 때 복구할 수 있다. 
+      - 하나의 Process 가 Stop 되었을 때, 다 갖고 있어야 재수행을 한다. 
+      
+    - 정확히 어떤 정보를 저장하는지는 system 마다 조금씩 다르다. 
+    - 가장 근본적인 것은 내용물 위에서 4번째ㄸ까지이다. 그중에서도 Context(Program Counter, CPU Register) 부분이 제일 중요하다. 
+       
++ 어떻게 PCB는 동작하는지?
+   - Process 가 생성되면, Process 가 메모리에 올라오기 전에 PCB가 먼저 생긴다. 
+   - 메모리에 Process가 올라가면 Ready State.
+   - Exit 가 되면, Process 가 메모리에서 사라지고, 해당 PCB 정보도 사라진다. 
+   - PCB 에 저장되는 정보들은 대학교 학생정보가 관리되는 것과 비슷할 것이다. 졸업되면 관리될 필요가 없어서 내려갈 수 있을 것이다. 
