@@ -488,9 +488,51 @@
       
     - 정확히 어떤 정보를 저장하는지는 system 마다 조금씩 다르다. 
     - 가장 근본적인 것은 내용물 위에서 4번째ㄸ까지이다. 그중에서도 Context(Program Counter, CPU Register) 부분이 제일 중요하다. 
+        
        
 + 어떻게 PCB는 동작하는지?
    - Process 가 생성되면, Process 가 메모리에 올라오기 전에 PCB가 먼저 생긴다. 
    - 메모리에 Process가 올라가면 Ready State.
    - Exit 가 되면, Process 가 메모리에서 사라지고, 해당 PCB 정보도 사라진다. 
    - PCB 에 저장되는 정보들은 대학교 학생정보가 관리되는 것과 비슷할 것이다. 졸업되면 관리될 필요가 없어서 내려갈 수 있을 것이다. 
+
++ Time-Slice 가 작으면 어떤 문제가 벌어지는가?(PCB를 알았으니 그 이후의 관점)
+   - Context Switching : Context(Program Counter, CPU Registers)를 바꾸는 것. 
+   - 현재의 것을 저장하고, 그 전의 것을 restore
+   - Context Switching 이 빈번하게 발생한다는 것은, 메모리에 빈번하게 접근한다는 것이다. 
+   - 너무 Time-Slice가 작으면, 오히려 메모리 접근 시간이 respose time의 대부분을 차지할 수 있다는 것이다. 
+   - 그렇게 되면 response time 이 악화될 수 있다. 
+   
++ PCB를 관리하는 가장 주요한 목적은, Context Switching 에 있다. 
+
+<img src="image/Ch4_15.png"/>
+
++ 그림으로 보는 PCB 운영
+   - new 로 creation 되면, PCB에 먼저 올라가고, 그 다음에 User 영역의 메모리에 올라가게 된다. 
+      - 노란색 영역이 Memory 에서의 User 영역.
+      - OS도 Process 이다. 부팅하는 순간에 BIOS 에서 예약되어, 디스크에서 Kernel 영역(약속된 영역) 메모리에 올라온다. OS 는 그다음에 동작함.
+   
+   - 프로세스 갯수별로 Process Count Block 이 생긴다.
+      - P1 Process 를 만들면 PCB 1이 생기고, P2 Process 를 만들면 PCB 2 가 생기는 구조이다. 
+      
+   - PCB 안에 위에서 있던 내용물이, Data Structure 로써 담겨 있는 것이다. 
+   - PCB 안에 무엇이 있는지는 OS에 따라 세부적으로 다를 수는 있지만, 기본적으로 필요한 것은 같다. 
+      - PID 별로 포인터 형식으로 구성되기도 하고, Descriptor 별로 구성되기도 한다.(OS마다 다르다)
+
++ 상황에 따라 다르겠지만, 기본적으로 어떤 데이터가 들어가 있으며, 어떤 역할을 하는지는 기억하도록 하자. 
+
+
+## Example of Data Structure
+
+<img src="image/Ch4_16.png"/>
+
++ 32 bit Architecture 내부의 Context는 이렇게 생겼다. 
+
+<img src="image/Ch4_17.png"/>
+
++ Proc 에는 메모리주소, 어떤 것이 메모리에 올라와 있는지, bottom address 는 어디에 있는지 등이 담겨 있다. 
+
++ 요런 것이 Data Structure 의 형태로, OS 영역의 메모리에서 저장되어 있다. 
+
+
+      
