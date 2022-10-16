@@ -536,3 +536,17 @@
 
 
 ## Fork : Creating New Process
+
+#### 사진을 보면 이해가능하다. 
+<img src = "image/Ch5_1.png"/>
+<hr/>
+<img src = "image/Ch5_2.png"/>
+<hr/>
+<img src = "image/Ch5_3.png"/>
+<hr/>
+<img src = "image/Ch5_4.png"/>
+<hr/>
+<img src = "image/Ch5_5.png"/>
+<hr/>
+<img src = "image/Ch5_6.png"/>
+
