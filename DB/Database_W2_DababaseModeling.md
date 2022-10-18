@@ -254,5 +254,62 @@
   - Composite(복합) Attribute 와 Multivalued(다중 값) Attribute 가 섞인 것.
   - ex) Address_Phone
   
+## Entity Types, Entity Sets & Keys
+
++ Entity 타입 : 같은 속성들을 가진 Entity 들의 collection
+
++ __Key Attribute__
+  - 단 하나만 있는 value를 가져야 함.(다른 tuple과 중복된 값을 가질 수 없음)
+  - 하나의 값만 있는 Attribute 도 되고, 여러 개의 Attribute 도 되지만, 반드시 그 중 최소한으로 값을 가져야 한다. (하지만, 그래도 하나 이상의 값은 되어야 한다)
   
+<img src="images/DB2_11.png"/>
+
++ 키 속성은 복합적일 수도 있다
+  - Registration 은, Number 와 State 를 가지는 CAR entity type의 Key Attribute 이다.
+
++ Entity Type 은 하나보다 더 많은 Key 를 가질 수도 있다.
+  - CAR Entity 타입은 두개의 Key를 가지고 있다. 
+    - Vehicle_id
+    - Registration(Number, State)
+    
++ 각 Key Attribute 는 밑줄 그어져 있다. (하나의 "Primary Key" 만 밑줄 그어져 있는 Relational Schema 하고는 다른 부분이다.)
+
+## Entity Set
+
+<img src="images/DB2_12.png"/>
+
++ 각 Entity 타입은, DB 에 저장된 Entity Collection 이 있다
+  - 여기서 말하는 Entity 타입은, Table을 의미하는 것이다. 
+  - Entity Collection 은, 각 tuple을의 Collection 을 의미하는 것이다. 
+  - Entity Collection 은 Entity Set 이라고도 불린다.
   
++ CAR 는 Entity Type으로도, Entity Set 으로도 쓰이기도 한다.(그림)
+  - 하지만, Entity Type과 Entity Set 은 다른 이름으로 사용해야 한다.
+  - Entity Set 은 Entity 들의 현재 저장된 tuple 들을 말한다. 
+
+## Value Sets(Domains) of Attributes
+
++ Domains
+  - 각 simple Attribute 들은, value set(값이 모여 있는 집합)과 연결되어 저장된다. 
+  - ex) Last Name 은, 15자 이내의 string 값을 가진다 
+  - ex2) Date 는 MM-DD-YYYY 식으로 저장되며, 각 letter 는 정수 값을 가진다. 
+  
++ Value Set은, 그 Attribute 와 연결되는 값들의 집합들에 맞아 떨어지게 지정되어 저장된다. 
+
++ Value Set 은, 대부분의 프로그래밍 언어에서 지정되는 data type 과 유사하다. 
+
++ 수학적으로, Value Set V 를 가지는 Entity E 의 Attribute A 는
+  - A : E -> P(V) 로 정의할 수 있다. 
+  - P(V) 는 V의 Power Set(모든 가능한 부분집합의 집합) 이다. 
+  - entity e 의 Attribute A 를 A(e) 로 표현할 수 있다. 
+  
+## Displaying an Entity Type
+
+<img src="images/DB2_13.png"/>
+
++ ER 다이어그램에서, Entity Type은 정사각형 박스로 보인다
++ Attribute 는 타원형으로 보인다 
+  - 각 Attribute 는 해당 Entity Type 과 연결되어 있다. 
+  - Composite(복합) Attribute 의 구성요소는, Composite Attribute 를 나타내는 타원형에 연결된어 표기된다. 
+  - 각 Key Attribute 들은 밑줄 그어져 있다. 
+  - Multivalued Attribute 는 이중 타원으로 표시되어 있다. 
