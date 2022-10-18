@@ -29,4 +29,162 @@
   - "더 큰 데이터는 언제나 더 좋은가?"
   - 노이즈, 이상 있어 보이는 데이터에서도 의미 있는 데이터를 찾을 수 있다.
 
-+ 
+## Data Science & Database
+
+<img src="images/DB2_2.png"/>
+
++ Data Science
+  - 과학적인 방법이나 프로세스, 알고리즘 및 시스템을 사용하여, 많은 구조형 데이터 혹은 비정형 데이터에서 지식을 추출하는 학제 간(inter-disciplinary) 분야이다.
+  - 데이터 과학은, 데이터 마이닝, 머신러닝, 빅데이터 에 연관되어 있다. 
+  - 데이터 사이언스나 데이터 베이스는 데이터 없이는 존재할 수 없기 때문에, raw data 에서부터 시작해야 한다.
+  - 이벤트(발생) / 데이터 수집, 전처리 / 분석 / 정보 순으로 일이 이루어진다. 
+    - 데이터 수집, 전처리 에는 각각 웹크롤링, 데이터베이스가 활용된다
+    - 분석에는 통계,머신러닝,시각화가 활용된다. 
+
+## Database System 
+
+<img src="images/DB2_3.png"/>
+
++ 기본 정의 
+  - Data : 기록되고, 의미를 지닐 수 있는 Fact.
+  - Mini-world : 데이터가 DB에 저장되는 실제 "환경" 의 일부
+    - ex) 대학의 학생 성적, 성적 증명서
+    
+  - DBMS(Database Management System) : 전산화 된 데이터베이스의 생성 및 유지보수를 용이하게 하는 소프트웨어 패키지/시스템
+  - Database System : 데이터와 DBMS 소프트웨어가 함께 있는 System. Application 이 포함되기도 한다. 
+
++ DB Technology 에서 Database 의 영향력이 닿는 곳
+  - Business : 뱅킹,보험,리테일,운송,헬스케어,생산 등
+  - Service Industries :  금융, 부동산, 법률, 전자상거래, 작은 비즈니스 등
+  - Education : 컨텐츠 자원
+  - 최근에는 SNS, 환경이나 과학 관련 프로그램, 약물, 유전 등 에 사용되기도 한다.
+  - 개인 프로그램 : 스마트 기기에 많이 활용된다. 
+  
++ Database 의 정의
+  - __컴퓨터에 저장된, 구조화된 데이터들의 집합.__
+  - 특히 다양한 방법으로 접근할 수 있는 데이터들의 집합이기도 하다.
+  - 다른 타입들의 데이터셋 사이에서의 관계로 나타내지기도 한다.
+  
++ Data
+  - Raw Data
+    - 수정 없는 원본 소스에서 수집된 데이터
+    - 직접적으로 분석해서 데이터를 추출하기는 힘들다. 
+  
+  - Processed Data
+    - 구조화되고 정규화 되어, 계산에 사용할 수 있다.
+    - 그러나 분류되어 있지는 않다. (저장에 비효율적이다)
+    
+  - Dataset
+    - 데이터가 서로 다른 view로 정렬되거나, 카탈로그화 되어 있다.
+    - (다른 측면들의)View 에서, 여러가지 다른 계산을 수행할 수 있다.
+    
+  - Database
+    - 데이터 관리 효율성을 극대화하기 위해, 분류화되어 있는 데이터가 서로 어떻게 관련되어 있는지 정보를 제공한다. 
+    - Computation cost가 최적화되어 있다 
+    - Bore data , Meta data 를 관리
+    
+## Database | Data Models
+
++ Database model 
+  - 여러 종류의 데이터셋을 연결하고, 표현하는 방법에 대한 DB의 논리 체계
+  - Heterogeneous data model
+    - 다른 종류의 데이터셋을 한 테이블에 표현
+  - Relational Data Model
+    - 다른 종류의 데이터셋을, 다른 테이블로 각각 분해하고 ID 값으로 연결하여 표현
+    
+## Database | Heterogeneous Data Model
+
++ 다른 종류의 데이터셋을 같이 표현하는 데이터 모델
+
+<img src="images/DB2_4.png"/>
+
+## Database | Relational Data Model
+
++ 다른 종류의 데이터셋을 각각 분해하고, ID로 연결하는 데이터 모델
+
+<img src="images/DB2_5.png"/>
+
++ Database | Example-Transactional DB(거래내역)
+
+<img src="images/DB2_6.png"/>
+
+## Databases System
+
++ About Using General Software
+  - 작은 데이터를 관리할 때는, 엑셀이나 텍스트 에디터 같은 것들을 사용할 수 있다.
+  - 하지만, 데이터베이스 급을 관리할 때 일반적인 SW로 관리하면,
+    - 데이터가 유효한 형식인지 체크하기 어렵다. 
+    - Data Integrity(데이터 통합성,통합 잘되는지) / Data Consistency(데이터 공유성)
+    - ex) Data Integrity Check : 날짜 데이터는 모두 동일한 형식으로 표기돼야 한다.
+    - ex) Consistency of Data : 회원가입 데이터에서 회원 아이디는 고유해야 한다.
+    
+  - 데이터베이스는 여러 명의 유저가 사용해야 유용하게 사용할 수 있다.
+    - About Managing Multiple Users
+      - 데이터베이스에 대한 여러 사람이 접속해 작업할 수 있어야 하는 문제
+      - ex) 구글 스프레드시트는, 사용자가 수동적으로 다른 사람이 글 쓴것을 확인해야 함.
+    
+    - Security Issues
+      - 역할에 다라 사용자의 권한을 다르게 부여해야 하는 문제
+      - ex) 온라인 쇼핑에서, 일반 회원이 다른 회원의 가입정보에 접근 할 수 없도록 제한해야 함.
+      
++ DB System | Database Management System(DBMS)
+  - DBMS 는, DB의 데이터를 저장,검색,정의 및 관리하기 위해 설계된 소프트웨어이다.
+  - DBMS 를 통해서만 관리자/사용자가 데이터에 접근하거나 수정할 수 있다.
+  - DBMS 는 기본적으로 DB 와 최종 유저, 혹은 유저 프로그램 간의 인터페이스 역할을 한다. 
+  - 그래서 데이터가 일관되게 구성되고 쉽게 접근할 수 있도록 한다.
+  
+<img src="images/DB2_7.png"/>
+
++ Simplified Database System Environment
+
+<img src="images/DB2_8.png"/>
+
++ Typical DBMS Functionality(일반적인 DBMS 기능)
+  - 데이터 유형, 구조 및 제약조건에 따라 특정 DB 정의
+  - 보조 저장매체(Secondary Storage Medium) 에 초기 DB 내용 만들거나 로딩하기
+  - DB 조작
+    - 검색 : 쿼리문 입력, report 생성 등
+    - 수정 : 내용에 대한 삽입, 삭제 및 업데이트
+    - 웹앱을 통한 DB 접근
+    - 동시에 사용자나 프로그램들의 요청이나 공유를 처리하며, 모든 데이터를 일관되게 유지해 준다.
+
+## DB에 대한 앱(프로그램) 작업
+
++ 앱은 데이터베이스와 상호작용할 수 있다
+  - 쿼리문 날리기 : 데이터의 다른 부분에 접근하고, 요청의 결과를 다시 띄운다.
+  - Transaction(상호작용) : 일부 데이터를 읽고, 특정 값을 업데이트 하거나, 새 데이터를 생성하여 DB에 저장할 수 있다. 
+  
++ 어플리케이션은, 권한이 없는 사용자가 데이터에 접근하는 것을 허용하지 않는다. 
++ 어플리케이션은, DB에 대한 사용자 요구사항 변화에 대응해야 할 필요가 있다. 
+
+## 추가적인 DBMS 기능
+
++ 무단 액세스를 방지하지 위한 보호 및 보안조치
++ 데이터 내부작업을 수행하는 "Active" 프로세싱
++ 데이터 보여주기/시각화
++ DB 와 관련 프로그램 실행 동안 DB 및 관련 프로그램 유지관리
+  - DB, 소프트웨어 및 시스템 유지관리라고 부른다. 
+
+## DB Example(Conceptual(개념) 데이터 모델 사용)
+
++ 예시 :  Mini-world
+  - 대학 환경의 일부
+  
++ Mini-world Entities :  
+  - STUDENTs
+  - COURSEs
+  - SECTIONs
+  - DEPARTMENTs
+  - INSTRUCTORs
+  
++ Mini-world 에서의 관계(Relationships)
+  - SECTION(수업) 은 COURSE 중 일부이다.
+  - STUDENT 는 SECTION 을 수강해야 한다
+  - COURSE 중에는 "필수" COURSE 가 존재한다. 
+  - INSTRUCTOR 는 SECTION 을 가르쳐야 한다.
+  - COURSE 는 DEPARTMENT(학부) 에서 제공된다
+  - STUDENT 는 DEPARTMENT(학과,학부) 를 전공한다.
+  
++ 만들어진 DB 예시
+
+<img src="images/DB2_9.png"/>
