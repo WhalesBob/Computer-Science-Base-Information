@@ -204,5 +204,55 @@
 
 <img src="imgaes/DB2_10.png"/>
 
-## Overview of Database Design Process
+## ER Model Concepts
 
++ Entity : DB에서의 특정 사물 또는 객체
+  - 특정 Entity 는 각 속성에 대한 값을 가진다.
+  - ex) EMPLOYEE John Smith , the Research DEPARTMENT, the ProductX PROJECT
+  - 독립된 존재로써, 실제적인 것을 표현하기 좋다. 
+    - 물리적으로 존재하는것(사람, 차, 집 등등)
+    - 개념적으로 존재하는것(직업, 항공편 등)
+  - __다른 것과 구별하기 위해, 대문자로 모두 쓴다.__
+  
++ Attributes(속성) : Entity를 설명하기 위해 쓰이는 값
+  - 각 Attribute 는 그것을 나타내는 value set(혹은 data type) 이 있다. 
+    - integer,string,date,enum 등
+    
+  - ex) EMPLOYEE Entity 는 Name, SSN, Address, Sex, Birthdate 등의 Attribute를 가진다. 
+  - Entity의 특정 값들을 표현하기 좋다
+    - Single-valued
+    - Multi-valued
+    - Stored-Derived
+    - Simple(세부 부분으로 나눌 수 없는) attribute
+    - Composite(세부 부분으로 나눌 수 있는) attribute
+  
+## Types of Attributes
+  
++ Simple
+  - 각 entity 가 더이상 나눌 수 없는 value들을 Attribute로 가지고 있는 경우
+  - ex) SSN, Sex
+    
++ Composite
+  - Attribute가 여러 개의 component로 이루어 질 수 있는 경우
+    - ex) Address : 아파트/집/~길/도시/~도/code/나라) 
+    - ex2) Name : 성/이름
+  
+  - Composition 은 일부 Component 자체가 복합적으로 계층을 형성할 수 있다. 
+  
++ Multi-Valued
+  - Entity 는 해당 속성에 대해 여러 개의 값을 가질 수 있다. 
+    - ex) 차의 색상, 특정 학생의 이전 성적
+    - {Color} 나 {PreviousDegrees} 와 같이 표현할 수도 있다. 
+    
++ Stored Attributes VS Derived Attributes 
+  - Stored Attributes : 값이 처음부터 기록되어 있는 Attribute
+  - Derived Attributes : 기록된 Attribute 에서부터, 값이 도출될 수 있는 Attribute
+  - ex1) Birth_date(Stored) vs Age(Derived)
+  - ex2) DEPARTMENT entity 의 직원숫자(Derived)
+  
++ Complex Attributes
+  - Composite(복합) Attribute 와 Multivalued(다중 값) Attribute 가 섞인 것.
+  - ex) Address_Phone
+  
+  
+  
