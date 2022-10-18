@@ -188,3 +188,21 @@
 + 만들어진 DB 예시
 
 <img src="images/DB2_9.png"/>
+
+## Main Characteristics of the Database Approach(데이터 베이스 접근에 있어서 주요한 특성)
+
++ DB 시스템의 자체 기술(self-describing) 특성
+  - DBMS Catalog는 특정 DB에 대한 설명(메타데이터)을 저장한다
+    - DB 구조, 유형 및 제약조건 같은것들
+    - 메타데이터가 있으면 DBMS Software 가 다른 DB 응용프로그램과 함께 작동할 수 있다. 
+
++ 프로그램과 데이터 사이에서의 보호 작용
+  - 프로그램과 데이터의 독립(program-data independence) 이라고 부르기도 한다
+  - DBMS 액세스 프로그램을 변경하지 않고도, 데이터 구조와 어떻게 저장되어 있는지의 구성을 변경할 수 있다. (프로그램과 데이터가 서로 종속적이지 않다. 따로따로 컨트롤 가능하다. )
+  
++ Database Catalog 예시
+
+<img src="imgaes/DB2_10.png"/>
+
+## Overview of Database Design Process
+
