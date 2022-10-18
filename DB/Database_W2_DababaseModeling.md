@@ -202,7 +202,7 @@
   
 + Database Catalog 예시
 
-<img src="imgaes/DB2_10.png"/>
+<img src="images/DB2_10.png"/>
 
 ## ER Model Concepts
 
