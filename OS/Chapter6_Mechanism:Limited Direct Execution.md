@@ -255,5 +255,19 @@
     - 따라서 Time-Slice 를 결정할 때는, __Time Slice 값 뿐만 아니라, Context Switching 하는 시간까지 같이 고려해야 한다.__
         - 최적화의 영역이다.
 
-+ 
+## Example of Context Switching
+
+<img src="image/Ch6_5.png"/>
+
++ 수행되는 순서
+    - 메모리에 Process 가 2개 존재한다고 했을 때, Process 0 을 먼저 수행한다
+    - Time-Slice 가 다 되면, Timer Interrupt를 걸어 Process 0을 멈춘다
+    - Mode bit 이 0이 된 다음에, Process 0의 정보를 PCB에 저장한다. 
+    - 다음 수행해야 할 Process 1의 정보를 PCB에서부터 가지고 와 세팅한다. 
+    - CPU 권한을 Process 1에게 할당하고, Mode bit 이 1로 전환된다.
+    - Process 1이 수행되고, Time-Slice 1초가 다 사용되면 다시 Mode bit 이 0이 된다(Timer Interrupt)
+    - Process 1의 정보가 PCB 1에 저장되고, 다시 Process 0 의 정보를 PCB 0 에서 Loading 해 온다.
+    - Mode bit 이 1이 되면서, Process 0 이 다시 실행된다.
+
+
 
