@@ -120,4 +120,18 @@
     - 정해진 Path 를 제외하고는, 유저는 Hardware 에 접근할 수 없다. 
     - 이런 System Call  은, 유저 프로세스에서 Trap 이라는 이름(Exception) 으로도, Mode bit 0이 되어 수행될 수 있다.  
 
-
++ System Call 의 다른 이름, Exception(Trap)
+    - 내부에서 처리할 수 없는 부분이기 때문에, System Call 을 부르면서 OS에게 유저프로그램이 요청함. 
+    - Trap 이라고 볼 수 있다. Trap 의 가장 대표적인 예시 또한 System Call 이다. 
+    - __Exception Handling Flow 다시 한번 볼 것!__
+    - scanf, printf 를 코드에 쓰면 하드웨어에(I/O) 요청을 하는 것이다(by System Call to OS)
+    - 요청하는 순간 유저 프로그램에서 실행이 불가하기 때문에, OS로 Mode bit 이 바뀌어야 함
+        - User Mode to Kernel Mode
+        - User Mode 에서 실행하다가 System Call 요청이 들어오면, Mode가 바뀌고(Mode bit = 0), OS가 CPU 권한을 가지며 그 부분을 처리한다.
+        
+    - scanf 를 받았다면, except handler가 확인하고 처리한다. 
+    - 그에 맞는 System Call 번호가 정해져 있고, 그 번호에 맞게 Trap Handler 에 간다
+    - Handler가 그에 맞는 코드를 실행하고, 끝나면 다음 코드(Next Instruction)로 넘어간다. 
+        - 특정 이벤트를 해결하기 위한 Solution 은, Handler 라는 이름으로 OS영역에 부팅할 때 올라가 있다. 
+    
+    
