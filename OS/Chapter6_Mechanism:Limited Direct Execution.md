@@ -168,5 +168,46 @@
     - I/O 요청은 유저 프로그램 스스로 처리할 수는 없는 부분이기 때문에, System Call을 통해 OS에게 해당 요청이 들어간다 .
     - System Call은 Trap 이다. 그래서 Trap 이 들어왔으면 OS는 Mode bit을 0으로 바꾼다. 
     - OS가 Standard C Library 를 확인해 본 결과, 해당 "Trap" 이 부르는 System Call 은 3번(예시) 이다.
-    - OS는 해당 I/O 요청을 모니터에게 Output을 띄우라는 신호를 보낸다. 
-    - 
+    - 확인하기 위한 code가 Kernel Code(OS 메모리 내의 코드) 에 있는데, 3번이라면 어디에 solution이 있는지 있는지 그 주소를 따라가서, 수행한다.
+    - 그렇게 OS는 해당 I/O 요청을 모니터에게 Output을 띄우라는 신호를 보낸다. 
+    - 한편, Stop 시켰으면 OS 내의 PCB에 저장하고 해당 프로세스의 정보를 저장하고, I/O 들어온 부분을 signal 보낸다.
+    - 그동안 프로세스는 blocked state 로 넘어간다. 
+    - OS는 다음 프로세스 할 것을 골라서 그 프로세스에게 CPU 권한을 준다 
+        - 필요한 정보 역시 해당 PCB 에서 갖고 와서 세팅하고, Mode bit을 다시 1(User Mode) 로 바꾼다. 
+        - 당연히 next process는 ready queue에 있던 애 중 하나를 가지고 온다.
+
+    - I/O 요청이 끝나서 일이 수행되었으면, 일이 끝났다는 signal이 OS에게 간다. 
+        - 연결된 전선으로 Hardware Interrupt를 통해 signal 이 이동한다. 
+        - 그리고 끝났으면, 가서 실행된 결과를 유저에게 돌려준다. 
+    
+    - 해당 프로세스는 blocked 에서 ready로 넘어간다. 
+    - OS 가 지금 돌리는 Process의 Time-Slice 가 끝나면, 다시 Kernel Mode로 바꾸고, OS가 CPU 권한을 갖는다 
+        - 기존 수행하던 Process를 Ready Queue 로 돌리고, 현재 상태를 그 프로세스의 PCB 에 저장한다. 
+        - I/O 받은 애의 PCB로 가서 그 값을 CPU에 다시 세팅하고, 세팅한 프로세스의 Next Instruction  을 수행한다. 
+
+#### 챕터별로 나눠서 배우지만, 이 모든 것이 하나로, 유기적으로 돌아간다 
+
+## Switching Between Process
+
++ 어떻게 CPU는 이런 프로세스를 멈춘 다음, 재수행하는가?
+    - 2가지 방법이 있다. 
+
++ Cooperative Approach VS Non-Cooperative Approach
+    - OS가 어떻게 CPU 에 대한 권한을 찾아오는지, 그 부분에 대한 방식
+    - Cooperative Approach : OS가, 그냥 Process가 CPU 권한을 놓을때까지 기다리는 방식
+        - Process가 때가 되면 자발적으로 CPU 권한을 놓아줄 것이라고 기대하는 방식
+        - 너무, Process의 선의에 기대는 방식이다. 
+    
+    - Non-Cooperative Approach : Process가 자발적으로 CPU 권한을 놓을 것이라고 기대하지 않음.
+        - 필요할 때마다 OS가 Interrupt를 통해서 해당 프로세스 작업을 끊고, OS가 CPU 권한을 갖는다. 
+        - 애초애 주기적으로 CPU가 권한을 놓을 것이라고 생각하지 않음
+        - OS가 필요하면 CPU 권한을 획득할 수 있게 함.
+        - 가능한 주기적으로 OS가 CPU 권한을 갖기 위한 방식을, Timer Interrupt 방식을 사용한다 
+        - 특정 시간동안만 해당 Process가 CPU 권한을 갖고, 그 시간이 지나면 CPU 권한을 OS에게 양보해야 한다. 
+
+    - 최근에는 다 Non-Cooperative Approach 방법을 사용한다 
+        - Cooperative 방식으로 했을 경우, 만약 User Process가 Trap을 걸었을 때, 유저가 의도한 부분이다 보니, trap을 요청하기 전에 미리 CPU 권한을 내려놓을 수 있을 것이다. 
+        - 하지만, Fault는 개발자가 예측할 수 없는 부분이다. 
+        - 전혀 의도하지 않는 Fault가 일어났으면, 해결이 되지 않고 CPU도 내어놓지 않는 상태가 된다. 
+        - 그렇게 되면 무한 루프에 빠질 수 있다. 
+        - 그래서 OS가 CPU 권한에 대한 부분을 스케쥴링해서, 계속 다른 프로세스들에게 CPU 권한을 제공한다.
