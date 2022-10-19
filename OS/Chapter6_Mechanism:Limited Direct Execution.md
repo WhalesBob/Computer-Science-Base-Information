@@ -120,6 +120,8 @@
     - 정해진 Path 를 제외하고는, 유저는 Hardware 에 접근할 수 없다. 
     - 이런 System Call  은, 유저 프로세스에서 Trap 이라는 이름(Exception) 으로도, Mode bit 0이 되어 수행될 수 있다.  
 
+<img src="image/Ch6_3.png"/>
+
 + System Call 의 다른 이름, Exception(Trap)
     - 내부에서 처리할 수 없는 부분이기 때문에, System Call 을 부르면서 OS에게 유저프로그램이 요청함. 
     - Trap 이라고 볼 수 있다. Trap 의 가장 대표적인 예시 또한 System Call 이다. 
@@ -133,5 +135,38 @@
     - 그에 맞는 System Call 번호가 정해져 있고, 그 번호에 맞게 Trap Handler 에 간다
     - Handler가 그에 맞는 코드를 실행하고, 끝나면 다음 코드(Next Instruction)로 넘어간다. 
         - 특정 이벤트를 해결하기 위한 Solution 은, Handler 라는 이름으로 OS영역에 부팅할 때 올라가 있다. 
-    
-    
+
++ Kernel Stack
+    - OS에 올라와 있는 메모리 중 stack 처럼 쓰는 영역이 있는데, 이를 Kernel Stack 영역이라고 이야기한다 
+    - Virtual Memory 에서 Stack 과 Heap 같이 시간에 따라 그 크기가 변하는 Memory 부분이 있을 것이다. 
+    - Stack은 함수가 계속 쌓이면 쌓일수록 올라가서 재귀적으로 활용 가능한 구조이고, heap 은 동적 메모리 할당과 해제로 사용가능한 부분이다. 
+    - Stack 과 Heap 크기가 계속 바뀌는 이유는, 메모리가 항상 부족하기 때문이다. 
+    - 그래서, 최대한 메모리를 아끼기 위해서는, 쓸 때 할당해서 쓰는 것이고, 안쓸때는 내리면서 메모리를 아끼는 것이다. 
+    - OS(Kernel) 영역에서도 이런 비슷한 일이 일어난다. 
+    - OS 내에, 시스템이 켜질때부터 꺼질 때까지 그 사이에 무조건 필요한 코드들이 존재할 것이다. 
+    - 반면에, 특정 요청이 있을때만 할당해서 쓸 필요가 있는 애들도 분명히 존재할 것이다.
+    - 그렇다면, 필요할 때만 할당해서 쓰고, 필요없을 때는 할당 해제해 줄 수 있는 메모리 영역이 OS에도 필요하다. 
+    - 이런 것을 보고 Kernel Stack 이라고 한다. 
+    - Context나 Flag, 다른 레지스터에 대한 정보들을 프로세스 별로 Kernel Stack 영역에 넣어 활용하자!(PCB)
+    - Kernel 의 대표적인 예시 : PCB
+        - 사용 가능한 모든 프로세스에 대한 정보를 OS가 다 가지고 있을 필요는 없다. 
+        - 해당 프로세스가 만들어지는 순간에, PCB가 Kernel Stack 영역에 생긴다. 
+        - 그렇게 필요할 때 사용하고, 그 프로세스가 Exit 하게 되면 그 PCB 영역도 날리면 된다. 
+
+## System Call Interface
+
++ Interface 이기 때문에, OS 위, OS 안에서 다 필요한 부분이다.
++ 중요한 것은, User 가 System Call 을 통해서만 하드웨어 리조스에 접근할 수 있다는 사실이다 
++ System Call 은, User 와 System 을 사용하는 사용자들에게 약속되어 있는 함수이다. 
+    - 그리고 그 표준 또한 존재한다 
+    - OS 별로 System Call 이 다르긴 하다. 하지만, 함수마다 몇 번이 어떤 System Call을 부르게 되는지만 다르다. 그래서 OS별로 그 부분만 다르게 처리되는 것이다. 
+ 
+ ## Appendix : System Call Procedure
+ 
+ + __System Call 이 불리는 과정(매우 중요한 부분)__
+    - 맨 처음에 printf 함수가 불렸다(I/O)
+    - I/O 요청은 유저 프로그램 스스로 처리할 수는 없는 부분이기 때문에, System Call을 통해 OS에게 해당 요청이 들어간다 .
+    - System Call은 Trap 이다. 그래서 Trap 이 들어왔으면 OS는 Mode bit을 0으로 바꾼다. 
+    - OS가 Standard C Library 를 확인해 본 결과, 해당 "Trap" 이 부르는 System Call 은 3번(예시) 이다.
+    - OS는 해당 I/O 요청을 모니터에게 Output을 띄우라는 신호를 보낸다. 
+    - 
