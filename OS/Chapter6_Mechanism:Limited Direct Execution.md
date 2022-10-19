@@ -215,4 +215,45 @@
 
 ## Saving and Restoring Context
 
-+ PCB 
++ Context Saving : 
+    - 프로세스 동작에 가장 필요한 것은, 해당 프로세스를 실행하기 위한 레지스터(Context) 정보이다.
+    - 끊겼을 때 상태의 레지스터를 PCB 에 저장한다. 
+
++ Context Restoring :  
+    - 다른 Process를 돌리다가, 다시 이전에 돌렸던 Process를 재실행하려면, 그 프로세스 정보를 다시 PCB에서 가져와서 세팅해야 함. 이 작업을 보고 Context Restoring 이라고 한다.
+
+## Context Switching
+
++ Context Switching : 
+    - process 1의 context를 가져와서 수행하다가, process 2를 수행하려면, PCB 2에서 Context 2를 가져와야 함.
+    - Process 3을 수행할때는 Context 3을 가져와서 Switching 해야 함.
+    - 이렇게 Process 를 계속 바꿔서 수행할 때, Context도 계속 바뀌어야 함.
+    - 이렇게 Switching 하는 것을 보고 Context Switching 이라고 한다. 
+    - OS가 Kernel Mode 에서 CPU 권한을 가지고 Switching 에 관여한다. 
+
++ 상세설명
+    - 한 프로세스의 실행을 멈추고, 다른 프로세스를 구동시키기 위해서는, __실행시키고 있던 프로세스의 정보를 저장하고, 새로 수행할 Context를 Loading 해야 한다.__ 
+    - Context : 레지스터 정보(Program Counter, Other Registers..)를 말함. 
+    - 해당 프로세스를 돌리기 위해서는, 돌아가고 있던 Register 상태를 그대로 복구해야 하고, 그러려면 Context가 필요하다. 
+
+## Appendix : PCB
+
++ Process 에 대한 모든 정보를 저장하는 데이터 구조(Data Structure) 이다. 
++ Process가 생길 때 만들어지고, 사라질 때는 PCB 정보도 OS Kernel Stack 영역에서 사라진다.
++ Process 별로 존재한다. 
+
++ 왜 단순히 Response Time 을 줄이기 위해서 Time-Slice를 무작정 작게 해서는 안되는가?(Context Switching Overhead)
+    - Context Switching 하는 데도 들어가는 시간(overhead)가 필요하다. 
+    - PCB가 있는 곳은, 결국 메모리이다. 
+    - 프로세스를 바꾸려면, 현재 실행중인 상태를 PCB에 저장하고, 그 다음에 수행해야 할 정보를 해당 Process의 PCB에서 가져와야 한다. 
+    - __컴퓨터의 성능은, 얼마나 메모리 접근을 최소화하냐에 따라 다르다__.
+        - CPU 가 메모리보다 훨씬 속도가 빠르기 때문이다. 
+        - Context를 빈번하게 바꾸게 되면, Switching Overhead 에 필요한 시간으로 인해 컴퓨터 시스템 성능이 떨어진다. 
+    - Time-Slice 자르는 것은, Response Time 을 최소화하기 위해서인데, 개별 Process 의 Response Time이 그렇게 치면 줄어야 함. 그게 좋은 것이다. 
+    - 하지만, Time-Slice를 작게 한다는 것은, 계속 Process를 끊고, 저장하고, 복구해서 새로운 프로세스를 구동시키는 것이다. 이렇게 되면 Context Switching 이 너무 빈번해지는 결과를 가져온다. 
+    - 너무 짧게 하면, Context Swtiching 시간이 더 비대해져서, 오히려 성능, Response Time 에 악영향을 준다. 
+    - 따라서 Time-Slice 를 결정할 때는, __Time Slice 값 뿐만 아니라, Context Switching 하는 시간까지 같이 고려해야 한다.__
+        - 최적화의 영역이다.
+
++ 
+
