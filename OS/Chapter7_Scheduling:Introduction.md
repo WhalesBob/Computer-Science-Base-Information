@@ -136,8 +136,16 @@
 
 + 각 Scheduling 고려사항들이 어떤 Range 위에서 고려되는지?
   - Long Term : New 에서 Ready로 넘어가는 과정 부분의 고려대상
+    - 사용자가 요청하는 어떤 것을 메모리에 올리고, 어떤 것들을 메모리에서 비워낼지 결정하는 Scheduling. 
+    - 사용자가 요청하는 Process 와 System 등을 고려해서 어떤 것들을 메모리에 올릴지 결정하는 부분이다. 
+    - 내가 가지고있는 Resource를 통해 어떤 Service를 할수 있는지?
   - Middle Term : About Block, Suspend, Ready 에서 해당
-  - Short Term : Like 3-state Model. 3-state model에서 각 부분이 Short Term 에서의 고려대상이다. 
+    - Middle Term : Swapping 에 관련된 부분
+    - 메모리가 부족했을 때, 특정 Process 또는 특정 Code를 메모리 공간을 활용하기 위해 Swap Space에 잠시 옮기는 부분을 말함
+    - Swap In, Swap Out(메모리에서 디스크로 가는 suspended 부분
+    - Swapping을 할때, Process 의 어떤 Code를 내릴 것이며, 어떤 것을 먼저 메모리에 올릴지 에 대한 부분이 Middle Term 부분이다. 
+  - Short Term : Like 3-state Model. 3-state model에서 각 부분이 Short Term 에서의 고려대상이다.
+    - Ready Queue 에 있는 애들에 대해서, 어떤 순서대로 CPU의 권한을 결정해줄지 정하는 것이다.  
 
 ## Terminology for Scheduling(Scheduling 에서의 용어들)
 
@@ -212,3 +220,111 @@
 + Turnaround Time(TAT)를 최적화하는 방식으로 먼저 진행한다. 
 + 이후 Fairness를 고려할 수 있을 것이다. 
 + 위의 가정들을 하나씩 지우면서, 다음으로 고려할 것은 TAT를 최적화하는 것을 목적으로 다가간다. 
++ 찾아가는 과정들을 중요하게 보자.
+  - System 의 복잡도를 한방에 고려해서, 좋은 Scheduling 기법을 만들어내는 것은 상당히 어렵다 
+  - Simple 한 상황으로 시작해서, 하나씩 만들나간 다음에, 그 가정들을 하나씩 지워나가며 Scheduling 기법을 찾아나가는 방법이 좋다. 
+  - 현재 나와있는 모든 Scheduling 기법은 이렇게 만들어진 것이 대부분이다. 
+
++ 5가지 가정
+  1. 프로세스는 동일한 Runtime 을 가진다 
+  2. Process 는 동시에 도착한다 
+  3. I/O 작업을 하지 않는다
+  4. 메모리에 올라올땐, 모든 Job들의 Runtime 을 알고 있다
+  5. Non-Preemptive 이다.(중간에 Process 진행을 OS가 끊지 않는다)
+
++ 첫번째 관심가지는 부분은 Turnaround Time 이다. 
+  - TAT : Process 가 시작해서 모두 완료될때까지 소요된 시간
+  - Task가 시작부터 완료될때까지의 시간이다. 
+  - Turnaround Time 을 어떻게 하면 최소화할 것인지의 기준에서 Scheduling 기법을 선택한다. 
+  - A,B Scheduling 기법 중, 각 Turnaround Time 을 비교해서 더 적은 Turnaround Time 을 만들어내는 기법을 판단해 볼 것이다. 
+
+## First In, First Out(FIFO)
+
+<img src="image/Ch7_2.png"/>
+
++ 먼저 들어온 Task를 먼저 수행하겠다는 것이다.
++ FCFS(First Come, First Served) 이라고도 불린다 
++ Chart 설명
+  - 이 예에서는, A,B,C 3개의 Job 이 잇다. 
+  - System 에 동시에 도달했다고 가정한다. 
+  - 아주 미세한 차이로, A,B,C 순서대로 도착했다고 가정한다
+  - 그래서 A,B,C 순서대로 흘러간다 
+  - 각각의 Job들의 수행시간을 10초라고 가정한다.
+  - 위의 Chart 는 Gantt Chart 라고 부른다. 
+    - 각 Job 들의 수행시간과, 수행순서를 Time 축에 맞춰서 그린 것이다. 
+  
+  - Non-Preemptive 라서, A가 끝날때까지 다른 것이 수행되지 않는 구조이다. 
+  - B 가 System 에 도착한 시간은 0초이지만, 실행하는 것은 10초 뒤에 실행된다. 
+  - C 도 System 에 도착한 시간은 0초이지만, A,B 다 수행되고 나서 20초에 실행되어 30초에 완료되었다.
+
++ 각 Process의 Turnaround Time 과 3개 Process 의 평균 Turnaround Time
+  - Process A : 10sec
+  - Process B : 20sec(10+10)
+    - 도착을 0초에 해서, 실행이 끝났을 때 기준으로 20초가 걸렸다.
+  - Process C : 30sec(20+10)
+    - 도착을 0초에 해서, 실행이 끝났을 때 기준으로 30초가 걸렸다.
+
+  - 평균 Turnaround Time : (10+20+30)/3 = 20 sec
+
++ 구하는게 어렵지는 않다. 
+  - 도착하는 시간과 Runtime 따라, Turnaround Time 과 Response Time을 계산할 수 있을 것이다. 
+
+## Why FIFO is Not That Great? (FIFO 가 문제가 없을까?)
+
+<img src="image/Ch7_3.png"/>
+
++ 1번째 과정 : 모든 Job 들의 Running Time 이 동일하다 
+  - 만약에 Running Time 이 동일하지 않다면? (가정 1번이 삭제된다)
+
+#### 이런 경우의 평균 Turnaround Time은 어떻게 되는가?
+
++ 각 Process의 Turnaround Time 
+  - A : 100sec
+  - B : 110sec(100+10)
+  - C : 120sec(100+10+10)
+  - B와 C의 수행시간은 각 10초이지만, 둘다 A를 먼저 기다려야 한다
+    - A의 Running Time 이 길어서, 그 영향을 정통으로 맞았다. 
+  
++ 결국 평균 Turnaround Time 이 110sec 이 되어버렸다. 
+
++ 이 상황에서의 문제점
+  - A,B,C 를 동시에 놓고, 그냥 맘대로 Scheduling 할 수 있다면?
+  - Running Time 이 짧은 Process 가 많으면, 그것을 먼저 수행할 수 있기 때문에, 짧은 Running Process를 먼저 수행하고, 뒤에 Running Time이 긴 Process를 두어 Scheduling 할 수 있을 것이다. 
+  - 만약, B,C는 Run Time이 되게 짧게 끝난다 해도(B:1초/C: 0.5초), A가 끝날때까지 기다려야 한다는 것이 단점이다.
+  
++ 위의 문제점이 대표적인 "Convoy Effect" 이다. 
+  - 굉장히 수행시간이 긴 Job 때문에, 평균적으로 Turnaround Time 이 짧은 Process 가 굉장히 긴 시간을 기다려야 하는 현상을 Convoy Effect 이라고 부른다
+  - ex) 마트 장보기
+    - 만약에 앞사람이 계산할 것이 너무 많으면, 그 사람때문에 내가 오랫동안 기다려야 하는 Effect.
+  
+  - FIFO 는 Convoy Effect 의 위험을 피하기 대단히 어렵다. 
+    - 만약, Non-Preemptive 한 상태에서 I/O가 굉장히 많은 Process를 마냥 기다려야 한다면? 상당히 비효율의 끝을 달릴 것이다.
+
++ 그냥 짧게 먼저 끝내는 애들을 먼저 하는것이 좋지 않는가? 
+
+## Shortest Job First(SJF)
+
+<img src="image/Ch7_4.png"/>
+
++ 그럼, 위에서 나온것처럼 B,C를 먼저 실행하고 A를 나중에 실행해서 처리하자!
+
++ 각 Process의 Turnaround Time 과 평균 Turnaround Time
+  - B's TAT : 10sec
+  - C's TAT : 20sec(10+10)
+  - A's TAT : 120sec(20 + 100, 20초를 기다리고 나서 100초 수행. 120초)
+  - Average TAT : (10+20+120)/3 = 50sec
+
++ "모든 Process의 Running Time이 같다" 라는 가정이 없어졌을때, FIFO의 평균 TAT는 110 초였는데, Runtime 이 짧은 Process를 먼저 수행하니, 평균 TAT가 50초로 줄었다.
+  - 각각의 Job 이 수행하는 시간이 달라서 생기는 문제를, 짧은 애를 먼저 수행한다는 조건으로 배치해 수행하니 해결이 되었다. 
+
++ 요런 기법을 Shortest Job First(SJF) 라고 부른다. 짧은 Process를 먼저 수행하는 것이 전부이다.
+
++ 그렇다면, 이 기법을 사용했을 때 모든 문제가 해결되는가?
+
+## SJF with Late Arrivals from B and C(SJF면, 모든 문제가 해결되는가?)
+
+<img src="image/Ch7_5.png"/>
+
++ 가정 2. "모든 Job들의 도착시간이 같다" 
+  - 이 가정을 지워보자. 
+  - 다시 Convoying Effect를 만나게 된다.
