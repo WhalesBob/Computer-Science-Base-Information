@@ -122,4 +122,96 @@
 
 ## Example 1 : A Single Long-Running Job
 
+<img src="image/Ch8_2.png"/>
+
++ Queue 2 에 10ms, Queue 1에 20ms, Queue 0에 170ms. 
++ Time Slice가 짧은 애가 높은 Priority Queue 에 있는 것이고, 그렇게 job 들이 들어간다 
++ 수행과정
+  - Example 1 에서, Process A가 I/O 요청 없이 Long CPU Time을 가지고 있으면서 수행되는 중이다.
+  - 그래서 최종적으로  A가 Queue 0에 존재한다. 
+  - Process A 가 새로 들어와서, Rule 3에 의해 가장 높은 Priority Queue 에 들어간다. 
+  - Queue 2로 이동된다음 Time Slice를 다 사용했다. 
+  - Process A 가 수행되고 나서, Round Robin 방식으로 돌아갈 때, 원래 Queue로 가는 것이 아니라 Queue 1으로 들어가게 된다. 
+  - Queue 1에서 수행되다가, 또 Time Slice를 다 썼는데 끝나지 않아서, 그 Feedback 으로 Queue 0으로 이동하게 된 것이다. 
+
+## Example 2 : Along Came a Short Job
+
+<img src="image/Ch8_3.png"/>
+
++ Example 1 의 그림과 연계된다고 생각해도 좋다. 
++ 수행과정
+  - 중간에 짧은 애 (Process B) 가 들어왔다
+  - Job A는, 긴 수행시간을 요구하는 CPU Bound Job 이다. 
+  - Job B는, 상대적으로 CPU 수행시간이 짧게 되는 Interactive Job 이다.
+  - 위의 Example 1에 연계되어, A가 Queue 0 에 있는 와중에, Interactive Job 인 B가 들어왔다.
+  - MLFQ 는 기본적으로 Preemptive 이니까, Job A 의 CPU 권한이 종료된다. 
+  - Job B는, 처음이니까 Queue 2 에 들어간다. (제일 높은 Priority)
+  - Queue 2에서 10ms 사용한다. Job B는 20ms 수행되고 I/O 를 요청할 예정.
+  - 10ms 쓰고 나서, Queue 1(낮은 Priority) 로 이동한다. 
+  - Queue 0과 Queue 1 중에 , 우선순위가 더 높은 Queue 1 의 Job B가 다시 수행된다.
+  - Job B가 10ms 더 써서 종료되었다. 이제 System 에는 다시 Job A만 존재한다. 
+  - 그럼 A가 다시 수행된다. 
+
+##  How MLFQ Approximate SJF?
+
++ MLFQ 는 어찌 보면 SJF, STCF 와 유사한 모습을 보인다
+  - 중간에 끊고, 남은 시간이 짧은 Process 를 먼저 실행하는 것과 같은 유사한 모습을 보인다
+
++ 어떻게 SJF 와 유사해지는가?
+  - Feedback을 통해서, Priority Level을 조정하면서 비슷해진다. 
+  - Preemptive 라서 그런 부분도 있다.
+
+## Example 3:What About I/O?
+
+<img src="image/Ch8_4.png"/>
+
++ 그림설명
+  - Job A는 굉장히 CPU가 필요한 Job이고, Job B는 Interactive 한 Job 이다. 
+  - Job B는 1ms 만 쓰면 되는 Job 이다. 
+  - Job A는 미리 와서 Queue 0까지 내려갔는데, Job B가 등장했다. 
+  - 처음에는 B가 가장 높은데서 시작한다. 
+  - Runtime이 1ms이다. Queue 2 의 Time Slice는 10ms이다. Time-Slice가 끝나기 전에 1ms 만 딱 쓰고 다시 I/O 를 요청한 것이다.
+  - I/O가 발생해서, 당연히 OS가 Mode bit 바꾸고, Context Switch 해서 A를 다시 실행했을 것이다. 
+  - 그리고 나서 I/O 결과가 도착했으면 B를 다시 수행한다. 
+  - Queue 2에 있는 B는, Time Slice가 10ms 인데도 1ms 만 쓰니까, Rule 4.b 에 의해 해당 Priority 를 계속 유지한다. 그래서 계속 Queue 2에 있다. 
+  - Queue 2에서 Time-Slice 를 다 소모했으면 Queue 1으로 내려와야 하는데, 1ms 만 사용하고 I/O를 계속 요청하는 것이기 때문에, 가장 높은 우선순위 쪽에 계속 머무를 수 있는 것이다. 
+
+## Problems with the Basic MLFQ
+
++ 그럼 MLFQ 는 문제점이 없을까? 아니다 있다.
+
+<img src="image/Ch8_5.png"/>
+
++ 첫번째 문제 : Starvation 
+  - A,B,C 중 B,C는 Interactive 이고, A는 CPU Bound Job 이다. 
+  - 맨 처음 A가 Queue 2에 들어가서, 순차적으로 Time Slice를 모두쓴다음에 Queue 0에서 결국 수행되고 있었다. 
+  - 이 상황에서 Queue 2에 B,C 가 들어왔는데, 둘다 1ms 밖에 쓰지 않았다.
+  - 이 상황에서 B가 1ms 쓰고 CPU 반납했지만, C가 받아 쓰는 상황이다. 
+  - 저 위의 예시에서는 A,B 두개의 Job 밖에 없었기에, Job B 가 CPU 권한을 내놓았을 때는 A가 쓸 수 있었다.
+  - 하지만, 이렇게 3개의 Job 이 있는데 2개가 Interactive 하면, B와 C만 CPU 권한을 받아서 쓰는 것이다. 
+  - Queue 2 에서만 계속 돌아가면서 쓰다 보니 Queue 0에 있는 Job 들은 CPU 받을 기회가 사라지는 것이다.
+  - 이런식으로, 여러 개의 Job 이 있을 때, __특정 Job (이나 Process) 가 Computer Resource를 사용할 기회를 계속 받지 못하는 것을 보고 starvation(기아) 라고 부른다.__
+  - 만약 높은 Priority Queue 에 Interactive Job 들이 많아지면, 낮은 Priority 의 Job 들이 CPU 권한을 받지 못하는 Starvation 이 일어난다. 
+
++ 두번째 문제
+  - Interactive 로 들어왔다가 CPU Bound Job 이 될수도 있고, 거꾸로 CPU Bound Job 이 Interactive Job 이 될 수도 있는 것이다. 
+  - Interactive 했다가 CPU Bound 가 될때는 문제없다. 그냥 낮은 Priority 로 이동하면 된다.
+  - 하지만 CPU Bound Job 이었기에, 낮은 Priority 까지 가서 수행되고 있다가 갑자기 Interactive Job 으로 바뀌면? 어떻게 올라갈 수 있는가?
+    - Interactive 로 바뀌면, Response Time 이 중요해지는데, 올라갈 수 있는 방법이 없다.
+    - 내려갈 수는 있어도 올라가는 길이 없는 것이다. 
+
++ 세번째 문제(실제 있었던 문제)
+  - 특정 Process (혹은 Job) 이 일부러 CPU 를 독점할 수 있는 기회가 생긴다. 
+  - MLFQ 가 갖고 있는 기본적인 Rule은, 높은 Priority Queue 에 있을 때 세팅된 Time Slice 안에 CPU 권한을 돌려주기만 하면, 해당 Priority 를 계속 유지할 수 있다는 것이다. 
+  - ex) 가장 높은 Priority Queue 의 Time Slice 가 1초라 하면, 일부러 특정 프로그램을 만들고, I/O가 필요없는데도 불구하고 0.99999 초 지났을 때 System Call 을 날릴 수 있는 것이다. 
+  - 이렇게 하면 CPU 권한을 독점할 수 있다. 
+  - 이렇게 CPU 에 대한 공격이 실제로 발생한 적이 있다. 
+
+#### 이런 문제들은 어떻게 해결하나? 
+
+## The Priority Boost
+
+<img src="image/Ch8_6.png"/>
+
+
 
