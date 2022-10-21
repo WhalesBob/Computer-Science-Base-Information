@@ -436,6 +436,59 @@
 
 ## Round Robin(RR) Scheduling
 
++ 기본적으로 Response Time 을 개선하는 기법은 이미 있음.
+  - 이제는 당연히 그런가보다 할 수 있는 Round Robin 기법이다. 
 
++ Round Robin : 기존의 Time-Sharing 방식에서 하듯이, 그냥 돌아가면서 Process를 진행하는 것이다. 
+  - 각각의 개별 Job 들을, 지금 Time-Slice 만큼만 수행하고, 계속 옮겨가면서 수행하는 것이다
+  - FIFO 와 같기는 하지만, 계속 그냥 옮기는 것.
 
++ Round Robin 과정
+  - Time Slice가 2초라면, 실행 후 2초 뒤에 Timer 에게서 Timer-Interrupt가 도달한다. 
+  - 외부 Hardware Interrupt 이다. CPU 를 사용가능한 시간만큼 썼으니, CPU 권한을 달라는 것
+  - Interrupt 를 받으면, User Mode 에서 Kernel Mode 로 바뀌고, OS가 CPU 권한을 받은 다음 Context Switching 을 하며, 다음 Process 에게 CPU 권한을 할당한다. 
+  - Round Robin 의 Time Slice는 여러 번에 걸쳐서 확인해서 설정해야 한다.
+    - 세팅한 Time-Slice 는 2초인데, 한 Process 의 전체 수행시간은 0.5초라고 한다면, 2초를 줬지만 1.5초는 놀게 된다. 그러면 Time-Slice를 잘못 세팅한 것이다. 
+    - 그냥 바로 Time Slice 를 막 세팅하면, 이런 Unbalance 한 결과를 가져올 수 있다.
+
+## Round Robin Scheduling Example
+
+<img src="image/Ch7_9.png"/>
+
++ A,B,C 가 동시에 도착했는데, 수행시간이 같으면 그냥 FIFO(or SJF) 처럼 하면 될 것이다 
+
++ 이때의 Response Time?
+  - Process A's Response Time : 0s
+  - Process B's Response Time : 5s
+  - Process C's Response Time : 10s
+  - __Average Response Tiem : 5s__
+  
++ Round Robin 에서의 Response Time( Time Slice = 1s )
+  - Process A's Response Time : 0s
+  - Process B's Response Time : 1s
+  - Process C's Response Time : 2s
+  - __Average Response Tiem : 1s__
+  
+#### Response Time 은 TAT를 고려하는 다른 방법보다는 무조건 Round Robin 방식이 좋다. 
+
++ 평균 Turnaround Time 은?
+  - FIFO(or SJF)
+    - Process A's TAT : 5s
+    - Process B's TAT : 10s
+    - Process C's TAT : 15s
+    - Average TAT : 10s
+    
+  - Round Robin
+    - Process A's TAT : 13s
+    - Process B's TAT : 14s
+    - Process C's TAT : 15s
+    - Average TAT : 14s
+    
+  - Turnaround Time 으로만 보았을 때, Round Robin 방식은 매우 좋지않다. 
+  - 하지만 Response Time 으로 보면 Round Robin 이 정답이다.
+  - 뭐가 더 좋은지는 그때그때 다르다. 어떤 부분을 중요시하게 생각하냐에 따라 다른 것이다. 
+  
+#### 모든 조건을 모두 다 만족하는 완벽한 Scheduling 기법은 존재하지 않는다. 
+
++ 개발자가 타켓팅하는 목적, 디자인 하는 부분에서 중요시하게 생각하는 것이 뭔지 보고 나서, 그 System 특성에 맞는 Scheduling 방식을 선택하는 것이 좋다.
 
