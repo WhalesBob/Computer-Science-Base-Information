@@ -492,3 +492,31 @@
 
 + 개발자가 타켓팅하는 목적, 디자인 하는 부분에서 중요시하게 생각하는 것이 뭔지 보고 나서, 그 System 특성에 맞는 Scheduling 방식을 선택하는 것이 좋다.
 
++ 어떤 것을 성능기준으로 선택하냐에 따라, 적합한 Scheduling 기법이 바뀐다.
+  - Turnaround Time(TAT)를 성능 기준으로 잡았을 때는, TAT를 최소화하는 방식으로 Scheduling 기법을 잡아야 한다. 
+  - Response Time 을 중요하게 생각했으면, Response TIme 이 최소화될 수 있는 Scheduling 기법을 선택해 일을 수행해야 한다. 
+
+  - __개발자가 만드는 시스템에서 중요한 것을 먼저 파악하고, 진행해야 한다!__
+    - Round Robin 쓰게 되면, 당연히 Response Time 이 최소화된다.
+    - Context Switching 을 고려하지 않고 생각한다면, 당연히 Yes
+    - Time Slice = 1s 이면, Round Robin 평균 Response Time 평균 = 1s가 된다.((0+1+2) / 3) 5초로 했으면 Response Time 평균도 5초 정도 되었을 것이다. 
+    - Response Time 을 중요하게 생각한다면, Round Robin 방법을 선택하는 것이 정답이다. 
+    - 하지만, Round Robin 방식으로 진행하면, Turnaround Time은 완전히 나빠진다. 
+    - Turnaround Time 이 System 에서 중요한 Performance 지표라면, Round Robin을 채택해서는 안될것이다. 
+
+## Incorporating I/O
+
+<img src="image/Ch7_10.png"/>
+
++ Preemptive 해도 되는 상황이니, CPU 를 수행하다 I/O를 Process 가 요청하면
+  - 일단 해당 Process 를 Stop 시키고, 다른 Process를 수행할 수 있도록 Overlapping 시켰다(아래 그림)
+
++ 각각의 Scheduling 기법에서, Targeting 하는 개별 시스템의 Performance Matching을 이해 해야 한다. 
+  - Time 부분(Turnaround Time, Response Time), Throughput, Fairness, CPU Utilization 등 서로 다른 Target(성능적 부분) 이 존재할 수 있다.
+  - 각 Scheduling 이 어떤 상황에서 적합한지 알고, Scheduling을 잘 선택하도록 하자. 
+
++ 각각의 Job 들의 Runtime 을 System 이 미리 알기는 어렵다. 
+  - STCF(Shortest Time-to Completion First)  가 이론적으로는 최적일 수 있지만, 현실적으로 STCF 방식을 구현하는 것에는 굉장히 많은 걸림돌이 있다. 
+  - 일반적인 Runtime 예측하는 방법 : 과거의 형태를 보고 미래를 예측하자
+    - 그렇다 하더라도, 정확히 맞출수는 없다. 
+    - 비슷하게 따라갈 뿐, 정확하지 않다. 
