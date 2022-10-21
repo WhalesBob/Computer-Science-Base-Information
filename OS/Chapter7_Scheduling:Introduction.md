@@ -348,3 +348,50 @@
 
 ## Shortest Time-to Completion First(STCF)
 
+<img src="image/Ch7_6.png"/>
+
++ STCF 개요
+  - Runtime 이 짧은 Process를 먼저 수행하는 것이 아니라, 새로운 process가 메모리상에 올라왔을 때 각각 "남은 시간" 을 보는 방식
+  - 새로운 Process가 들어왔을 때, Runtime 짧은 순서가 아닌, 각각 "종료까지 남은 시간"을 보는 것이다.
+  
++ 예시
+  - A가 수행되다가 B,C가 왔는데, 그 순간에 각각 "종료까지 남은 시간" 을 확인한다.
+  - Runtime 을 이미 알고 있다고 했으니, B가 끝날때까지는 10초, C가 끝날때까지도 10초, A는 110초 남았다(10초 뒤에 B,C가 들어왔을 때 기준)
+  - A Process 를 끊고, B와 C를 먼저 수행하고 그다음에 다시 돌아와서 Process A 를 수행하자
+  - 이때 각 Process의 Turnaround Time 과 평균 Turnaround Time
+    - Process A's TAT : 120s
+    - Process B's TAT : 10s (20-10)
+    - Process C's TAT : 20s (30-10)
+    - Average TAT : 50s
+  - 처음에 보았던 Shortest Job First(SJF) 처럼 잘 동작하더라~
+  
++ 함정예시 : 만약 B,C가 95초에 도착했다면?
+  - Process A 는, 95초 시점에 종료까지 남은 시간은 5초, B,C는 10초
+  - 이럴때는 Process A를 먼저 수행해야 한다.
+    - STCF 로 했을 때, 상황이 95초일때는, 잘 판단해야 한다. SJF 아니다!
+    - B,C를 먼저 수행해야 한다고 "낚일 수" 있다. 
+  
+  - STCF Scheduling 기법에서는 Runtime 을 보고 판단해서는 안된다! 
+    - 그 특정 시간대에서, "종료까지" 남은 시간이 각각 얼마인지를 확인하도록 하자.
+  
++ 일반적으로 SJF, STCF 가 이론적으로는 맞지만, System 에서 구현하는 것이 참 어렵다
+  - 4번째 가정 : "System 에 들어온 개별 Process의 Runtime 을 모두 알고 있다"
+    - 개별 Procses의 Runtime 을 모두 안다는 것은 실제적으로는 불가능하다. 
+    - 그렇다면, 위에서 했던 가정들이 FIFO 제외하고는 의미가 없어지는 것이다.
+  
+  - 그렇다면, 쓸려면 어떻게 해야 하는가?
+    - Process 의 Runtime 을 "예측" 해서 가야 한다. 
+    - 그러려면, 과거와 당장 현재의 그 Process 의 Runtime 을 보고 판단해야 한다. 
+    - 과거와 현재에도 이러했으니, 미래도 이러할 것이라는 예측 기법으로 예측해 볼 수 있다.
+    
++ 그럼 어떻게 예측할 것인데?
+  - 확률과 통계에서 예측이론을 가져올 수 있다.
+  - 기본적으로 STCF 를 실제적으로 System 에 실제적으로 적용할려면, 예측을 할 수밖에 없다.
+  - 정확하게는 알 수 없지만, 어쨋든 결국 과거와 현재의 수행시간을 가지고 평균 내어 예측해 볼 수 있을 것이다. 
+  - 그 Process의 내용이 크게 바뀌지 않는 이상, 과거의 평균에서 크게 다르지 않은 실행시간을 가질 것이라 예측해 볼 수있다.
+  
+## Appendix : Exponential Averaging
+
+<img src="image/Ch7_7.png"/>
+
+
