@@ -13,4 +13,18 @@
 
 ## Multi-Level Feedback Queue(MLFQ)
 
-+ 
++ Multi-Level Feedback Queue 는, 처음에는 Multi Level Queue 에서 시작했다. 
+  - 그러다가 Multi-Level Feedback Queue 로 발전해서, 현재 사용하고 있다. 
+
++ Multi-Level Queue : 기본적으로는 Turnaround Time 을 최적화하는 것을 일차적인 목표로 하고, Response Time 도 2차적으로는 최소화하는 것으로 한다. 
+
++ Runtime 을 모르지만, 그럼에도 불구하고 수행에 있어 가능한 Turnaround Time 을 최적화 하면서도, Response Time 을 최소화 할 수 있다. 
+
+
+## MLQ : Basic Rules
+
++ 실질적으로 Multi-Level Queue 가 먼저 개발되고, 이후에 MLQ가 가지고 있는 문제들을 해결하기 위해 MLFQ가 나왔다.
+
++ Rules
+  - MLQ는 기본적으로, Process 실행에 있어 각각의 Job 에게 Priority 를 세팅했다. 
+  - Priority 를 주었다는 이야기는, Scheduling
