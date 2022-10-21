@@ -207,11 +207,62 @@
   - 이렇게 하면 CPU 권한을 독점할 수 있다. 
   - 이렇게 CPU 에 대한 공격이 실제로 발생한 적이 있다. 
 
-#### 이런 문제들은 어떻게 해결하나? 
+#### 이런 문제들은 어떻게 해결하나? 이 3가지 문제를 다 해결해야 한다.
+
++ Rule 3,4a,4b 로는 해결이 안된다.
 
 ## The Priority Boost
 
 <img src="image/Ch8_6.png"/>
 
++ 위의 2가지 문제를 한꺼번에 해결하는 기법이다.
++ 특정 시간이 지나서 내려오면, 원래는 Queue 0 에 있으면 계속 그 자리에 있어야 한다. 
+  - Starvation이 일어나고, 올라갈 수 있는 기회가 없다.
 
++ 해결 방법 : 특정 시간마다, 각 레벨에 있는 Job 들을, 무조건 가장 높은 Priority 갖는 Queue 로 올려주면 된다. 
+  - ex) 5초마다, 가장 낮은 쪽에 있던 애들을 다 위로 끌어올려 주는 것이다.
+  - CPU Bound Job 이 Interactive Job 으로 바뀌었을 때, 이렇게 다 위로 끌어올려 주면 계속 Queue 2에 있을 수 있게 될 것이다.
+  - 만약 CPU Bound 특성을 계속 유지하면, 다시 낮은 Priority 로 내려올 것이다. 
+  - 주기적으로 Boosting 해준다고 생각하면 된다.
+  - 낮은 Priority 에 있던 Job 들을 다시 높은 Priority 에 올려준다. Feedback Queue가 낮은 Priority에 보내는 것을 담당했으니, Priority Boost 는 다시 주기적으로 올려주는 역할을 하는 것이다.
+  - 이렇게 Starvation 을 막을 수 있다. Boost 가 있으면, Boost 될때마다 그 시점에서 Job A도 일정시간동안은 계속 수행될 것이다.
+  - Starvation 도 해결하고, CPU Bound Job 에서 Interactive Job 이 될때의 문제도 해결이 가능해졌다. 
+  - Voo-Doo Constant S : 얼마 간격으로 한번씩 Priority Boost 를 해줄 것인가?
+    - 정답이 없다. 다양한 변수를 고려해 Engineer 가 결정해야 한다. 
+    - Priority Boost 를 하면, 밑에 있었던 하위 Priority Queue 에 있던 Job 들이 계속 높은쪽으로 올라와서 실행된다. 그리고 이런것들을 감독도 해야한다.
+    - S를 너무 짧게 잡아버리게 되면, 여전히 CPU Bound 인 Process 들이 많을 수 있다. 
+    - 그러면 빨리 실행되어야 하는, Response Time 을 짧게 유지해야 할 Job 들이 밀릴 수 있다. 
+    - 손해를 야기할 수 있다.
+    - 만약 S를 너무 길게 잡아버리게 되면, Starvation 과, 특정 Job 들의 특성이 바뀌는 것을 반영할 수 없는 문제가 생긴다. 
+    - 안 하느니만 못하게 된다.
+    -  그래서 너무 길지도, 너무 짧지도 않은 선에서 최적화하는 것이 중요하다. 
 
+## Better Accounting
+
+<img src="image/Ch8_7.png"/>
+
++ 의도적으로 0.9999초 실행하고, System Call 을 부르는 것을 어떻게 방지할 수 있는가?
+  - 실제로 높은 Priority Queue 의 Time Slice 를 거의 다 쓰고, CPU 권한을 반납하고 나서 다음에 그 Priority Queue 에서 Running 되었을 때, 실제 사용할 "나머지" 시간만 CPU 사용하게 하는 것이다.
+  - ex) 1초 중에 0.99초 사용하고 반납했으면, 1초 중에 0.99초는 사용한 것이니, 다음 Round Robin 으로 Running 되었을 때는 1초를 다 주는것이 아니라 0.01초만 주는 것이다(해당 Queue 에서)
+    - 그런데도 덜 실행되었다면, 낮은 Priority 로 내리면 된다. 
+    - 결국, 해당 Time Slice 를 다 썼을 때, 그 Process 가 끝났는지 여부만 판단하는 것이다. 
+  
+  - ex2) 수행 시간이 1.2초인데, 0.9초에서 System Call 을 불렀다. 
+    - CPU를 반납했으면, 종료 까지 0.3초가 더 필요함
+    - CPU를 반납했을 때 0.9초를 사용했으니, 해당 Queue 에서 다음 CPU 권한을 받았을 때는 0.1초만 받을 수 있는 것이다. 
+    - 그 0.1초를 다 소모했으면, 낮은 Priority Queue로 내려가야 한다. 
+    - 그래서 결국에는 Queue 0 까지 내릴 수 있는 것이다. 
+    - 이런 Trick을 통해서, CPU 독점을 막는다. 
+ 
+## Turning MLFQ and other Issues
+
++ MLFQ를 실제로 구현해서 사용할 때, Enginner가 결정할 것이 대단히 많아진다. 
+  - Priority는 몇단계로 나눌지?
+  - 각 Queue 의 Time Slice 는 얼마나 줄지?
+  - Voo-Doo Constant S의 길이는?
+
++ 이런 부분은 해당 System 의 특성, 기타등등을 다 고려해서 써야 한다. 
++ 정말 MLFQ를 사용할 수 없는 환경이라면, 거꾸로 FIFO 를 사용할 수도 있다.
++ 다양한 것을 고려해서 결정할 수 있어야 한다. 
+
+ 
