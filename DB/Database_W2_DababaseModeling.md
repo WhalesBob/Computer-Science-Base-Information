@@ -320,4 +320,97 @@
   - EMPLOYEE John Smith 는, PROJECT ProductX 를 하고 있다.
   - EMPLOYEE Franklin Wong 은 Research DEPARTMENT 의 관리자이다. 
   
-+ Relationship 은 ㄷㄱ     
++ 같은 Type 의 Relationship 은, Relation Type 이라는 것으로 묶일 수 있다.
++ Relation Type 의 degree 는, 그 relation 에 참여하는 entity 의 갯수이다.
+
++ N : 1 Relationship 
+  - 정의역 부분은 하나만 relationship 에 연결되는데, 치역 부분은 여러개씩 연결된다
++ M : N Relationship 
+  - 두 쪽 다 여러 개와 연결될 수 있다. 
+  
+## Relationship Type vs Relationship Set
+
++ Relationship Type 
+  - Relationship 에 대한 Schema(논리 구조나 물리 구조) 에 대해 설명해주는 것이다.
+  - Relationship 이름과, 참여하는 Entity 의 유형을 알려줄 수 있다
+  - 특정 Relationship 의 제약조건도 식별할 수 있다 
+  
++ Relationship Set
+  - DB에 표시된, 현재 Relationship 객체의 집합을 말한다 
+  - Relationship Type 의 현재 상태이다. 
+  
++ 그냥 쉽게 보기
+  - 그냥 Relationship Type 은, 그냥 어떤 것들이 들어갈 수 있는지, 누구랑 누구랑 연결되는지. 각 Attribute는 뭘 가지는지 설정해 놓은 것이다. 
+  - Relationship Set은, 해당 Relationship Tuple 들의 집합이다. 안에 들어 있는 데이터를 말하는 것이다. 
+
+<img src="images/DB2_14.png"/>
+
++ ER Diagram 에서는, Relationship 을 이렇게 표기할 수 있다.
+  - Diamond 모양 박스는, Relation Type 을 나타낸다.
+  - 연결되어 있는 직선으로, 참여하는 Entity Type을 알 수 있다. 
+  - Relationship Type 은 화살표로 표시되지는 않는다. 왼쪽에서 오른쪽으로, 위에서 아래로 그 관계를 읽는다. 
+    - 거의 왼쪽이나 위쪽에 있는 것을, 주어라고 읽으면 된다는 뜻이다. 
+  
+## Constraints of Relationship(Relationship 에서의 제약 부분)
+
++ 연결 범위는?
+  - 1 : 1
+  - 1 : N or N : 1
+  - M : N
+  
+  + 최소 얼마정도의 Entity 가 의무적으로 엮여 있어야 하는가? 
+    - Existence Dependency Constraint, 존재하기 위해서 필요한 제약조건 이라고도 불린다. 
+    - zero(그냥 있어도되고 없어도됨)
+    - one or more(의무적으로 하나 이상 엮여야 함.)
+    
+## Recursive Relationship Type
+
++ 동일한 Entity Type 이 __다른 역할로__ 참여하는 Relationship Type
+  - __Self-Referencing__ Relational Type 이라고도 불림. 
+
++ For Example
+  - 한 Employee 는 Supervisor , 한 Employee 는 Supervisee 유형
+  
+## Weak Entity Type
+
++ Key Attribute 없는 Entity. 
++ Owner 와의 Relationship Type을 알려 주는 경우, 혹은 Entity 의 유형을 식별할 수 있게 해주는 Relationship Type 에 참여하기도 한다. (Existence Dependency)
+
++ 네모 박스인데, 두개의 겉 테두리로 있다. 
++ Entity 들은 이런 식으로 "Identify" 되기도 한다.
+  - Weak Entity 들의 Partial Key로(부분키)
+    - 그냥 Weak Entity 가 가지고 있는 Attribute 들, 혹은 그 조합.
+  - Identifying Relationship Type 에서, 관련있는 특정 Entity
+  
++ For Example
+  - DEPENDENT는 Weak Entity Type 인데, 얘를 규명해주는 Entity Type은 EMPLOYEE 이다. 
+  - Weak Entity Type 인 DEPENDENT 는 EMPLOYEE 와 반드시 하나 이상은 연결되어야 한다.
+    - DEPENDENT(피부양자) 인데, 부양하는 Employee 없으면 왜 Company DB에 있겠는가? 필요없지 
+    
++ 그래서 Weak Entity Type 은, 반드시 어디 한군데랑은 relationship 이 있어야 한다. (Existence Dependency)
+
+<img src="images/DB2_15.png"/>
+
++ 그렇다고 해서 반드시, Existence Dependency 가 Weak Entity Type에 연결될 필요는 없다.
+  - ex) DRIVER 는 반드시 DRIVER_LICENSE가 있어야 하지만, DRIVER_LICENSE 에게는 DRIVER 가 반드시 필요한 것은 아니다. 
+  
+## Attributes of Relationship Types
+
++ Relationship Type 도 Attribute 를 가질 수 있다. 
+  - ex) WORKS_ON Relation Type 에서, HourPerWeek Attribute
+  - Relationship Type 에서 이 Attribute 은, employee 가 project 에서 작업한 주당 시간을 나타낸다. 
+    - HoursPerWeek 의 값은 특정 조합 (employee, project) 에 따라 다를 것이다. 
+  - 만약 1:N Relationship 이라면, 대부분 N 이 어떤 Tuple 인지에 따라 이 Attribute 값도 다를 것이다.   
+  
+## Alternative (min,max) notation for Relationship Structural Contraints
+
+<img src="images/DB2_16.png"/>
+
++ Relationship Type R 에 대한 Entity Type E 가 어떻게 참여하냐에 따라 지정되는 것이다. 
+  - E 의 각 tuple e 가, R의 각 Relationship Tuple 객체 에 적어도 최소값~최대값 만큼 엮여 있도록 지정하는 것. 
+  - 예시 : Department 는 최소한 한 명의 Manager가 있어야 하고, employee 는 최대 1개의 Department를 관리해야 한다. 
+  - 예시 2 : Employee 는 최대 한개의 Department 에 소속되어 일할 수 있고, DEPARTMENT 는 최소 1명부터 최대 N명까지의 직원을 가질 수 있다.
+  
+  
+
+
