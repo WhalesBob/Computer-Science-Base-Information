@@ -313,3 +313,11 @@
   - Composite(복합) Attribute 의 구성요소는, Composite Attribute 를 나타내는 타원형에 연결된어 표기된다. 
   - 각 Key Attribute 들은 밑줄 그어져 있다. 
   - Multivalued Attribute 는 이중 타원으로 표시되어 있다. 
+
+## Relationship and Relationship Types
+
++ Relationship 은, 두개나 그 이상의 entity 를, 특정한 의미를 가지고 연결짓는 것이다.
+  - EMPLOYEE John Smith 는, PROJECT ProductX 를 하고 있다.
+  - EMPLOYEE Franklin Wong 은 Research DEPARTMENT 의 관리자이다. 
+  
++ Relationship 은 ㄷㄱ     
