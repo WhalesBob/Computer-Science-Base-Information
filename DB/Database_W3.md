@@ -25,6 +25,8 @@
     - Home_Phone(Domain) 의 format 이 ddd-dddd 로 정해져 있다.
 
   - 실질적으로, C언어의 typedef 으로 선언할 수 있는 변수이름이라고 생각해도 좋다.
+  
+#### Domain 은 데이터 타입으로써의 정의라고 받아들여야 한다!
 
 + __Tuple__
   - Tuple 은, __순서가 있는__ 데이터들의 집합이다. 
@@ -98,8 +100,31 @@
   - 어떤 Student 는 집이 있지만, 그 집에 전화기를 안둬서 Home_Phone 이 NULL 일 수 있다.
     - 혹은 그냥 안적어놓을 수도 있다.
 
+## Relational Model Notation
 
++ Relation Schema 표기 : R(A1,A2,...,An)
++ Relation(Table) 이름 : 대문자 Q,R,S
++ Relation States : 소문자 q,r,s
+  - 그 Relation(Table) 에서의 tuple 객체의 집합!(혹은 부분집합)
++ Tuples : t,u,v 로 표기
++ Attributes : R.A(ex : STUDENT.name) 으로 표기
++ n-tuple t의 내용물 표기 : t = <v1,v2,...,vn>, v 는 A 값.
 
+## Relational Model Constraints(제약조건)
 
++ Implicit Constraints(암묵적인 제약조건)
+  - 개발자가 따로 설정해주지 않아도 무조건 있는 제약조건.
+  - Model 에 내재된 제약조건
+  - ex) Table 은 중복된 Tuple 을 가질 수 없다.
 
++ Explicit Constraints(명시적 제약조건)
+  - Schema 에 직접 표현되는 제약조건
+  - ex) max 와 Cardinality Ratio 는 ER Model 에 직접적으로 명시될 수 있는 제약조건이다. 
+  
++ Semantic Constraints(혹은 강한 선언(Assertions))
+  - Schema 로, 명시적으로 표현될 수 없는 제약조건
+  - Application 에 의해 표현되어야 한다. 
 
++ Data Dependencies
+  - 함수나 multivalue 값의 종속성 - RDB 설계의 "적합성" 을 테스트하고, 정규화(normalization) 에 사용된다.
+  
