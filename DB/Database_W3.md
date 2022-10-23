@@ -142,5 +142,10 @@
     - 허용된 경우라면 NULL 값은 들어갈 수 있다.
     
     
+## Key Constraints(Key 제약조건)
+
++ 중복성을 피하기 위해, Database 는 두개의 튜플이 완전히 같은 value들을 갖는 것을 혀용하지 않는다. 
++ 이러한 제약조건은, SuperKey(SK) 값의 특정 부분집합에 대해서도 지정할 수 있다. 
+  - Table 안에 있는 모든 Tuple 은, 각각 고유한 Superkey Combination 을 가질 수 있고, 서로 중복된 SuperKey를 가질 수 없다. 
     
-    
++ Superkey 는 
