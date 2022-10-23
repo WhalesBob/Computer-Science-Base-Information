@@ -282,4 +282,38 @@
   
   - Foreign Key를 업데이트 할 때는, 참조하는 테이블의 어떤 튜플에 그 값이 존재하는지를 봐야 한다.
   
++ Transcation Concept
+  - Transaction : 그냥 DB 명령어 포함하는 프로그램을 실행시키는것. 그냥 DB조작이다
+    - SELECT, INSERT, DELELE, UPDATE 등등
   
+  - 끝에는, 반드시 DB를 Valid State로 만들어 놓고 끝내야 한다.
+  - 하나의 Transaction(실행) 이라도, 그 안에는 검색이나 업데이트 명령어가 여러 개 섞여있을 수 있다.
+  - "Tom Smith" 는 100달러를 자기 은행계좌에서 빼고 싶을때
+    - transaction 은 한번, DB 명령어는 검색한번, 수정한번. 2번.
+    
+## ER-to-Relational Mapping
+
++ ER Model 을 토대로, Relational Model 을 만들어 매핑하는 과정
+
++ 해야 할 일
+  - 모든 정보를 저장(Attribute 포함)
+  - 최대한 제약조건을 유지하기
+    - ex) Relational Model : Relational Model 은 ER Model 에서의 모든 제약조건을 모두 보존해서 진행할 수는 없다.
+    - 1 : 10 과 같은 Max Cardinality Ratio 의 경우, Relational Model 에서는 보존해서 진행하기 힘들다. 
+    - 하위 유형을 철저하게 분리해서 진행한다
+    - ex) STUDENT 는 국내 학생 및 외국 학생으로 분리할 수 있다.
+    
+  - NULL 값을 최소화해 보기.
+  
+<img src="images/DB3_8.png"/>
+
++ Step 1 :  Regular Entity Type 매핑하기
+  - ER Schema 의 각 Strong Entity Type E 에서, 모든 E 의 Attribute를 포함하는 Relation(Table Attribute) 을 만든다
+  - E 의 Key Attribute 중에 Primary Key 를 설정한다.
+  - 만약 E의 키 중 선택한 것이 복합(Composite) Key 이면, R 에서는 Attribute 2개 이상을 묶어서 Primary Key 로 만들어야 한다. 
+  
++ Step 2 : Weak Entity Type 매핑하기
+  - Owner Entity Type E 에 종속되는 각 Weak Entity Type W 각각을, Relation R로 만들고 그 안에 W의 Attribute 를 다 집어넣는다. 
+  - Owner Entity Type 의 외래키와, Weak Entity Type 의 Primary Key 를 다 매칭되게 만들어 둔다.
+
++ Step 3 : Relation Type 
