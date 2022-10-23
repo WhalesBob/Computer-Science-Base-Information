@@ -233,3 +233,53 @@
 
 + 이런 참조무결성, Entity 무결성 제약조건은 SQL 과 같은 DDL(Data Definition Language) 에서 지정될 수 있다.
   
+## Other Types of Constraints(다른 타입의 제약조건들)
+
++ Semantic Integrity Constraints(DDL 에 속하지 않음)
+  - ex) EMPLOYEE 의 최대 일할 수 있는 시간은 주당 52시간이다.
+  - 이런건 따로 설정해 줘야 한다.
+
++ Constraint Specification(제약조건 명시) 언어는 이런 것들을 설정하는데 사용된다.
+  - CREATE TRIGGER 나 CREATE ASSERTION 으로, 이런 "semantic" 제약조건을 설정할 수 있다.
+  - Key, NULL 허용, 후보키, 외래키, 참조무결성 등은 CREATE TABLE 로 표현 가능하다.
+
++ Transition Constraints(DDL 에 속하지 않음)
+  - DB의 상태(state) 를 바꾸는 제약조건
+  - EMPLOYEE 봉급(salary) 는 오로지 오르기만 할 수 있다. (내려갈 수 없다)
+  
+## DB Operations
+
++ 검색 (SELECT) 
+  - DB 내의 정보는, 검색해서 알아낼 수 있다.
+  - 검색해도 내부정보는 안바뀐다
+
++ 업데이트 (INSERT, DELETE, MODIFY)
+  - DB 내의 정보가 처리되어 바뀔 수 있다.
+  - 한쪽에 업데이트 하는것이, 다른 테이블의 정보를 자동으로 바꿀 수도 있다(외래키 걸린 경우)
+  - Update 처리는 무결성을 만족할 수 있게 체크되면서 해야한다.
+  
++ INSERT 에서의 가능한 위반사항
+  - Domain constraints : Attribute 값을 넣을 때, 도메인 범위 밖의 값을 넣어서는 안된다. 
+  - Key Constraints :  Attribute 값을 넣을 때, 그 Relation 에서 고유하지 못할 Key 값을 넣어서는 안된다.
+  - Entity Integrity : 새로운 Primary Key 값은 NULL 이 될 수 없다. 
+  - Referential Integrity : Insert 하는 Attribute 값이 외래키인데, 참조할 Relation 에서의 그에 상응하는 Tuple 이 존재하지 않아서는 안 된다.
+  
+  - 만약에 이런 Insert violation 에 걸리면, 해당 insert 명령어를 거부하고 왜 reject 되었는지 알려준다.
+
++ DELETE 에서 가능한 위반사항
+  - Referential Integrity 하나만 걸려있다
+    - 만약에 지우는 tuple 에서, 다른 tuple 이 참조하고 있는 foreign key 가 걸려있으면 안된다.
+  
+  - DELETE Violation 이 일어나면
+    - 해당 명령어를 거부하고
+    - DB에서 참조하고 있는 Tuple을 같이 삭제해, 삭제 작업이 연쇄적으로 이루어질 수 있다.
+    - Set NULL : 그냥 참조하고 있는 외래키 의 값을 NULL 로 지정하거나, 기존에 약속된 default value로 바꿀 수 있다.
+    
++ Update 에서 가능한 위반사항(Violation)
+  - Attribute 를 업데이트할 때, Primary Key 나 Foreign Key를 건드리지만 않으면 문제가 발생하지 않는다. 
+  - Primary Key 를 업데이트 하는 것은, 그 튜플 자체를 지우고 새로 그자리에 다른 튜플을 넣는 것과 같은 것이라고 생각해도된다. 
+    - 모든 Entity 와 참조무결성을 새로 다 체크해야 한다.
+  
+  - Foreign Key를 업데이트 할 때는, 참조하는 테이블의 어떤 튜플에 그 값이 존재하는지를 봐야 한다.
+  
+  
