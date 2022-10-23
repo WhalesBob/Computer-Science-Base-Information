@@ -128,3 +128,19 @@
 + Data Dependencies
   - 함수나 multivalue 값의 종속성 - RDB 설계의 "적합성" 을 테스트하고, 정규화(normalization) 에 사용된다.
   
+## Relational Integrity Constraints
+ 
++ Relation(Table) 에서 "무결성"(Integrity) 제약조건
+  - 제약 조건은, 모든 유효한(valid) Relational State(Tuple 집합) 이 유지해야 하는 조건이다.
+ 
++ 제약조건의 Type
+  - Key Constraints(Key 제약조건)
+  - Entity Integrity Constraints(Entity 무결성 제약조건)
+  - Referential Integrity Constraints(참조 무결성 제약조건)
+  - 다른 schema-based 제약조건은 __domain 제약조건(Domain Constraint)__이다
+    - ex) Tuple 안에 있는 모든 값은, 해당 attribute 의 domain 안에서의 값이어야 한다
+    - 허용된 경우라면 NULL 값은 들어갈 수 있다.
+    
+    
+    
+    
