@@ -147,5 +147,89 @@
 + 중복성을 피하기 위해, Database 는 두개의 튜플이 완전히 같은 value들을 갖는 것을 혀용하지 않는다. 
 + 이러한 제약조건은, SuperKey(SK) 값의 특정 부분집합에 대해서도 지정할 수 있다. 
   - Table 안에 있는 모든 Tuple 은, 각각 고유한 Superkey Combination 을 가질 수 있고, 서로 중복된 SuperKey를 가질 수 없다. 
+
++ Superkey
+  - 각 튜플이 가지고 있는 Superkey SK는 서로 고유하여, 두 튜플이 완전히 같은 SK 내용물을 가질 수 없다. 
+  - 모든 relation(tuple) 은 최소한 하나의 superkey 를 가진다.
+  - Superkey 는 2개 이상의 Attriburte 를 가질 수 있다.
     
-+ Superkey 는 
++ Superkey 는 Attribute 를 여러개 가질 수 있기 때문에, 서로 중복되지 않는 Key를 갖는 것이 더 유용하다. 
+
++ Key 의 두 특성
+  - 두 다른 튜플은, key에서 서로 같은 값을 가질 수 없다. 
+  - Minimal superkey - Superkey 내의 Attribute 를 제거할 수 없는 상태이고, 고유성(Key 로써 튜플을 구별할 수 있는) 제약조건이 유지되어야 함. 
+    - 그냥 Key 는, 최소한의 Attribute 를 유지하면서, ID의 역할도 할 수 있어야 한다.
+  
+  - 그럼 Key 는 Superkey 인가? : Yes(고유하기만 하면 된다~)
+  - Superkey 는 Key 인가? : NOT Always True(불필요하게 Attribute 가 많으면, key 라고 할 수 없다.)
+  
++ Key 와 Supekey 예시
+  - Key : STUDENT.Ssn 이 될수있다. 어떤 두 STUDENT 라도 같은 Ssn 을 가지지는 않는다
+  - Superkey : STUDENT.{Ssn, Name, Age}, STUDENT.{Ssn, Address}, STUDENT.{Ssn, Name}
+  - 차이점 ? : Minimal 조건이 없다. 
+  
++ Relation Schema 는 여러 Key를 가질 수 있다.
+  - 여러 Key 들이 있을 때, 이것들을 보고 후보 키(Candidate Key) 라고 부른다
+  - ex) CAR(License_number, Engine_serial_number, Make, Model, Year)
+    - Key1 : {License_number}
+    - Key2 : {Engine_serial_number}
+    - 두 개 다 CAR 의 superkey 이면서, 모든 CAR tuple 에서 그 튜플의 고유한 값이다.
+  
+  - 편리함을 위해서, 하나만 Primary Key 로 지정한다 
+    - 하나의 Primary Key 에만 밑줄 그어 관리한다 
+    - 가장 simple 하면서도, 정보를 확실하게 관리할 수 있는 key를 Primary Key 로 지정한다. 
+    
+## Relational Database Schema
+
+<img src="images/DB3_5.png"/>
+
++ Relation(Table) 의 Schema 의 집합 S 는, 그냥 그 DB에 들어 있는 것이다.
++ 전체 DB Schema 의 이름이 S가 될 것이다.
++ S = {R1,R2...,Rn} 과 무결성 제약조건의 집합이 RDB의 Schema 이다.
+
++ COMPANY RDB Schema 설명
+  - Ssn 과 Super_Ssn 은 같은 데이터 타입을 가지지만, 다른 이름을 가지고 있음
+    - Attribute 이름이, 해당 Attribute 가 어떤 역할을 하는지 알려준다
+    
+  - 같은 Concept 의 Attribute는, 각 Relation 에서 서로 다른 이름을 가질 수 있다.
+    - Dnumber = Dno = Dnum
+    
++ RDB State
+  - RDB State 는, RDB Snapshot 이라고 불리기도 한다.
+  - DB State(내용물들) 이 제약조건을 다 만족하고 있으면 Valid State 이고, 아니면 Invalid State 이다.
+
+## Integrity Constraints(IC)
+
++ Integrity Constraints(무결성 제약조건)
+  - 무결성 제약조건은 DB Schema도 만족해야 하며, 모든 유효현 Database State(내용물) 들이 다 만족해야 함.
+  - 무결성 제약조건에는 두가지 Main Type 이 있다.
+    - Entity Integrity(Entity 무결) : 각 Entity 들이 다 무결성 제약조건을 만족해야 함
+    - Referential Integrity(참조 무결성) : Entity 사이의 Relation 사이에서의 무결성 제약조건
+
++ Entity Integrity 
+  - DB Schema S 내의 각 Relation Schema R 에서, Primary Key Attribute PK 는 그 어떤 Tuple 에서도 NULL 값을 가져서는 안된다.
+    - 왜냐면 PK 값으로 각 개별 Tuple 들을 구별하기 때문이다.
+    - PK 가 만약에 여러 Attribute를 가지고 있는 상태라면, 해당 Attribute 값 중 어느 하나라도 NULL 값을 가질 수 없다. 
+    
++ Referential Integrity(참조 무결성)
+  - 두 Relation(Table) 사이에서의 제약조건이다 
+  - 두 Relation(Table) 에서 Tuple 간의 Consistency 을 유지하기 위해 사용된다고 한다.
+    - Consistency : 일관성, 일치성, 양립함, 조화
+  
+  - 이렇게 참조하는 키를 보고 Foreign Key 라고 부른다 
+
++ Foreign Key 의 공식적인 정의
+  - Relation R1,R2 에서, R1 에서의 FK Attribute 들의 집합은, R2의 Foreign Key 이다.
+  - 이때 아래 조건들을 모두 만족해야 함
+    - FK Attribute 는, R2 에서의 Primary Key Attribute 와 같은 Domain 조건을 가져야 함.
+    - 튜플 t1에서의 FK 값은, R2 에서의 t2 안에도 존재해야 함. 아니면 아예 t1에서의 FK 값이 NULL 값이어야 함.(t1[FK] = t2[PK])
+      
+  - R1을 보고 Referencing(참조하는) Relation 이라고 함
+  - R2를 보고 Referenced(참조받는) Relation 이라고 함.
+  
++ Referential Integriry(참조 무결성) 제약조건 예시
+
+<img src="images/DB3_5.png"/>
+
++ 이런 참조무결성, Entity 무결성 제약조건은 SQL 과 같은 DDL(Data Definition Language) 에서 지정될 수 있다.
+  
