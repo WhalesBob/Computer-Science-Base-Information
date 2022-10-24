@@ -247,8 +247,8 @@ WHERE Pnumber = Pno GROUP BY pnumber,pname
 + 설명
   - 위의 결과에서, count(*) > 2 이상을 가진 것을 골랐다. 
   
-<img src=:images/DB5_10.png"/>
-
+<img src="images/DB5_10.png"/>  
+  
 + 위는 틀리고 아래는 맞는 것이다
   - 위가 틀린이유
     - 맨처음에 Salary가 40000 이 넘는 직원의 Dno, count(*)을 구하라고 했다. 
@@ -269,9 +269,61 @@ WHERE Pnumber = Pno GROUP BY pnumber,pname
     - 그러면서 Dno 를 결국 물었으니, Dno를 구한게 맞다. 
     
     
+## Assertions and Triggers
 
++ Assertions 는 MySQL 에 없어서 잘 안쓴다. 
 
++ 그래서 MySQL 에서는 TRIGGERS 를 대신 쓴다
+  - TRIGGER 는 테이블과 연결되어 저장된 하위 프로그램(subprogram) 으로, DB가 바뀔때마다 DBMS 에 의해 자동으로 호출되어, __변경사항이 TRIGGER 를 어기지 않는지 체크한다. __
+  - 복잡한 business rule 을 DB가 따르도록 강제하는 것에 쓰이기도 한다.
+    - 만약 판매원이 5만불 이상을 팔았으면, 자동으로 축하 메세지를 띄운다.
+  - 알리는 목적 : 로그 생성
+    - 누가 언제 무엇을 테이블에다가 했는지?
+  - 지정된 특성 값을 자동으로 생성하기(글 ID 만들기 등)
+  - 테이블을 복제하고, 파일을 백업하는데 씀
+
++ Trigger Logic
+  - Event/Condition/Action 식으로 이루어져 있음
+  - Event 
+    - Trigger 가 실행되는 조건문
+    - INSERT,UPDATE,DELETE
+    - 시간 : BEFORE/AFTER
   
+  - Condition(Optional)
+    - 트리거가 실행될 때 만나는 조건
+  - Action
+    - 실행되는 SQL 문
+    
+<img src="images/DB5_11.png"/>
 
++ 관련 값들 - NEW & OLD
+  - OLD.<attribute name>
+    - UPDATE 문에서 변경되기 전, 혹은 DELETE 문 앞의 Attrubite 값이다.
+    - INSERT 문의 경우, 이 값은 NULL 이다.
+    
+  - NEW.<attribute name>
+    - UPDATE 문 또는 INSERT 문 뒤의 Attribute 값이다. 
+    - DELETE 문의 경우 이 값이 NULL 이다.
+    
+  - 별칭을 붙일 수 있다. 
+    - NEW AS (newname)
+    - OLD AS (oldname)
+    
+ <img src="images/DB5_12.png"/>
+ 
+ + DELIMITER : 문장 끝낼때 붙이는것. \s 로 확인가능하다
+ 
+## Views(Virtial Tables) in SQL
+
++ SQL 에서의 View 의 Concept
+  - 다른 이미 있는 테이블로부터 파생시켜서 나온 하나의 테이블
+  - 실질적으로 만들어지지 않은 __가상의 테이블__ 처럼 취급된다.
+
++ CREATE VIEW 명령어
+  - 테이블 이름, attribute 이름들, 그 view 의 컨텐츠들을 정해주는 쿼리문 으로 이루어짐.
+  - 실질적으로, SELECT 문을 한번 가상으로 저장해 놓고 쓰는 개념임.
   
++ DROP VIEW <view_name> : 해당 뷰를 없앰.
+ 
+<img src="images/DB5_13.png"/> 
   
