@@ -84,11 +84,139 @@ select distinct essn from WORKS_ON where (pno,hours) in
 
 + 이렇게 두개 다랑 매칭이 되는 in 도 있다.
 
-## Nested Queries with HAVING
+### Nested Queries with HAVING
 
 + Subquery 는 HAVING 이랑 쓸 수 있다.
 + Subquery 는 생성된 튜플 수(1개)에 대한 규칙을 준수하는 한, Aggregate Function을 사용할 수 있다.
+
+## Correlated Nested Queries
+
++ Correlated nested query는, __내부 쿼리의 WHERE 절__이 __외부 쿼리의 FROM 절에 있는 테이블을 참조할 때__ 존재한다고 할 수 있다.
+
++ 하위 쿼리는 외부 쿼리 테이블의 각 행에 대해 한번씩 실행된다.
++ = 또는 IN 비교 연산자를 사용하는 Nested Query 는, 하나의 블록으로 축소할 수 있다.
+  - 아래의 두 쿼리문은 같은 결과를 낸다.
+
+```
+SELECT E.Fname, E.Lname FROM EMPLOYEE AS E WHERE E.ssn in 
+(select D.essn from DEPENDENT AS D WHERE E.Fname = D.Dependent_name);
+
+SELECT E.Fname, E.Lname FROM EMPLOYEE AS E, DEPENDENT AS D
+WHERE E.ssn = D.essn AND E.fname = D.Dependent_name;
+```
+
+### Correlated Subquery 는 어떻게 동작하는가?
+
+1. 외부 쿼리에 지정된 테이블에서, row(tuple) 하나를 선택한다. 이것을 "현재 행"이라고 하자.
+    - 커서라도고 한다.
+2. 외부 쿼리의 FROM 절에 있는 별칭(alias) 에, "현재 행" 값을 저장한다. 
+3. 서브쿼리를 수행한다.
+4. 서브쿼리의 결과를 사용하여, 외부 쿼리의 서술 식을 평가한다. 그리고 현재 행이 선택되었는지 여부를 서브쿼리의 결과를 보고 결정한다. 
+5. 외부 쿼리의 테이블의 각 row에서, 위의 1~4를 반복한다. 
+
+
+### Exists Operator
+
++ Nested Query 를 인수(argument) 로 사용하는 boolean 연산자
+  - 서브쿼리가 어떤 결과라도 내면 TRUE
+  - 서브쿼리가 아무 결과도 못 내면 FALSE
+  - Unknown 결과가 나올수가 없다.(무조건 TRUE/FALSE 둘중하나다)
+  - 아래 첫번째 쿼리에서, 서브쿼리에서 딱 하나의 tuple 이 나왔다. 
+    - 하나라도 있으니 true 이다. 
+    - 그냥 계속 참이 나오니, 모든 employee의 fname, lname 이 다 출력된다.
+    
+  - 이것을 의미있게 만들려면, 두번째 query 처럼 해도 된다.
+    - 지금 보고 있는 외부 쿼리의 Dno를 걸어버렸으니, 값이 딱 하나만 매칭된다. 
+    - 다른것에는 다 false 가 나오고, 하나만 true 가 나오니, 하나만 출력된다.
   
+```
+SELECT Fname, Lname from EMPLOYEE WHERE exists
+(SELECT * from department where dname = 'Headquarters');
+
+SELECT fname, lname from EMPLOYEE WHERE exists 
+(select * from department where Dname = 'Headquarters' and employees.Dno = Dnumber);
+```
+<img src="images/DB5_3.png"/>
+
+### EXISTS, NOT EXISTS, UNIQUE
+
++ 이런 연산자들은 주로 correlated nested query 와 함께 사용된다
++ 이 연산자들은 전부다 TRUE,FALSE 둘중 하나만 리턴하는 boolean 함수이다. 
+
++ EXISTS 는 Nested Query 결과가 공집합이 아니면 무조건 참이고, 아니면 거짓이다 
++ NOT EXISTS 는 Nested Query 결과가 공집합이면 참이고, 아니면 거짓이다.
+
++ UNIQUE(Q) : 쿼리 Q의 결과에 중복 튜플이 없으면 TRUE를 반환한다.
+
+<img src="images/DB5_4.png"/>
+
+## Join Tables
+
++ 유저가, 쿼리의 from 절에서 join 작업으로 테이블을 새로 만들어 지정할 수 있다.
+  - 그리고 아래 두 쿼리는 같은 쿼리이다.
+
+```
+SELECT Fname, Lname, address FROM (EMPLOYEE JOIN DEPARATMENT ON Dno = Dnumber) WHERE Dname = 'Research';
+
+SELECT Fname, Lname, address FROM EMPLOYEE, DEPARTMENT WHERE dno = dnumber AND dname = 'Research';
+```
+
+### Natural Join
+
++ 교집합 그림이다. 
+
++ 잘 쓰지는 않는다. 
+  - R과 S가 완전히 똑같은 이름을 가지는 Attribute 가 있어야 함. 
+  - 그렇지 않으면 에러
+  
+### Left Outer Join
+
++ R과 S가 겹치는 부분을 다 표기하고, __왼쪽__ 의 겹치지 않는 부분은 NULL 처리해서 표기
+
+<img src="images/DB5_6.png"/>
+
++ 위아래 Query 차이점
+  - WHERE 이 붙어서, James NULL 여기가 사라짐. 
+  - 저 부분이, S.ssn IN (SELECT super_ssn from employee); 이부분에 걸려서 NULL 이 걸러졌다.
+    - 어차피 SSN 자체에는 NULL 이 없다. 
+    
+### Right Outer Join
+
++ 겹치는 부분을 다 표기하고, __오른쪽__ 의 겹치지 않는 부분을 NULL 처리해서 표기
+
+<img src="images/DB5_7.png"/>
+
+### Full Outer Join
+
++ Left Outer Join 과 Right Outer Join 을 UNION 한 부분. 
+  - 그냥 단순히 UNION 해서 두개 표기하고, UNION 자체가 중첩을 빼주니까 이렇게 할수있다.
+  
+
+## Aggregate Functions
+
++ Aggregate : 집계
+
++ 많은 튜플의 정보를 요약해서, 하나의 튜플로 만드는 것
++ 내장 Aggregate(집계) 함수가 있다.
+  - COUNT,SUM, MAX,MIN, AVG
+  
++ Grouping
+  - summarizing(요약) 하기 전에, tuple 의 subgroup 을 만든다. 
+
++ Having 문은 전체 그룹을 select 할 때 사용한다.
++ Aggregate Function 은 SELECT 문이나 HAVING 문에 사용된다. 
+
+### Example - Count
+
+```
+SELECT count(*) FROM EMPLOYEE;
+SELECT count(*) AS Researchers FROM EMPLOYEE, DEPARTMENT WHERE dno = dnumber AND dname = 'Research';
+```
+
+
+
+
+
   
 
   
