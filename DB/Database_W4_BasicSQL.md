@@ -296,9 +296,7 @@ select distinct salary from employee order by salary asc;
 + Set(집합) 관련 연산자
   - UNION, EXCEPT(defference), INTERSECT
   - Multiset 연산자 : UNION ALL, EXCEPT ALL, INTERSECT ALL
-  
-
-
+  - 이러한 명령어가 유효한 결과를 낼려면, Type 호환을 맞추는 것이 필요하다.
 
 ## Ordering of Query Results
 
@@ -306,10 +304,74 @@ select distinct salary from employee order by salary asc;
   - DESC는 내림차순으로 값을 정렬해 보여주는 것이다 
   - ASC는 오름차순으로 값을 정렬해 보여주는 것이다
   - 주로 쿼리문 맨 끝에다가 넣는다. 
-  
-  
-  
-  
 
+## Substring Pattern Matching and Arithmetric Operators
 
++ Substring Pattern 매칭과 숫자 연산
 
++ LIKE 비교연산자
+  - 문자열 패턴매칭할 때 사용함
+  - % 가 문자열 자리를 대체해서 들어가게 함.(Wildcard 같은 느낌)
+  - 밑줄(_) 하나는 그냥 문자 하나를 대체하게 해서 검색 가능하다. 
+
+```
+SELECT ssn,Fname,Lname FROM EMPLOYEE WHERE Fname LIKE 'b%';
+SELECT fname FROM EMPLOYEE WHERE fname LIKE 'J___';
+```
+
++ BETWEEN 비교 연산자
+
+```
+SELECT * from EMPLOYEE where salary BETWEEN 40000 and 50000 and Dno = 5;
+```
+
+### IN 연산자
+
++ IN 연산자를 사용하면, 지정된 Attribute 값이 지정된 set 안에 들어있는지를 판단하거나, 하위 쿼리에 의해 반환된 set 안에 들어있는지 확인한다
+  - 들어가 있기만 하면, 결과 값에 포함된다. 
+  
+```
+SELECT E.Fname, Lname FROM EMPLOYEE E, DEPARTMENT D WHERE E.Dno=D.Dnumber
+and Dname IN ('Administration');
+```
+
+### Arithmetic Operations
+
++ 더하기, 빼기, 곱하기, 나누기 부분이 SELECT 문 안에 들어갈 수 있다.
+
+```
+SELECT E.Fname, E.Lname, 1.1*E.Salary AS Increased_sal FROM EMPLOYEE AS E, WORKS_ON AS W,
+PROJECT AS P WHERE E.Ssn = W.Essn AND W.Pno = P.Pnumber AND P.Pname = 'ProductX';
+```
+
+### What to Project
+
++ Aggregate Functions
+  - SUM(<attr>)
+  - MIN(<attr>)
+  - MAX(<attr>)
+  - AVG(<attr>)
+  - COUNT(*)
+  - COUNT(DISTINCT <attr>)
+  - 일반적으로 GROUP BY 문과 같이 쓴다.
+  
+``` 
+SELECT AVG(salary) FROM EMPLOYEE;
+```
+
+### GROUP BY & HAVING Clause
+
++ GROUP BY 문
+  - 특정 필드 값의 하위 집합을 정의하고, 하위 집합에 aggregate(집계) 함수를 적용할 수 있다.
+  - GROUP BY 는 이런 aggregate function을 각 subset에 독립적으로 적용할 수 있다.
+
+```
+SELECT pno, MAX(hours) FROM WORKS_ON GROUP BY pno;
+```
+
++ HAVING 문
+  - GROUP BY 문 뒤에 오며, 그룹이 특정 조건을 만족하는 것만을 띄워 준다.
+
+```
+SELECT pno, MAX(Hours) FROM WORKS_ON GROUP BY Pno HAVING MAX(hours) > 21;
+```
