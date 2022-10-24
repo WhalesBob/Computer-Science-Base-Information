@@ -116,7 +116,34 @@ CREATE TABLE EMPLOYESS(
                                                                                                                                    
 + FOREIGN KEY 절
   - 기본적으로 세팅된 Operation : 위반조건을 어겼을 때 업데이트를 막는 것
-                                                                  
+  - 참조 Triggered Action 절 붙이기
+    - SET NULL, CASCADE, SET DEFAULT 중 하나 쓸수 있다
+    - SET NULL 과 SET DEFAULT 는 DBMS 에서 DELETE와 ON UPDATE 할 때 처리된다.
+    - CASCADE 옵션은 "Relationship" Relation 에 맞는 옵션이다.
+    
+## Table 만들고, 세팅하기
+
+
+#### 선언하기
+```
+CREATE TABLE DEPARTMENT(
+  Dname VARCHAR(15) NOT NULL,
+  Dnumber INT NOT NULL,
+  Mgr_ssn CHAR(9) DEFAULT '888665555',
+  Mgr_start_date DATE,
+  PRIMARY KEY (Dnumber),
+  UNIQUE (Dname)
+  );
+```
+
+#### Foreign Key 넣기
+
+```
+ALTER TABLE DEPARTMENT ADD FOREIGN KEY (Mgr_ssn) REFERENCES EMPLOYEE (Ssn) 
+ON DELETE SET NULL ON UPDATE CASCADE
+```
+
+
                                                                   
                                                                   
                                                                   
