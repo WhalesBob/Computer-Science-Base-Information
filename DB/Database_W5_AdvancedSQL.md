@@ -66,6 +66,7 @@ WHERE Dlocation = 'Houston');
 + 여기서 왜 오류날까?
   - 확실한 건, correlated query 라는 것은 맞지만, Nested Query 문에서 Outer Query 의 Attribute 를 select 하고 있다는 사실이다. 
   - IN 은 기본적으로 OR과 같다. 아래의 구문은 둘다 같은 구문이다. 
+    - OR는 TRUE,FALSE를 뱉는 WHERE 문에서 역할을 한다고 생각하면 된다.
   - 아무것도 없는 테이블을 검색하여, OR 문을 돌리면 오히려 하나도 비교할 게 없어져서 WHERE문이 무력화된다. 
   
 
@@ -73,7 +74,6 @@ WHERE Dlocation = 'Houston');
 WHERE Condition = 'A' OR Condition = 'B'
 WHERE Condition IN ('A','B')
 ```
-
 
   
   
