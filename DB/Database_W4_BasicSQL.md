@@ -297,6 +297,15 @@ select distinct salary from employee order by salary asc;
   - UNION, EXCEPT(defference), INTERSECT
   - Multiset 연산자 : UNION ALL, EXCEPT ALL, INTERSECT ALL
   - 이러한 명령어가 유효한 결과를 낼려면, Type 호환을 맞추는 것이 필요하다.
+  - UNION 문 :
+    - 부득이하게 여러 개의 쿼리문을 사용하여 하나의 데이터로 출력해야 하는 경우가 존재한다. 
+    - 이럴 때 사용하는 방법이 UNION 연산자이다.
+    - 단순히 두 데이터를 하나로 붙일 때 사용함.
+   - UNION 과 UNION ALL 의 차이
+    - UNION ALL 문을 사용하면, 두 데이터가 중복되더라도 둘다 띄워준다.
+    - UNION 문을 사용하면, 만약 데이터 중복이 일어났을 때 그 두개를 하나로만 띄워서 보여준다.
+    - UNION ALL 문과 다르게 UNION 문은, 각 쿼리의 Column 갯수 및 명칭을 맞춰줘야 하며, 그렇지 않았을 경우 오류가 발생한다.
+    
 
 ## Ordering of Query Results
 
