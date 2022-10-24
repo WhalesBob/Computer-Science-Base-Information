@@ -75,6 +75,19 @@ WHERE Condition = 'A' OR Condition = 'B'
 WHERE Condition IN ('A','B')
 ```
 
+## Multiple Tuples can be returned
+
+```
+select distinct essn from WORKS_ON where (pno,hours) in 
+(select pno,hours from WORKS_ON where Essn = '333445555');
+```
+
++ 이렇게 두개 다랑 매칭이 되는 in 도 있다.
+
+## Nested Queries with HAVING
+
++ Subquery 는 HAVING 이랑 쓸 수 있다.
++ Subquery 는 생성된 튜플 수(1개)에 대한 규칙을 준수하는 한, Aggregate Function을 사용할 수 있다.
   
   
 
