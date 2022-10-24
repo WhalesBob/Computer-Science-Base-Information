@@ -213,8 +213,62 @@ SELECT count(*) FROM EMPLOYEE;
 SELECT count(*) AS Researchers FROM EMPLOYEE, DEPARTMENT WHERE dno = dnumber AND dname = 'Research';
 ```
 
+## The GROUP BY clause
 
++ Group By 문
 
++ 튜플의 부분집합의 분할 Relation
+  - Attribute 을 그룹화하는 것을 기반으로 한다 
+  - 각 그룹에 독립적으로 function 을 적용한다 
+  
+<img src="images/DB5_8.png"/>  
+  
+```
+SELECT Dno, count(*), avg(salary) FROM EMPLOYEE GROUP BY Dno;
+```
+
++ 설명
+  - Dno 로 분류해서 그룹화한 것을 카운트하고, 평균 낸 것을 표기했다.
+
+```
+SELECT pnumber, pname, count(*) FROM PROJECT, WORKS_ON
+WHERE Pnumber = Pno GROUP BY pnumber,pname
+```
+
++ 설명 
+  - pnumber, pname 두개의 요소를 가지고 그룹을 나누었다. 
+  - PROJECT, WORKS_ON 을 Join 한 결과를 가지고, 넘버와 이름이 같은 것들을 카운트했다.
+  - WORKS_ON 은 직원과 프로젝트를 이어 주는 Relation 인데, 여기서 GROUP BY를 이용해서 각 프로젝트에 사람이 얼마나 많이 들어갔는지 확인할 수 있게 Query 를 만들었다. 
+  
+### Example - GROUP BY with HAVING
+
+<img src="images/DB5_9.png"/>
+
++ 설명
+  - 위의 결과에서, count(*) > 2 이상을 가진 것을 골랐다. 
+  
+<img src=:images/DB5_10.png"/>
+
++ 위는 틀리고 아래는 맞는 것이다
+  - 위가 틀린이유
+    - 맨처음에 Salary가 40000 이 넘는 직원의 Dno, count(*)을 구하라고 했다. 
+    - 이까지만 보면 딱 하나 나와야 한다. Dno 는 맨앞에 하나만 나오고, count(*) 로 카운팅만 된다.
+    - 근데 여기서 GROUP BY Dno 덕분에, 그래도 Dno 별로 분리가 되기는 했다. 
+    - 하지만, 여기서 having count(*) > 1 에서 전부 걸러졌다. 
+    - 종합해 보면 이 Query 문은, 각 부서에 40000 이 넘는 사람이 몇명 있는지 를 구하는 것이었는데, 그 부서에 40000불 이상 받는 사람이 2명 이상이 있는 부서는 어디인가? 를 묻는 Query 문이다. 
+    - 원래 기존 질문과는 맞지 않는 것이었다. 
+ 
+  - 아래가 맞는 이유
+    - 맨처음에 EMPLOYEE 테이블에서 Dno, count(*) 구하는 것은 같았다. 
+    - 여기서 Salary 가 40000불을 넘는 것을 먼저 1차적으로 걸렀다. 
+    - 그리고 Dno 가 포함되어 있는지를 물어본다
+      - SELECT Dno FROM EMPLOYEE GROUP BY Dno 에서, Dno로 묶어서 보았다. 그럼 Dno가 3개가 나온ㄷ
+      - 여기서 count(*) > 1 에서, Dno 로 묶인 애들이 2개 이상인 그룹으로 걸러진다.
+    - 그런 서브쿼리에 Dno 가 포함되어 있는지를 묻는 것이다. 
+    - Salary 가 40000 보다 크면서, dno 는 서브쿼리 안에 있는 직원을 세었다. 
+    - 그러면서 Dno 를 결국 물었으니, Dno를 구한게 맞다. 
+    
+    
 
 
   
